@@ -1,0 +1,14 @@
+[
+  {
+    "company": "CH Logistics",
+    "reason": "insufficient quality",
+    "problemsFound": 0,
+    "analysisSuccess": true
+  },
+  {
+    "company": "GOTTS INTEGRATED SERVICES",
+    "reason": "insufficient quality",
+    "problemsFound": 0,
+    "analysisSuccess": false
+  }
+]

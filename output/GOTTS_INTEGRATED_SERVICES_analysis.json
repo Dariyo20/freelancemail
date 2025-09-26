@@ -1,0 +1,49 @@
+{
+  "company": "GOTTS INTEGRATED SERVICES",
+  "contact": "Kolapo Gabriel",
+  "email": "kolapo.gabriel@gottsintegrated.com",
+  "analysis": {
+    "company": "GOTTS INTEGRATED SERVICES",
+    "website": "https://gottsintegrated.com",
+    "timestamp": "2025-09-22T21:06:10.713Z",
+    "developmentOpportunities": [
+      "Import/export business could benefit from inventory management and tracking systems",
+      "International trade operations could be streamlined with custom logistics software",
+      "Server errors detected - website stability and infrastructure improvements needed",
+      "Technical issues likely causing lost business opportunities",
+      "Small business could benefit from custom solutions to compete with larger competitors",
+      "Automation tools to maximize efficiency with limited staff"
+    ],
+    "techStackGaps": [],
+    "businessGrowthIndicators": [],
+    "projectComplexity": "small-medium",
+    "urgencyLevel": "very high",
+    "decisionMakerLikelihood": "medium",
+    "analysisSuccess": true,
+    "skipReason": "Website has technical issues - indicates development needs",
+    "spamScore": 0,
+    "businessModel": "Import/Export"
+  },
+  "proposal": {
+    "companyName": "GOTTS INTEGRATED SERVICES",
+    "contactName": "Kolapo Gabriel",
+    "firstName": "Kolapo",
+    "title": "Senior Logistics / Operations Manager",
+    "industry": "import & export",
+    "email": "kolapo.gabriel@gottsintegrated.com",
+    "developmentOpportunities": [
+      "Import/export business could benefit from inventory management and tracking systems",
+      "International trade operations could be streamlined with custom logistics software",
+      "Server errors detected - website stability and infrastructure improvements needed"
+    ],
+    "techStackGaps": [],
+    "businessModel": "Import/Export",
+    "projectComplexity": "small-medium",
+    "urgencyLevel": "very high",
+    "decisionMakerLikelihood": "medium",
+    "personalizedPitch": "I came across GOTTS INTEGRATED SERVICES while researching import & export companies and noticed several development opportunities that could help with growth.\n\nI'm David Ariyo, a Full Stack Developer specializing in MERN stack applications. I work with companies in import & export to solve technical challenges through custom development.\n\nI spotted several areas where custom development could help:\n\n1. Import/export business could benefit from inventory management and tracking systems\n2. International trade operations could be streamlined with custom logistics software\n3. Server errors detected - website stability and infrastructure improvements needed\n\nRecent relevant projects:\n• Full MERN stack development (MongoDB, Express.js, React, Node.js)\n• Cloud deployment and authentication systems\n\nShould I put together a quick overview for your team?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer | MERN Specialist\ndavidariyo109@gmail.com\n(+234) 903-6184-863\ndavidariyo.onrender.com\nlinkedin.com/in/david-ariyo-123da",
+    "dynamicSubject": "Development opportunity I spotted for GOTTS INTEGRATED SERVICES",
+    "qualityScore": 8
+  },
+  "processedAt": "2025-09-22T21:06:19.667Z"
+}

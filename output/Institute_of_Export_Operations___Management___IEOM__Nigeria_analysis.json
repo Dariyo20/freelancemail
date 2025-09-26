@@ -1,0 +1,58 @@
+{
+  "company": "Institute of Export Operations & Management - IEOM. Nigeria",
+  "contact": "Imoh Akpan",
+  "email": "imoh.akpan@ieom-ng.org",
+  "analysis": {
+    "company": "Institute of Export Operations & Management - IEOM. Nigeria",
+    "website": "https://ieom-ng.org",
+    "timestamp": "2025-09-22T21:05:38.721Z",
+    "developmentOpportunities": [
+      "Import/export business could benefit from inventory management and tracking systems",
+      "International trade operations could be streamlined with custom logistics software",
+      "Custom team communication platform could improve collaboration",
+      "Mobile app development opportunity - mentioned but no app exists",
+      "API integrations could streamline business operations",
+      "Service business could automate workflows with custom tools"
+    ],
+    "techStackGaps": [],
+    "businessGrowthIndicators": [],
+    "projectComplexity": "medium",
+    "urgencyLevel": "high",
+    "decisionMakerLikelihood": "medium",
+    "analysisSuccess": true,
+    "skipReason": null,
+    "spamScore": 0,
+    "businessModel": "Service",
+    "detectedTechnologies": {
+      "frontend": [
+        "React"
+      ],
+      "backend": [],
+      "cms": [],
+      "ecommerce": [],
+      "frameworks": []
+    }
+  },
+  "proposal": {
+    "companyName": "Institute of Export Operations & Management - IEOM. Nigeria",
+    "contactName": "Imoh Akpan",
+    "firstName": "Imoh",
+    "title": "Logistics Manager",
+    "industry": "international trade & development",
+    "email": "imoh.akpan@ieom-ng.org",
+    "developmentOpportunities": [
+      "Import/export business could benefit from inventory management and tracking systems",
+      "International trade operations could be streamlined with custom logistics software",
+      "Custom team communication platform could improve collaboration"
+    ],
+    "techStackGaps": [],
+    "businessModel": "Service",
+    "projectComplexity": "medium",
+    "urgencyLevel": "high",
+    "decisionMakerLikelihood": "medium",
+    "personalizedPitch": "Your Institute of Export Operations & Management - IEOM. Nigeria website caught my attention - particularly business approach. However, I noticed several development opportunities that could help with growth.\n\nI'm David Ariyo, a Full Stack Developer specializing in real-time applications. I work with companies in international trade & development to solve technical challenges through custom development.\n\nI spotted several areas where custom development could help:\n\n1. Import/export business could benefit from inventory management and tracking systems\n2. International trade operations could be streamlined with custom logistics software\n3. Custom team communication platform could improve collaboration\n\nRecent relevant projects:\n• Dassage - Real-time messaging platform with video calls and file sharing\n• Full MERN stack development (MongoDB, Express.js, React, Node.js)\n• Cloud deployment and authentication systems\n\nWorth a 15-minute conversation to see if this makes sense?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer | MERN Specialist\ndavidariyo109@gmail.com\n(+234) 903-6184-863\ndavidariyo.onrender.com\nlinkedin.com/in/david-ariyo-123da",
+    "dynamicSubject": "Quick development win for Institute of Export Operations & Management - IEOM. Nigeria",
+    "qualityScore": 10
+  },
+  "processedAt": "2025-09-22T21:05:40.608Z"
+}
