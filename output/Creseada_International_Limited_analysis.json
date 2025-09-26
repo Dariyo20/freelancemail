@@ -1,0 +1,65 @@
+{
+  "company": "Creseada International Limited",
+  "contact": "Daniel Akhimie",
+  "email": "daniel.akhimie@creseada.com",
+  "analysis": {
+    "company": "Creseada International Limited",
+    "website": "https://creseada.com",
+    "timestamp": "2025-09-22T21:05:48.629Z",
+    "developmentOpportunities": [
+      "Logistics operations could benefit from real-time tracking and management systems",
+      "Customer portal for shipment tracking and status updates",
+      "Custom team communication platform could improve collaboration",
+      "Mobile app development opportunity - mentioned but no app exists",
+      "API integrations could streamline business operations",
+      "Real-time features could enhance user experience",
+      "Service business could automate workflows with custom tools"
+    ],
+    "techStackGaps": [
+      "Wix limitations - could benefit from custom development"
+    ],
+    "businessGrowthIndicators": [],
+    "projectComplexity": "medium-high",
+    "urgencyLevel": "high",
+    "decisionMakerLikelihood": "medium",
+    "analysisSuccess": true,
+    "skipReason": null,
+    "spamScore": 0,
+    "businessModel": "Service",
+    "detectedTechnologies": {
+      "frontend": [
+        "React"
+      ],
+      "backend": [],
+      "cms": [
+        "Wix"
+      ],
+      "ecommerce": [],
+      "frameworks": []
+    }
+  },
+  "proposal": {
+    "companyName": "Creseada International Limited",
+    "contactName": "Daniel Akhimie",
+    "firstName": "Daniel",
+    "title": "Export Manager(Port Logistics)",
+    "industry": "logistics & supply chain",
+    "email": "daniel.akhimie@creseada.com",
+    "developmentOpportunities": [
+      "Logistics operations could benefit from real-time tracking and management systems",
+      "Customer portal for shipment tracking and status updates",
+      "Custom team communication platform could improve collaboration"
+    ],
+    "techStackGaps": [
+      "Wix limitations - could benefit from custom development"
+    ],
+    "businessModel": "Service",
+    "projectComplexity": "medium-high",
+    "urgencyLevel": "high",
+    "decisionMakerLikelihood": "medium",
+    "personalizedPitch": "I came across Creseada International Limited while researching logistics & supply chain companies and noticed room to enhance user engagement through real-time features.\n\nI'm David Ariyo, a Full Stack Developer specializing in real-time applications. I work with companies in logistics & supply chain to solve technical challenges through custom development.\n\nI spotted several areas where custom development could help:\n\n1. Logistics operations could benefit from real-time tracking and management systems\n2. Customer portal for shipment tracking and status updates\n3. Custom team communication platform could improve collaboration\n\nRecent relevant projects:\n• Dassage - Real-time messaging platform with video calls and file sharing\n• Full MERN stack development (MongoDB, Express.js, React, Node.js)\n• Cloud deployment and authentication systems\n\nWould you like to explore this further?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer | MERN Specialist\ndavidariyo109@gmail.com\n(+234) 903-6184-863\ndavidariyo.onrender.com\nlinkedin.com/in/david-ariyo-123da",
+    "dynamicSubject": "Daniel, quick question about Creseada International Limited's Logistics operations could benefit from ...",
+    "qualityScore": 10
+  },
+  "processedAt": "2025-09-22T21:05:50.873Z"
+}
