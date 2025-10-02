@@ -116,7 +116,7 @@ class CRMIntegration {
             email: company['Email'],
             firstName: company['First Name'],
             lastName: company['Last Name'],
-            company: company['Company'],
+            company: company['Company Name'],
             title: company['Title'],
             industry: company['Industry'],
             employeeCount: company['# Employees']
