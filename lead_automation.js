@@ -7,10 +7,17 @@ const path = require('path');
 const { URL } = require('url');
 require('dotenv').config();
 
+const logPath = path.join('./output', 'value_outreach_log.json');
+console.log('Log path:', logPath);
+console.log('File exists:', fs.existsSync(logPath));
+if (fs.existsSync(logPath)) {
+  console.log('File contents:', fs.readFileSync(logPath, 'utf8'));
+}
+
 // Configuration optimized for value-first outreach
 const CONFIG = {
-  EMAIL_DELAY_MIN: 180000, // 3 minutes
-  EMAIL_DELAY_MAX: 420000, // 7 minutes
+  EMAIL_DELAY_MIN: 90000, // 2 minutes
+  EMAIL_DELAY_MAX: 180000, // 3 minutes
   MAX_EMAILS_PER_DAY: 100,  
   MAX_EMAILS_PER_HOUR: 15,
   REQUEST_TIMEOUT: 15000,
@@ -22,7 +29,8 @@ const CONFIG = {
   EMAILS_DIR: './emails',
   MIN_VALUE_INDICATORS: 2,
   MAX_RETRY_ATTEMPTS: 2,
-  SENDER_NAME: 'David Ariyo'
+  SENDER_NAME: 'David Ariyo',
+  SENDER_TITLE: 'Freelance Full Stack Developer'
 };
 
 // TARGET CRITERIA - Companies most likely to need and afford custom development
@@ -56,37 +64,37 @@ const TARGET_CRITERIA = {
 
 // Value-first subject lines that demonstrate expertise
 const VALUE_SUBJECT_TEMPLATES = [
-  "Quick question about {companyName}'s tech architecture",
-  "Interesting {techStack} setup at {companyName}",
+  "{firstName}, quick question about {companyName}'s tech architecture",
+  "{firstName}, interesting {techStack} setup at {companyName}",
   "{firstName}, curious about {companyName}'s development approach", 
-  "Fellow developer - impressed by {companyName}'s {positiveAspect}",
-  "{companyName}'s {industry} solution caught my attention",
-  "Question about scaling {specificTech} at {companyName}",
+  "{firstName}, impressed by {companyName}'s {positiveAspect}",
+  "{firstName}, {companyName}'s {industry} solution caught my attention",
+  "{firstName}, question about scaling {specificTech} at {companyName}",
   "{firstName}, {companyName} reminds me of a recent project",
-  "Technical insight for {companyName}'s team"
+  "Technical insight for {companyName}'s team - {firstName}"
 ];
 
 // Value-first opening variations - lead with expertise and genuine interest
 const VALUE_OPENING_VARIATIONS = [
-  "I was reviewing {industry} companies and {companyName} stood out because of {specificPositive}. As someone who's built similar {solutionType} systems, {technicalObservation}.",
+  "Good day {firstName}, I was reviewing {industry} companies and {companyName} stood out because of {specificPositive}. As a freelance developer who's built similar {solutionType} systems, {technicalObservation}.",
   
-  "Your work at {companyName} caught my attention - particularly {specificPositive}. I recently completed a {relevantProject} project that had some interesting parallels.",
+  "Hello {firstName}, your work at {companyName} caught my attention - particularly {specificPositive}. I recently completed a {relevantProject} project for a client that had some interesting parallels.",
   
-  "{firstName}, I came across {companyName} while researching {industry} tech stacks. Your {positiveAspect} approach is solid, and {technicalObservation}.",
+  "Good morning {firstName}, I came across {companyName} while researching {industry} tech stacks. Your {positiveAspect} approach is solid, and {technicalObservation}.",
   
-  "Fellow {industry} builder here. I noticed {companyName} is doing interesting work with {specificTech}. {technicalObservation}.",
+  "{firstName}, I've been working on similar {solutionType} challenges recently for clients, so {companyName}'s approach to {specificPositive} caught my eye. {technicalObservation}.",
   
-  "I've been working on similar {solutionType} challenges recently, so {companyName}'s approach to {specificPositive} caught my eye. {technicalObservation}."
+  "Hi {firstName}, I noticed {companyName} is doing interesting work with {specificTech}. {technicalObservation}."
 ];
 
 // Genuine value proposition closings
 const VALUE_CLOSING_VARIATIONS = [
-  "If you're ever looking to explore this further, I'd be happy to share what we learned from our implementation.",
-  "Worth a brief conversation if you're considering expanding your tech capabilities?",
-  "Happy to share some technical insights if you're interested in this direction.",
+  "If you ever need freelance development support for projects like this, I'd be happy to share what we learned from our implementation.",
+  "Worth a brief conversation if you're considering bringing in freelance development expertise?",
+  "Happy to share some technical insights if you're interested in freelance development support.",
   "If this resonates with current challenges you're facing, let me know.",
   "Would love to hear your thoughts on this approach if you have 15 minutes.",
-  "Feel free to reach out if you'd like to discuss the technical details."
+  "Feel free to reach out if you'd like to discuss potential freelance collaboration."
 ];
 
 class ValueFirstOutreachSystem {
@@ -164,39 +172,45 @@ class ValueFirstOutreachSystem {
     }
   }
 
-  async setupEmailTransporter() {
-    try {
-      this.emailTransporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASSWORD
-        },
-        tls: {
-          rejectUnauthorized: false
-        },
-        pool: true,
-        maxConnections: 1,
-        maxMessages: 2,
-        rateDelta: 30000,
-        rateLimit: 1
-      });
-      
-      await this.emailTransporter.verify();
-      console.log('Email system configured for value-first outreach');
-      
-    } catch (error) {
-      console.error('Email setup failed:', error.message);
-      throw error;
-    }
+async setupEmailTransporter() {
+  try {
+    console.log('Configuring Gmail SMTP on port 587...');
+    
+    this.emailTransporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+      },
+      connectionTimeout: 60000,
+      greetingTimeout: 30000,
+      socketTimeout: 60000,
+      logger: false,
+      debug: false
+    });
+    
+    console.log('Testing Gmail connection...');
+    await this.emailTransporter.verify();
+    console.log('Email system configured for value-first outreach');
+    
+  } catch (error) {
+    console.error('Gmail setup failed:', error.message);
+    console.log('Email config used:', process.env.EMAIL_USER, 'Password length:', process.env.EMAIL_PASSWORD?.length);
+    
+    // If this fails, your app password is wrong or 2FA isn't enabled
+    throw error;
   }
+}
 
   // ENHANCED TARGET QUALIFICATION
   isHighValueTarget(company) {
     const title = (company['Title'] || '').toLowerCase();
     const industry = (company['Industry'] || '').toLowerCase();
     const employees = parseInt(company['# Employees']) || 0;
-    const companyName = (company['Company'] || '').toLowerCase();
+    const companyName = (company['Company Name'] || '').toLowerCase();
 
     // Check if decision maker
     const isDecisionMaker = TARGET_CRITERIA.PRIMARY_TITLES.some(targetTitle => 
@@ -204,7 +218,7 @@ class ValueFirstOutreachSystem {
     );
     
     if (!isDecisionMaker) {
-      console.log(`Skipping ${company['Company']} - not a technical decision maker (${title})`);
+      console.log(`Skipping ${company['Company Name']} - not a technical decision maker (${title})`);
       return false;
     }
 
@@ -218,19 +232,19 @@ class ValueFirstOutreachSystem {
     );
     
     if (isBadIndustry) {
-      console.log(`Skipping ${company['Company']} - excluded industry (${industry})`);
+      console.log(`Skipping ${company['Company Name']} - excluded industry (${industry})`);
       return false;
     }
 
     // Company size check
     if (employees > 0 && (employees < TARGET_CRITERIA.IDEAL_EMPLOYEE_RANGE.min || 
         employees > TARGET_CRITERIA.IDEAL_EMPLOYEE_RANGE.max)) {
-      console.log(`Skipping ${company['Company']} - outside ideal size range (${employees} employees)`);
+      console.log(`Skipping ${company['Company Name']} - outside ideal size range (${employees} employees)`);
       return false;
     }
 
     if (!isGoodIndustry && !industry.includes('technology') && !industry.includes('software')) {
-      console.log(`Skipping ${company['Company']} - industry not in target list (${industry})`);
+      console.log(`Skipping ${company['Company Name']} - industry not in target list (${industry})`);
       return false;
     }
 
@@ -241,7 +255,7 @@ class ValueFirstOutreachSystem {
   generateValueSubject(company, analysis) {
     const template = VALUE_SUBJECT_TEMPLATES[Math.floor(Math.random() * VALUE_SUBJECT_TEMPLATES.length)];
     const firstName = company['First Name'] || 'there';
-    const companyName = company['Company'];
+    const companyName = company['Company Name'];
     const industry = this.cleanIndustryName(company['Industry'] || 'tech');
     
     const techStack = analysis.detectedTechnologies?.primary || 
@@ -271,10 +285,10 @@ class ValueFirstOutreachSystem {
 
   // COMPREHENSIVE VALUE-FIRST ANALYSIS
   async analyzeForValue(company) {
-    console.log(`Analyzing value proposition for ${company['Company']}...`);
+    console.log(`Analyzing value proposition for ${company['Company Name']}...`);
     
     const analysis = {
-      company: company['Company'],
+      company: company['Company Name'],
       website: company['Website'],
       timestamp: new Date().toISOString(),
       positiveObservations: [],
@@ -295,7 +309,7 @@ class ValueFirstOutreachSystem {
     try {
       const cleanUrl = this.cleanWebsiteUrl(company['Website']);
       if (!cleanUrl) {
-        console.log(`No website for ${company['Company']} - using company data only`);
+        console.log(`No website for ${company['Company Name']} - using company data only`);
         await this.generateContextualValue(company, analysis);
         analysis.analysisSuccess = true;
         analysis.skipReason = "No website - using company context";
@@ -323,7 +337,7 @@ class ValueFirstOutreachSystem {
           await this.generateTechnicalInsights($, analysis, cleanUrl);
 
           websiteAnalyzed = true;
-          console.log(`Website analysis successful for ${company['Company']}`);
+          console.log(`Website analysis successful for ${company['Company Name']}`);
           break;
 
         } catch (error) {
@@ -336,7 +350,7 @@ class ValueFirstOutreachSystem {
       }
 
       if (!websiteAnalyzed) {
-        console.log(`Website analysis failed - generating contextual value for ${company['Company']}`);
+        console.log(`Website analysis failed - generating contextual value for ${company['Company Name']}`);
         await this.generateContextualValue(company, analysis);
         analysis.skipReason = "Website inaccessible - using company context";
       }
@@ -344,7 +358,7 @@ class ValueFirstOutreachSystem {
       analysis.analysisSuccess = true;
 
     } catch (error) {
-      console.log(`Generating contextual value for ${company['Company']}`);
+      console.log(`Generating contextual value for ${company['Company Name']}`);
       await this.generateContextualValue(company, analysis);
       analysis.analysisSuccess = true;
       analysis.skipReason = `Using company context - ${error.message}`;
@@ -360,7 +374,7 @@ class ValueFirstOutreachSystem {
     const industry = (company['Industry'] || '').toLowerCase();
     const employees = parseInt(company['# Employees']) || 0;
     const title = (company['Title'] || '').toLowerCase();
-    const companyName = company['Company'].toLowerCase();
+    const companyName = company['Company Name'].toLowerCase();
 
     // Determine business context
     if (industry.includes('saas') || industry.includes('software')) {
@@ -624,10 +638,10 @@ class ValueFirstOutreachSystem {
       return null;
     }
 
-    console.log(`Generating value-first proposal for ${company['Company']}...`);
+    console.log(`Generating value-first proposal for ${company['Company Name']}...`);
     
     const proposal = {
-      companyName: company['Company'],
+      companyName: company['Company Name'],
       contactName: `${company['First Name']} ${company['Last Name']}`,
       firstName: company['First Name'],
       title: company['Title'],
@@ -648,7 +662,7 @@ class ValueFirstOutreachSystem {
 
   createValueMessage(company, analysis) {
     const firstName = company['First Name'] || 'there';
-    const companyName = company['Company'];
+    const companyName = company['Company Name'];
     const industry = this.cleanIndustryName(company['Industry'] || 'tech');
     
     // Dynamic opening
@@ -672,9 +686,9 @@ class ValueFirstOutreachSystem {
       .replace('{positiveAspect}', positiveAspect)
       .replace('{specificTech}', specificTech)}\n\n`;
 
-    // Professional introduction
-    message += `I'm David Ariyo, a Full Stack Developer specializing in MERN stack solutions. `;
-    message += `I focus on building scalable, production-ready applications for ${solutionType.includes('tech') ? 'technology companies' : `${industry} companies`}.\n\n`;
+    // Professional introduction - clarify freelance availability
+    message += `I'm David Ariyo, a freelance Full Stack Developer specializing in MERN stack solutions. `;
+    message += `I work with ${solutionType.includes('tech') ? 'technology companies' : `${industry} companies`} on project-based development work.\n\n`;
 
     // Relevant experience (specific and credible)
     const primaryExperience = analysis.relevantExperience[0];
@@ -704,7 +718,7 @@ class ValueFirstOutreachSystem {
   generateValueSignature() {
     return `Best regards,\n` +
            `${CONFIG.SENDER_NAME}\n` +
-           `Full Stack Developer | MERN Stack Specialist\n` +
+           `${CONFIG.SENDER_TITLE} | MERN Stack Specialist\n` +
            `Recent Projects: SaaS Platforms, Real-time Applications, E-commerce Systems\n` +
            `davidariyo109@gmail.com | (+234) 903-6184-863\n` +
            `Portfolio: davidariyo.onrender.com\n` +
@@ -744,7 +758,7 @@ class ValueFirstOutreachSystem {
       // Basic email validation
       if (!email || !this.isValidBusinessEmail(email)) {
         rejectedProspects.push({
-          company: company['Company'],
+          company: company['Company Name'],
           email: email || 'missing',
           reason: 'Invalid or non-business email'
         });
@@ -754,7 +768,7 @@ class ValueFirstOutreachSystem {
       // Target qualification check
       if (!this.isHighValueTarget(company)) {
         rejectedProspects.push({
-          company: company['Company'],
+          company: company['Company Name'],
           email: email,
           reason: 'Not in target criteria (title/industry/size)'
         });
@@ -841,7 +855,7 @@ class ValueFirstOutreachSystem {
     }
 
     const mailOptions = {
-      from: `"${CONFIG.SENDER_NAME} - Full Stack Developer" <${process.env.EMAIL_USER}>`,
+      from: `"${CONFIG.SENDER_NAME} - ${CONFIG.SENDER_TITLE}" <${process.env.EMAIL_USER}>`,
       to: proposal.email,
       subject: proposal.valueSubject,
       text: proposal.valueMessage,
@@ -907,7 +921,7 @@ class ValueFirstOutreachSystem {
 
   // MAIN EXECUTION
   async run() {
-    console.log('Starting Value-First Developer Outreach...');
+    console.log('Starting Value-First Freelance Developer Outreach...');
     console.log(`Daily limit: ${CONFIG.MAX_EMAILS_PER_DAY} high-quality emails`);
     console.log(`Current target: Technical decision makers at 10-500 person companies`);
     console.log(`Already sent today: ${this.emailsSentToday} emails`);
@@ -955,7 +969,7 @@ class ValueFirstOutreachSystem {
         const batchResults = await Promise.allSettled(batch.map(async (company) => {
           try {
             if (this.isAlreadyProcessed(company)) {
-              console.log(`Skipping ${company['Company']} - already contacted`);
+              console.log(`Skipping ${company['Company Name']} - already contacted`);
               return { status: 'skipped', reason: 'already contacted' };
             }
 
@@ -963,9 +977,9 @@ class ValueFirstOutreachSystem {
             const proposal = this.generateValueProposal(company, analysis);
             
             if (!proposal) {
-              console.log(`Rejected ${company['Company']} - insufficient value proposition (Score: ${analysis.targetScore}/10)`);
+              console.log(`Rejected ${company['Company Name']} - insufficient value proposition (Score: ${analysis.targetScore}/10)`);
               this.qualifiedLeadsLog.push({
-                company: company['Company'],
+                company: company['Company Name'],
                 reason: 'insufficient value proposition',
                 targetScore: analysis.targetScore,
                 technicalInsights: analysis.technicalInsights.length,
@@ -978,12 +992,12 @@ class ValueFirstOutreachSystem {
             
             await this.saveValueAnalysis(company, analysis, proposal);
             
-            console.log(`✓ Qualified ${company['Company']} for outreach (Score: ${proposal.targetScore}/10)`);
-            return { status: 'qualified', company: company['Company'], score: proposal.targetScore };
+            console.log(`✓ Qualified ${company['Company Name']} for outreach (Score: ${proposal.targetScore}/10)`);
+            return { status: 'qualified', company: company['Company Name'], score: proposal.targetScore };
             
           } catch (error) {
-            console.error(`Error analyzing ${company['Company']}:`, error.message);
-            return { status: 'error', company: company['Company'], error: error.message };
+            console.error(`Error analyzing ${company['Company Name']}:`, error.message);
+            return { status: 'error', company: company['Company Name'], error: error.message };
           }
         }));
         
@@ -1076,7 +1090,7 @@ class ValueFirstOutreachSystem {
 
   async saveValueAnalysis(company, analysis, proposal) {
     const result = {
-      company: company['Company'],
+      company: company['Company Name'],
       contact: `${company['First Name']} ${company['Last Name']}`,
       email: company['Email'],
       targetScore: analysis.targetScore,
@@ -1086,7 +1100,7 @@ class ValueFirstOutreachSystem {
       processedAt: new Date().toISOString()
     };
     
-    const filename = `${company['Company'].replace(/[^a-z0-9]/gi, '_')}_value_analysis.json`;
+    const filename = `${company['Company Name'].replace(/[^a-z0-9]/gi, '_')}_value_analysis.json`;
     const filepath = path.join(CONFIG.OUTPUT_DIR, filename);
     
     fs.writeFileSync(filepath, JSON.stringify(result, null, 2));
@@ -1098,7 +1112,7 @@ class ValueFirstOutreachSystem {
     const mediumValueContacts = this.processedCompanies.filter(c => c.targetScore >= 5 && c.targetScore < 7);
     
     const summary = {
-      campaignType: 'Value-First Technical Outreach',
+      campaignType: 'Value-First Freelance Technical Outreach',
       totalAnalyzed: this.processedCompanies.length,
       totalContacted: this.emailsSentToday,
       highValueContacts: highValueContacts.length,
@@ -1142,7 +1156,7 @@ class ValueFirstOutreachSystem {
       .map(([industry]) => industry);
   }
 
-  // CSV PROCESSING (same as before but with validation)
+  // CSV PROCESSING
   async processCSVFiles() {
     const csvFiles = await this.findCSVFiles();
     
@@ -1176,7 +1190,7 @@ class ValueFirstOutreachSystem {
           const isProcessed = this.processedEmails.has(email.toLowerCase());
           
           if (isProcessed) {
-            console.log(`Skipping ${company['Company']} - already contacted`);
+            console.log(`Skipping ${company['Company Name']} - already contacted`);
           }
           
           return !isProcessed;
@@ -1228,7 +1242,7 @@ class ValueFirstOutreachSystem {
     
     return new Promise((resolve) => {
       const requiredColumns = [
-        'First Name', 'Last Name', 'Title', 'Company', 
+        'First Name', 'Last Name', 'Title', 'Company Name', 
         'Email', 'Website', 'Industry', '# Employees'
       ];
       
@@ -1337,8 +1351,8 @@ class ValueFirstOutreachSystem {
     const processedCSVs = fs.existsSync(CONFIG.PROCESSED_CSV_DIR) ? 
       fs.readdirSync(CONFIG.PROCESSED_CSV_DIR).filter(f => f.endsWith('.csv')) : [];
     
-    console.log('\nVALUE-FIRST OUTREACH SYSTEM STATUS:');
-    console.log('====================================');
+    console.log('\nVALUE-FIRST FREELANCE OUTREACH SYSTEM STATUS:');
+    console.log('=============================================');
     console.log(`CSV files ready: ${csvFiles.length}`);
     console.log(`CSV files processed: ${processedCSVs.length}`);
     console.log(`High-value prospects contacted: ${this.processedEmails.size}`);
@@ -1353,6 +1367,7 @@ class ValueFirstOutreachSystem {
     console.log('VALUE-FIRST FEATURES:');
     console.log(`• ${VALUE_SUBJECT_TEMPLATES.length} professional subject variations`);
     console.log(`• ${VALUE_OPENING_VARIATIONS.length} value-focused openings`);
+    console.log(`• ${VALUE_CLOSING_VARIATIONS.length} freelance-specific closings`);
     console.log(`• Technical insight generation`);
     console.log(`• Relevant experience matching`);
     console.log(`• Professional pacing (${CONFIG.EMAIL_DELAY_MIN/1000}-${CONFIG.EMAIL_DELAY_MAX/1000}s)`);
@@ -1434,15 +1449,15 @@ async function main() {
 }
 
 // SYSTEM INFORMATION
-console.log('Value-First Developer Outreach System');
-console.log('=====================================');
-console.log('Focus: High-quality prospects who want to hear from you');
+console.log('Value-First Freelance Developer Outreach System');
+console.log('===============================================');
+console.log('Focus: High-quality prospects seeking freelance development support');
 console.log('');
 console.log('KEY FEATURES:');
 console.log('• Targets technical decision makers (CTO, CEO, Founders)');
 console.log('• 10-500 employee companies in tech/software/SaaS');
 console.log('• Business email addresses only');
-console.log('• Value-first messaging (no assumptions about problems)');
+console.log('• Value-first messaging with freelance positioning');
 console.log('• Technical insights based on real analysis');
 console.log('• Relevant experience matching');
 console.log('• Professional pacing and daily limits');

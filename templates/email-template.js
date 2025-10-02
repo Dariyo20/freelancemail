@@ -6,7 +6,7 @@ const createCustomizedPitch = (company, analysis) => {
     const firstName = company['First Name'];
     let pitch = `Hi ${firstName},\n\n`;
     
-    pitch += `I reviewed ${company['Company']}'s website and noticed some technical areas that could be improved:\n\n`;
+    pitch += `I reviewed ${company['Company Name']}'s website and noticed some technical areas that could be improved:\n\n`;
     
     if (problems.length > 0) {
         problems.forEach((problem, index) => {
