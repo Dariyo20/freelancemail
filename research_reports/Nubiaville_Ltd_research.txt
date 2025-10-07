@@ -1,0 +1,76 @@
+======================================================================
+RESEARCH REPORT: Nubiaville Ltd
+======================================================================
+
+CONTACT:
+  Name: Samuel 
+  Title: CTO
+  Email: samuelo@nubiaville.com
+  Company: Nubiaville Ltd
+  Industry: information technology & services
+  Size: 12 employees
+  Website: https://nubiaville.com ✓
+  LinkedIn: http://www.linkedin.com/in/abaobe
+
+CONFIDENCE: Medium (50/100)
+RECOMMENDATION: REVIEW
+Factors: Website verified, Strong experience match, Tech stack detected
+
+FINDINGS:
+
+  NEWS: None found
+
+  BLOG: None found
+
+  TECH STACK: Angular, WordPress
+
+ANALYSIS:
+  Stage: Early Stage
+  Industry Match: saas
+
+EXPERIENCE MATCHES:
+  1. Crewmanage HR System (Score: 75)
+     HR management with scheduling, payroll, workflow automation, RBAC
+     Tech: React, Node.js, MongoDB, Role-based access
+     Why: Industry: enterprise, Industry: recruitment
+  2. Dassage Communication Platform (Score: 60)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: productivity, Industry: software
+  3. Durl URL Shortener (Score: 40)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: analytics
+
+PERSONALIZATION ANGLES:
+  1. [high] experience: Crewmanage HR System relevant to their saas
+
+MANUAL CHECKLIST:
+  [ ] Spend 10 min on additional research
+  [ ] Visit: https://nubiaville.com
+  [ ] LinkedIn: http://www.linkedin.com/in/abaobe
+  [ ] Strengthen personalization
+
+======================================================================
+DRAFT EMAIL
+======================================================================
+
+SUBJECT: Samuel - Nubiaville Ltd development
+
+Hi Samuel,
+
+I've been following companies in the information technology & services space.
+
+I'm David Ariyo, a Full Stack Developer. I recently built Crewmanage HR System - HR management with scheduling, payroll, workflow automation, RBAC
+
+Tech: React, Node.js, MongoDB, Role-based access | Scale: Enterprise HR features
+
+Would you be open to a brief chat if Nubiaville Ltd ever needs freelance development support?
+
+Best regards,
+David Ariyo
+Full Stack Developer
+davidariyo109@gmail.com | (+234) 903-6184-863
+Portfolio: davidariyo.onrender.com
+
+======================================================================

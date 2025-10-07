@@ -1,0 +1,98 @@
+{
+  "prospect": {
+    "name": "KK Onas",
+    "firstName": "KK",
+    "title": "CTO",
+    "email": "emmanuel@yiponline.com",
+    "company": "Yip",
+    "industry": "information technology & services",
+    "employees": "20",
+    "website": "https://yiponline.com",
+    "linkedIn": "http://www.linkedin.com/in/kk-onas-921634182"
+  },
+  "findings": {
+    "news": [
+      {
+        "title": "University of Toronto and Nissan sign EV tech agreement | Chris Yip ...",
+        "snippet": "Aug 26, 2025 ... ... partnership. And a showcase of the latest #Leaf from Nissan. ... Chris Yip 9y. Computational Biophysics position at U of T - Mississauga. Chris Yip 9y ...",
+        "url": "https://www.linkedin.com/posts/chris-yip-5997a4_ev-skule-frosh-activity-7366300349600591872-zEmm",
+        "date": "Aug 26, 2025",
+        "type": "partnership",
+        "relevance": 80,
+        "verified": true
+      }
+    ],
+    "blog": {
+      "found": false,
+      "posts": [],
+      "url": null
+    },
+    "techStack": {
+      "detected": [
+        "Angular"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Growth Stage",
+    "industryMatch": "saas",
+    "growthSignals": []
+  },
+  "matches": [
+    {
+      "project": "DAstore E-Commerce Platform",
+      "description": "Luxury e-commerce with 140+ products, payment processing, cart management",
+      "score": 65,
+      "reasons": [
+        "Industry: e-commerce",
+        "Industry: consumer"
+      ],
+      "techStack": "Next.js, MongoDB, REST API, JWT",
+      "scale": "140+ products, 7 categories"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 30,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "news",
+      "priority": "high",
+      "content": "Recent partnership: \"University of Toronto and Nissan sign EV tech agreement | Chris Yip ...\"",
+      "source": "https://www.linkedin.com/posts/chris-yip-5997a4_ev-skule-frosh-activity-7366300349600591872-zEmm"
+    },
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "DAstore E-Commerce Platform relevant to their saas"
+    }
+  ],
+  "draft": "SUBJECT: KK - congrats on partnership\n\nHi KK,\n\nI saw the news about Yip's partnership - \"University of Toronto and Nissan sign EV tech agreement | Chris Yip ...\". Congratulations!\n\nI'm David Ariyo, a Full Stack Developer. I recently built DAstore E-Commerce Platform - Luxury e-commerce with 140+ products, payment processing, cart management\n\nTech: Next.js, MongoDB, REST API, JWT | Scale: 140+ products, 7 categories\n\nWould you be open to a brief chat if Yip ever needs freelance development support?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer\ndavidariyo109@gmail.com | (+234) 903-6184-863\nPortfolio: davidariyo.onrender.com",
+  "confidence": {
+    "score": 75,
+    "level": "High",
+    "factors": [
+      "Website verified",
+      "1 verified news item",
+      "Strong experience match",
+      "Tech stack detected"
+    ],
+    "recommendation": "SEND"
+  },
+  "recommendation": "SEND",
+  "manualChecks": [
+    "Verify news links are correct",
+    "Check LinkedIn: http://www.linkedin.com/in/kk-onas-921634182",
+    "Personalize draft before sending"
+  ]
+}

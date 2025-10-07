@@ -1,0 +1,129 @@
+{
+  "prospect": {
+    "name": "Romanus Eke",
+    "firstName": "Romanus",
+    "title": "Tech Nerd | Ag. CTO @ Heirs Technologies",
+    "email": "romanus.eke@heirstechnologies.com",
+    "company": "Heirs Technologies",
+    "industry": "information technology & services",
+    "employees": "56",
+    "website": "https://heirstechnologies.com",
+    "linkedIn": "http://www.linkedin.com/in/romanus-eke-14794474"
+  },
+  "findings": {
+    "news": [
+      {
+        "title": "Africa's Digital Leap: Cloud, Connectivity & AI in the Next Decade",
+        "snippet": "Sep 2, 2025 ... investment;. $12B+ in general VC tech funding. ~$157M in AI ... Heirs Technologies is a next-generation. African technology company on a mission to.",
+        "url": "https://heirstechnologies.com/africa-digital-leap-report/assets/report/Heirs-Tech-Industry-Report_Africa%E2%80%99s-Digital-Leap-Cloud,Connectivity-&-AI-in-the-Next-Decade.pdf",
+        "date": "Sep 2, 2025",
+        "type": "funding",
+        "relevance": 70,
+        "verified": true
+      },
+      {
+        "title": "Africa's Digital Leap Report - Heirs Technologies -",
+        "snippet": "Sep 8, 2025 ... I agree to receive communications from Heirs Technologies and understand I can unsubscribe at any time. ... For more detailed information about the cookies ...",
+        "url": "https://heirstechnologies.com/africa-digital-leap-report/",
+        "date": "Sep 8, 2025",
+        "type": "announcement",
+        "relevance": 100,
+        "verified": true
+      },
+      {
+        "title": "Heirs Technologies Calls for Bold Investments to Unlock Africa's ...",
+        "snippet": "Sep 1, 2025 ... Heirs Technologies' new report urges bold investments in cloud, connectivity, and AI to unlock Africa's $700 billion digital economy by 2030.",
+        "url": "https://www.africaneconomyinc.com/post/heirs-technologies-calls-for-bold-investments-to-unlock-africa-s--700b-digital-economy-by-2030",
+        "date": "Sep 1, 2025",
+        "type": "funding",
+        "relevance": 80,
+        "verified": true
+      }
+    ],
+    "blog": {
+      "found": false,
+      "posts": [],
+      "url": null
+    },
+    "techStack": {
+      "detected": [
+        "Angular",
+        "WordPress"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Growth Stage (Recently Funded)",
+    "industryMatch": "saas",
+    "growthSignals": [
+      "Recent funding",
+      "Active in news"
+    ]
+  },
+  "matches": [
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 45,
+      "reasons": [
+        "Industry: enterprise"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 40,
+      "reasons": [
+        "Industry: analytics"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 30,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "news",
+      "priority": "high",
+      "content": "Recent funding: \"Africa's Digital Leap: Cloud, Connectivity & AI in the Next Decade\"",
+      "source": "https://heirstechnologies.com/africa-digital-leap-report/assets/report/Heirs-Tech-Industry-Report_Africa%E2%80%99s-Digital-Leap-Cloud,Connectivity-&-AI-in-the-Next-Decade.pdf"
+    },
+    {
+      "type": "experience",
+      "priority": "medium",
+      "content": "Crewmanage HR System relevant to their saas"
+    }
+  ],
+  "draft": "SUBJECT: Romanus - congrats on funding\n\nHi Romanus,\n\nI saw the news about Heirs Technologies's funding - \"Africa's Digital Leap: Cloud, Connectivity & AI in the Next Decade\". Congratulations!\n\nI'm David Ariyo, a Full Stack Developer. I recently built Crewmanage HR System - HR management with scheduling, payroll, workflow automation, RBAC\n\nTech: React, Node.js, MongoDB, Role-based access | Scale: Enterprise HR features\n\nWould you be open to a brief chat if Heirs Technologies ever needs freelance development support?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer\ndavidariyo109@gmail.com | (+234) 903-6184-863\nPortfolio: davidariyo.onrender.com",
+  "confidence": {
+    "score": 70,
+    "level": "High",
+    "factors": [
+      "Website verified",
+      "3 verified news items",
+      "Moderate experience match",
+      "Tech stack detected"
+    ],
+    "recommendation": "SEND"
+  },
+  "recommendation": "SEND",
+  "manualChecks": [
+    "Verify news links are correct",
+    "Check LinkedIn: http://www.linkedin.com/in/romanus-eke-14794474",
+    "Personalize draft before sending"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "prospect": {
+    "name": "Frank Uwajeh",
+    "firstName": "Frank",
+    "title": "CTO",
+    "email": "frank.uwajeh@dreamlab.net",
+    "company": "Dreamlab Technologies",
+    "industry": "computer & network security",
+    "employees": "77",
+    "website": "https://dreamlab.net",
+    "linkedIn": "http://www.linkedin.com/in/frank-uwajeh-06359311a"
+  },
+  "findings": {
+    "news": [],
+    "blog": {
+      "found": false,
+      "posts": [],
+      "url": null
+    },
+    "techStack": {
+      "detected": [
+        "React",
+        "Angular",
+        "WordPress"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Growth Stage",
+    "industryMatch": "saas",
+    "growthSignals": []
+  },
+  "matches": [
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 40,
+      "reasons": [
+        "Industry: analytics"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "medium",
+      "content": "Durl URL Shortener relevant to their saas"
+    }
+  ],
+  "draft": "SUBJECT: Frank - Dreamlab Technologies development\n\nHi Frank,\n\nI've been following companies in the computer & network security space.\n\nI'm David Ariyo, a Full Stack Developer. I recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections\n\nTech: Next.js, Node.js, MongoDB, SHA-256 | Scale: Thousands of monthly redirections\n\nWould you be open to a brief chat if Dreamlab Technologies ever needs freelance development support?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer\ndavidariyo109@gmail.com | (+234) 903-6184-863\nPortfolio: davidariyo.onrender.com",
+  "confidence": {
+    "score": 35,
+    "level": "Low",
+    "factors": [
+      "Website verified",
+      "Moderate experience match",
+      "Tech stack detected"
+    ],
+    "recommendation": "MANUAL RESEARCH"
+  },
+  "recommendation": "MANUAL RESEARCH",
+  "manualChecks": [
+    "20+ min manual research needed",
+    "Or skip this prospect"
+  ]
+}

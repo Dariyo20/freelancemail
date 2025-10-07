@@ -1,0 +1,81 @@
+======================================================================
+RESEARCH REPORT: Netcom Africa Limited
+======================================================================
+
+CONTACT:
+  Name: Yen Choi
+  Title: President & Group CTO
+  Email: y.choi@netcomafrica.com
+  Company: Netcom Africa Limited
+  Industry: telecommunications
+  Size: 210 employees
+  Website: https://netcomafrica.com ✓
+  LinkedIn: http://www.linkedin.com/in/yenchoi
+
+CONFIDENCE: Medium (65/100)
+RECOMMENDATION: REVIEW
+Factors: Website verified, Blog content found, Strong experience match, Tech stack detected
+
+FINDINGS:
+
+  NEWS: None found
+
+  BLOG: Found at https://netcomafrica.com/news
+  1. "IT solutions businesses"
+  2. "Netcom Africa zeta web on technology convergence leaders hit list"
+  3. "Netcom Africa partners top global providers in IT security"
+
+  TECH STACK: Angular, WordPress
+
+ANALYSIS:
+  Stage: Established
+  Industry Match: saas
+  Growth: Content marketing
+
+EXPERIENCE MATCHES:
+  1. Dassage Communication Platform (Score: 95)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: saas, Industry: communication
+  2. Durl URL Shortener (Score: 65)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: marketing, Industry: saas
+  3. Crewmanage HR System (Score: 40)
+     HR management with scheduling, payroll, workflow automation, RBAC
+     Tech: React, Node.js, MongoDB, Role-based access
+     Why: Industry: enterprise
+
+PERSONALIZATION ANGLES:
+  1. [medium] blog: Blog post: "IT solutions businesses"
+  2. [high] experience: Dassage Communication Platform relevant to their saas
+
+MANUAL CHECKLIST:
+  [ ] Spend 10 min on additional research
+  [ ] Visit: https://netcomafrica.com
+  [ ] LinkedIn: http://www.linkedin.com/in/yenchoi
+  [ ] Strengthen personalization
+
+======================================================================
+DRAFT EMAIL
+======================================================================
+
+SUBJECT: Yen - your recent article
+
+Hi Yen,
+
+I read your post "IT solutions businesses" - great insights.
+
+I'm David Ariyo, a Full Stack Developer. I recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture
+
+Tech: React, Node.js, MongoDB, WebSocket | Scale: 100+ concurrent users
+
+Would you be open to a brief chat if Netcom Africa Limited ever needs freelance development support?
+
+Best regards,
+David Ariyo
+Full Stack Developer
+davidariyo109@gmail.com | (+234) 903-6184-863
+Portfolio: davidariyo.onrender.com
+
+======================================================================

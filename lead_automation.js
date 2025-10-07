@@ -2,1486 +2,1120 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const nodemailer = require('nodemailer');
 const path = require('path');
-const { URL } = require('url');
 require('dotenv').config();
 
-const logPath = path.join('./output', 'value_outreach_log.json');
-console.log('Log path:', logPath);
-console.log('File exists:', fs.existsSync(logPath));
-if (fs.existsSync(logPath)) {
-  console.log('File contents:', fs.readFileSync(logPath, 'utf8'));
-}
+// PRODUCTION-READY LEAD RESEARCH ASSISTANT
+// Uses NewsAPI for accurate company news + fallback strategies
 
-// Configuration optimized for value-first outreach
 const CONFIG = {
-  EMAIL_DELAY_MIN: 90000, // 2 minutes
-  EMAIL_DELAY_MAX: 180000, // 3 minutes
-  MAX_EMAILS_PER_DAY: 100,  
-  MAX_EMAILS_PER_HOUR: 15,
-  REQUEST_TIMEOUT: 15000,
-  MAX_CONCURRENT_ANALYSIS: 2,
   CSV_DIR: './csv',
-  PROCESSED_CSV_DIR: './processed',
-  OUTPUT_DIR: './output',
-  REPORTS_DIR: './reports',
-  EMAILS_DIR: './emails',
-  MIN_VALUE_INDICATORS: 2,
-  MAX_RETRY_ATTEMPTS: 2,
-  SENDER_NAME: 'David Ariyo',
-  SENDER_TITLE: 'Freelance Full Stack Developer'
+  RESEARCH_DIR: './research_reports',
+  DRAFTS_DIR: './email_drafts',
+  REQUEST_TIMEOUT: 15000,
+  RESEARCH_DELAY: 2000,
+  MAX_NEWS_ARTICLES: 10,
+  NEWS_AGE_DAYS: 60
 };
 
-// TARGET CRITERIA - Companies most likely to need and afford custom development
-const TARGET_CRITERIA = {
-  // Primary targets - established companies with growth indicators
-  PRIMARY_TITLES: [
-    'ceo', 'founder', 'co-founder', 'cto', 'chief technology officer',
-    'vp of engineering', 'head of product', 'technical director',
-    'engineering manager', 'product manager'
+const YOUR_EXPERIENCE = {
+  projects: [
+    {
+      name: "Dassage Communication Platform",
+      description: "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      techStack: ["React", "Node.js", "MongoDB", "WebSocket", "JWT"],
+      keywords: ["real-time", "messaging", "video", "communication", "collaboration", "websocket", "chat"],
+      industryFit: ["saas", "communication", "team collaboration", "remote work", "productivity", "software"],
+      scale: "100+ concurrent users"
+    },
+    {
+      name: "DAstore E-Commerce Platform",
+      description: "Luxury e-commerce with 140+ products, payment processing, cart management",
+      techStack: ["Next.js", "MongoDB", "REST API", "JWT", "bcrypt"],
+      keywords: ["e-commerce", "payment", "cart", "checkout", "product", "shopping", "store"],
+      industryFit: ["e-commerce", "retail", "marketplace", "fashion", "luxury", "shopping", "consumer"],
+      scale: "140+ products, 7 categories"
+    },
+    {
+      name: "Crewmanage HR System",
+      description: "HR management with scheduling, payroll, workflow automation, RBAC",
+      techStack: ["React", "Node.js", "MongoDB", "Role-based access"],
+      keywords: ["hr", "scheduling", "workflow", "automation", "employee", "payroll", "management"],
+      industryFit: ["hr tech", "workforce", "business software", "enterprise", "staffing", "recruitment"],
+      scale: "Enterprise HR features"
+    },
+    {
+      name: "Durl URL Shortener",
+      description: "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      techStack: ["Next.js", "Node.js", "MongoDB", "SHA-256", "JWT"],
+      keywords: ["analytics", "url", "tracking", "metrics", "dashboard", "data"],
+      industryFit: ["marketing", "analytics", "saas", "developer tools", "martech"],
+      scale: "Thousands of monthly redirections"
+    }
   ],
   
-  // Industries that frequently need custom development
-  HIGH_VALUE_INDUSTRIES: [
-    'software', 'technology', 'fintech', 'healthtech', 'saas',
-    'e-commerce', 'marketplace', 'logistics', 'manufacturing',
-    'professional services', 'consulting', 'media', 'education technology'
-  ],
-  
-  // Company size sweet spot - big enough to afford custom work, small enough to be agile
-  IDEAL_EMPLOYEE_RANGE: {
-    min: 10,
-    max: 500
-  },
-  
-  // Exclude obvious non-targets
-  EXCLUDE_INDUSTRIES: [
-    'government', 'non-profit', 'religious', 'personal', 'student',
-    'retired', 'unemployed', 'freelancer', 'individual'
-  ]
+  skills: {
+    frontend: ["React.js", "Next.js", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
+    backend: ["Node.js", "Express.js", "MongoDB", "REST APIs"],
+    realtime: ["WebSocket", "Real-time data sync"],
+    auth: ["JWT Authentication", "bcrypt", "Role-based access control"],
+    payments: ["Payment gateway integration", "Stripe", "Paystack"],
+    deployment: ["AWS", "Heroku", "Vercel"]
+  }
 };
 
-// Value-first subject lines that demonstrate expertise
-const VALUE_SUBJECT_TEMPLATES = [
-  "{firstName}, quick question about {companyName}'s tech architecture",
-  "{firstName}, interesting {techStack} setup at {companyName}",
-  "{firstName}, curious about {companyName}'s development approach", 
-  "{firstName}, impressed by {companyName}'s {positiveAspect}",
-  "{firstName}, {companyName}'s {industry} solution caught my attention",
-  "{firstName}, question about scaling {specificTech} at {companyName}",
-  "{firstName}, {companyName} reminds me of a recent project",
-  "Technical insight for {companyName}'s team - {firstName}"
-];
-
-// Value-first opening variations - lead with expertise and genuine interest
-const VALUE_OPENING_VARIATIONS = [
-  "Good day {firstName}, I was reviewing {industry} companies and {companyName} stood out because of {specificPositive}. As a freelance developer who's built similar {solutionType} systems, {technicalObservation}.",
-  
-  "Hello {firstName}, your work at {companyName} caught my attention - particularly {specificPositive}. I recently completed a {relevantProject} project for a client that had some interesting parallels.",
-  
-  "Good morning {firstName}, I came across {companyName} while researching {industry} tech stacks. Your {positiveAspect} approach is solid, and {technicalObservation}.",
-  
-  "{firstName}, I've been working on similar {solutionType} challenges recently for clients, so {companyName}'s approach to {specificPositive} caught my eye. {technicalObservation}.",
-  
-  "Hi {firstName}, I noticed {companyName} is doing interesting work with {specificTech}. {technicalObservation}."
-];
-
-// Genuine value proposition closings
-const VALUE_CLOSING_VARIATIONS = [
-  "If you ever need freelance development support for projects like this, I'd be happy to share what we learned from our implementation.",
-  "Worth a brief conversation if you're considering bringing in freelance development expertise?",
-  "Happy to share some technical insights if you're interested in freelance development support.",
-  "If this resonates with current challenges you're facing, let me know.",
-  "Would love to hear your thoughts on this approach if you have 15 minutes.",
-  "Feel free to reach out if you'd like to discuss potential freelance collaboration."
-];
-
-class ValueFirstOutreachSystem {
+class ProductionResearchAssistant {
   constructor() {
-    this.emailTransporter = null;
-    this.processedCompanies = [];
-    this.emailQueue = [];
-    this.emailsSentToday = 0;
-    this.emailsSentThisHour = 0;
-    this.lastEmailTime = 0;
-    this.processedEmails = new Set();
-    this.dailyEmailLog = new Map();
-    this.emailLogPath = path.join(CONFIG.OUTPUT_DIR, 'value_outreach_log.json');
-    this.qualifiedLeadsLog = [];
-    
     this.initializeDirectories();
-    this.loadProcessedEmails();
-    this.loadDailyEmailCount();
+    this.apiCallCount = { news: 0, search: 0 };
   }
 
   initializeDirectories() {
-    [CONFIG.CSV_DIR, CONFIG.PROCESSED_CSV_DIR, CONFIG.OUTPUT_DIR, 
-     CONFIG.REPORTS_DIR, CONFIG.EMAILS_DIR].forEach(dir => {
+    [CONFIG.RESEARCH_DIR, CONFIG.DRAFTS_DIR].forEach(dir => {
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
-        console.log(`Created directory: ${dir}`);
       }
     });
   }
 
-  loadProcessedEmails() {
-    console.log('Loading outreach history...');
+  async batchResearch(csvFile) {
+    console.log('PRODUCTION LEAD RESEARCH ASSISTANT\n');
     
-    try {
-      if (fs.existsSync(this.emailLogPath)) {
-        const emailLog = JSON.parse(fs.readFileSync(this.emailLogPath, 'utf8'));
-        emailLog.forEach(entry => {
-          this.processedEmails.add(entry.email.toLowerCase());
-        });
-        console.log(`Found ${this.processedEmails.size} previously contacted prospects`);
+    const prospects = await this.readCSV(csvFile);
+    console.log(`Found ${prospects.length} prospects\n`);
+    
+    const newProspects = prospects.filter(p => {
+      const filename = `${p['Company Name'].replace(/[^a-z0-9]/gi, '_')}_research.json`;
+      return !fs.existsSync(path.join(CONFIG.RESEARCH_DIR, filename));
+    });
+    
+    console.log(`Researching ${newProspects.length} new prospects\n`);
+    
+    let processed = 0;
+    let highConfidence = 0;
+    let skipped = 0;
+    
+    for (const prospect of newProspects) {
+      console.log(`[${processed + 1}/${newProspects.length}] ${prospect['Company Name']}...`);
+      
+      try {
+        const intel = await this.deepResearch(prospect);
+        await this.saveIntelligence(prospect, intel);
+        
+        if (intel.confidence.score >= 70) highConfidence++;
+        if (intel.recommendation === 'SKIP') skipped++;
+        
+        processed++;
+        console.log(`  ✓ ${intel.confidence.level} (${intel.confidence.score}/100)`);
+        
+      } catch (error) {
+        console.log(`  ✗ Error: ${error.message}`);
       }
-    } catch (error) {
-      console.log('Starting fresh outreach log:', error.message);
-    }
-  }
-
-  loadDailyEmailCount() {
-    const today = new Date().toDateString();
-    const countPath = path.join(CONFIG.OUTPUT_DIR, 'daily_email_count.json');
-    
-    try {
-      if (fs.existsSync(countPath)) {
-        const dailyData = JSON.parse(fs.readFileSync(countPath, 'utf8'));
-        if (dailyData.date === today) {
-          this.emailsSentToday = dailyData.count || 0;
-          console.log(`Already sent ${this.emailsSentToday} emails today`);
-        }
+      
+      if (processed < newProspects.length) {
+        await this.sleep(CONFIG.RESEARCH_DELAY);
       }
-    } catch (error) {
-      console.log('Error loading daily count:', error.message);
     }
+    
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`RESEARCH COMPLETE`);
+    console.log(`${'='.repeat(60)}`);
+    console.log(`Processed: ${processed}`);
+    console.log(`High confidence: ${highConfidence} (${Math.round(highConfidence/processed*100)}%)`);
+    console.log(`Recommended skip: ${skipped}`);
+    console.log(`API calls - News: ${this.apiCallCount.news}, Search: ${this.apiCallCount.search}`);
+    console.log(`\nReports: ${CONFIG.RESEARCH_DIR}/`);
+    console.log(`\nNext: node lead_automation.js review`);
   }
 
-  saveDailyEmailCount() {
-    const today = new Date().toDateString();
-    const countPath = path.join(CONFIG.OUTPUT_DIR, 'daily_email_count.json');
-    
-    try {
-      fs.writeFileSync(countPath, JSON.stringify({
-        date: today,
-        count: this.emailsSentToday
-      }, null, 2));
-    } catch (error) {
-      console.error('Error saving daily count:', error.message);
-    }
-  }
-
-async setupEmailTransporter() {
-  try {
-    console.log('Configuring Gmail SMTP on port 587...');
-    
-    this.emailTransporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
+  async deepResearch(prospect) {
+    const intel = {
+      prospect: {
+        name: `${prospect['First Name']} ${prospect['Last Name']}`,
+        firstName: prospect['First Name'],
+        title: prospect['Title'],
+        email: prospect['Email'],
+        company: prospect['Company Name'],
+        industry: prospect['Industry'],
+        employees: prospect['# Employees'],
+        website: prospect['Website'],
+        linkedIn: prospect['Person Linkedin Url']
       },
-      connectionTimeout: 60000,
-      greetingTimeout: 30000,
-      socketTimeout: 60000,
-      logger: false,
-      debug: false
-    });
-    
-    console.log('Testing Gmail connection...');
-    await this.emailTransporter.verify();
-    console.log('Email system configured for value-first outreach');
-    
-  } catch (error) {
-    console.error('Gmail setup failed:', error.message);
-    console.log('Email config used:', process.env.EMAIL_USER, 'Password length:', process.env.EMAIL_PASSWORD?.length);
-    
-    // If this fails, your app password is wrong or 2FA isn't enabled
-    throw error;
-  }
-}
-
-  // ENHANCED TARGET QUALIFICATION
-  isHighValueTarget(company) {
-    const title = (company['Title'] || '').toLowerCase();
-    const industry = (company['Industry'] || '').toLowerCase();
-    const employees = parseInt(company['# Employees']) || 0;
-    const companyName = (company['Company Name'] || '').toLowerCase();
-
-    // Check if decision maker
-    const isDecisionMaker = TARGET_CRITERIA.PRIMARY_TITLES.some(targetTitle => 
-      title.includes(targetTitle)
-    );
-    
-    if (!isDecisionMaker) {
-      console.log(`Skipping ${company['Company Name']} - not a technical decision maker (${title})`);
-      return false;
-    }
-
-    // Check industry fit
-    const isGoodIndustry = TARGET_CRITERIA.HIGH_VALUE_INDUSTRIES.some(targetIndustry => 
-      industry.includes(targetIndustry) || companyName.includes(targetIndustry)
-    );
-    
-    const isBadIndustry = TARGET_CRITERIA.EXCLUDE_INDUSTRIES.some(excludeIndustry => 
-      industry.includes(excludeIndustry) || companyName.includes(excludeIndustry)
-    );
-    
-    if (isBadIndustry) {
-      console.log(`Skipping ${company['Company Name']} - excluded industry (${industry})`);
-      return false;
-    }
-
-    // Company size check
-    if (employees > 0 && (employees < TARGET_CRITERIA.IDEAL_EMPLOYEE_RANGE.min || 
-        employees > TARGET_CRITERIA.IDEAL_EMPLOYEE_RANGE.max)) {
-      console.log(`Skipping ${company['Company Name']} - outside ideal size range (${employees} employees)`);
-      return false;
-    }
-
-    if (!isGoodIndustry && !industry.includes('technology') && !industry.includes('software')) {
-      console.log(`Skipping ${company['Company Name']} - industry not in target list (${industry})`);
-      return false;
-    }
-
-    return true;
-  }
-
-  // VALUE-FIRST SUBJECT GENERATION
-  generateValueSubject(company, analysis) {
-    const template = VALUE_SUBJECT_TEMPLATES[Math.floor(Math.random() * VALUE_SUBJECT_TEMPLATES.length)];
-    const firstName = company['First Name'] || 'there';
-    const companyName = company['Company Name'];
-    const industry = this.cleanIndustryName(company['Industry'] || 'tech');
-    
-    const techStack = analysis.detectedTechnologies?.primary || 
-                     analysis.detectedTechnologies?.cms?.[0] || 
-                     analysis.detectedTechnologies?.frontend?.[0] || 
-                     'tech stack';
-                     
-    const positiveAspect = analysis.positiveObservations?.[0] || 'technical approach';
-    const specificTech = analysis.detectedTechnologies?.interesting?.[0] || techStack;
-
-    return template
-      .replace('{firstName}', firstName)
-      .replace('{companyName}', companyName)
-      .replace('{techStack}', techStack)
-      .replace('{industry}', industry)
-      .replace('{positiveAspect}', positiveAspect)
-      .replace('{specificTech}', specificTech);
-  }
-
-  cleanIndustryName(industry) {
-    return industry
-      .replace('Information Technology and Services', 'tech')
-      .replace('Computer Software', 'software')
-      .replace('Internet', 'web')
-      .toLowerCase();
-  }
-
-  // COMPREHENSIVE VALUE-FIRST ANALYSIS
-  async analyzeForValue(company) {
-    console.log(`Analyzing value proposition for ${company['Company Name']}...`);
-    
-    const analysis = {
-      company: company['Company Name'],
-      website: company['Website'],
-      timestamp: new Date().toISOString(),
-      positiveObservations: [],
-      technicalInsights: [],
-      relevantExperience: [],
-      valueProposition: null,
-      detectedTechnologies: {},
-      businessContext: null,
-      targetScore: 0,
-      analysisSuccess: false,
-      skipReason: null
+      
+      findings: {
+        news: [],
+        blog: [],
+        techStack: {},
+        websiteWorks: false,
+        linkedInData: null
+      },
+      
+      analysis: {
+        companyStage: null,
+        industryMatch: null,
+        growthSignals: []
+      },
+      
+      matches: [],
+      angles: [],
+      draft: null,
+      confidence: {},
+      recommendation: null,
+      manualChecks: []
     };
 
-    // Always analyze company context first
-    await this.analyzeCompanyContext(company, analysis);
-    await this.identifyRelevantExperience(company, analysis);
+    // 1. Website verification
+    console.log('  → Website check...');
+    intel.findings.websiteWorks = await this.verifyWebsite(prospect['Website']);
+
+    // 2. Tech stack (only if website works)
+    if (intel.findings.websiteWorks) {
+      console.log('  → Tech stack...');
+      intel.findings.techStack = await this.analyzeTechStack(prospect['Website']);
+    }
+
+    // 3. News search (primary: NewsAPI, fallback: manual search hints)
+    console.log('  → News search...');
+    intel.findings.news = await this.searchNews(prospect['Company Name'], prospect['Industry'], prospect['Website']);
+
+    // 4. Blog posts
+    console.log('  → Blog check...');
+    if (intel.findings.websiteWorks) {
+      intel.findings.blog = await this.findBlog(prospect['Website']);
+    }
+
+    // 5. Company analysis
+    console.log('  → Analysis...');
+    intel.analysis = this.analyzeCompany(intel.findings, prospect);
+
+    // 6. Experience matching
+    console.log('  → Matching...');
+    intel.matches = this.matchExperience(intel.analysis, prospect);
+
+    // 7. Generate angles
+    intel.angles = this.generateAngles(intel);
+
+    // 8. Draft email
+    intel.draft = this.generateDraft(intel);
+
+    // 9. Confidence & recommendation
+    const conf = this.calculateConfidence(intel);
+    intel.confidence = conf;
+    intel.recommendation = conf.recommendation;
+
+    // 10. Manual checks
+    intel.manualChecks = this.getManualChecks(intel);
+
+    return intel;
+  }
+
+  async verifyWebsite(url) {
+    try {
+      const cleanUrl = this.cleanUrl(url);
+      if (!cleanUrl) return false;
+
+      const response = await axios.get(cleanUrl, {
+        timeout: CONFIG.REQUEST_TIMEOUT,
+        maxRedirects: 5,
+        validateStatus: (status) => status < 500,
+        headers: { 'User-Agent': 'Mozilla/5.0' }
+      });
+
+      return response.status === 200;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async analyzeTechStack(url) {
+    const stack = { detected: [], confidence: 'low' };
 
     try {
-      const cleanUrl = this.cleanWebsiteUrl(company['Website']);
-      if (!cleanUrl) {
-        console.log(`No website for ${company['Company Name']} - using company data only`);
-        await this.generateContextualValue(company, analysis);
-        analysis.analysisSuccess = true;
-        analysis.skipReason = "No website - using company context";
-        return analysis;
+      const cleanUrl = this.cleanUrl(url);
+      const response = await axios.get(cleanUrl, {
+        timeout: CONFIG.REQUEST_TIMEOUT,
+        headers: { 'User-Agent': 'Mozilla/5.0' }
+      });
+
+      const html = response.data.toLowerCase();
+      const detections = [
+        { pattern: ['react', '_next/', '__next'], tech: 'React' },
+        { pattern: ['vue.js', 'nuxt'], tech: 'Vue' },
+        { pattern: ['ng-', 'angular'], tech: 'Angular' },
+        { pattern: ['wp-content', 'wp-includes'], tech: 'WordPress' },
+        { pattern: ['shopify', 'cdn.shopify'], tech: 'Shopify' }
+      ];
+
+      detections.forEach(({ pattern, tech }) => {
+        if (pattern.some(p => html.includes(p))) {
+          stack.detected.push(tech);
+        }
+      });
+
+      stack.confidence = stack.detected.length > 0 ? 'medium' : 'low';
+    } catch (error) {
+      // Silent fail
+    }
+
+    return stack;
+  }
+
+  async searchNews(companyName, industry, website) {
+    // Try NewsAPI first (most accurate)
+    if (process.env.NEWSAPI_KEY) {
+      const newsApiResults = await this.searchNewsAPI(companyName);
+      if (newsApiResults.length > 0) {
+        return newsApiResults;
+      }
+    }
+
+    // Fallback: Try Google with very strict filtering
+    if (process.env.GOOGLE_API_KEY && process.env.GOOGLE_CX_ID) {
+      const googleResults = await this.searchGoogleNews(companyName, industry, website);
+      if (googleResults.length > 0) {
+        return googleResults;
+      }
+    }
+
+    // No news found
+    return [];
+  }
+
+  async searchNewsAPI(companyName) {
+    const news = [];
+    
+    try {
+      this.apiCallCount.news++;
+      
+      const response = await axios.get('https://newsapi.org/v2/everything', {
+        params: {
+          apiKey: process.env.NEWSAPI_KEY,
+          q: `"${companyName}"`,
+          language: 'en',
+          sortBy: 'publishedAt',
+          pageSize: CONFIG.MAX_NEWS_ARTICLES,
+          from: this.getDateXDaysAgo(CONFIG.NEWS_AGE_DAYS)
+        },
+        timeout: CONFIG.REQUEST_TIMEOUT
+      });
+
+      if (response.data.articles && response.data.articles.length > 0) {
+        response.data.articles.forEach(article => {
+          // Only include if company name is actually in title or description
+          const text = (article.title + ' ' + article.description).toLowerCase();
+          if (text.includes(companyName.toLowerCase())) {
+            news.push({
+              title: article.title,
+              snippet: article.description || article.content?.substring(0, 200),
+              url: article.url,
+              date: this.formatDate(article.publishedAt),
+              source: article.source.name,
+              type: this.categorizeNews(article.title, article.description),
+              verified: true
+            });
+          }
+        });
+        
+        console.log(`    NewsAPI: ${news.length} verified articles`);
       }
 
-      // Attempt website analysis
-      let websiteAnalyzed = false;
-      for (let attempt = 1; attempt <= CONFIG.MAX_RETRY_ATTEMPTS; attempt++) {
-        try {
-          console.log(`  Website analysis attempt ${attempt}/${CONFIG.MAX_RETRY_ATTEMPTS}`);
+    } catch (error) {
+      if (error.response?.status === 429) {
+        console.log('    NewsAPI rate limit');
+      } else if (error.response?.status === 426) {
+        console.log('    NewsAPI: Upgrade required');
+      }
+    }
+
+    return news;
+  }
+
+  async searchGoogleNews(companyName, industry, website) {
+    const news = [];
+    
+    try {
+      this.apiCallCount.search++;
+      
+      // Extract domain from website for filtering
+      const domain = this.extractDomain(website);
+      
+      const searchQuery = `"${companyName}" ${industry} (funding OR launch OR partnership OR expansion)`;
+      
+      const response = await axios.get('https://www.googleapis.com/customsearch/v1', {
+        params: {
+          key: process.env.GOOGLE_API_KEY,
+          cx: process.env.GOOGLE_CX_ID,
+          q: searchQuery,
+          dateRestrict: `d${CONFIG.NEWS_AGE_DAYS}`,
+          num: 10
+        },
+        timeout: CONFIG.REQUEST_TIMEOUT
+      });
+
+      if (response.data.items) {
+        for (const item of response.data.items) {
+          const relevance = this.scoreGoogleResult(item, companyName, domain);
           
-          const response = await axios.get(cleanUrl, { 
-            timeout: CONFIG.REQUEST_TIMEOUT,
-            headers: {
-              'User-Agent': 'Mozilla/5.0 (compatible; TechAnalyzer/1.0)'
-            },
-            maxRedirects: 5
+          // Only include if relevance >= 70%
+          if (relevance >= 0.7) {
+            news.push({
+              title: item.title,
+              snippet: item.snippet,
+              url: item.link,
+              date: this.extractDate(item),
+              type: this.categorizeNews(item.title, item.snippet),
+              relevance: Math.round(relevance * 100),
+              verified: true
+            });
+          }
+        }
+        
+        console.log(`    Google: ${news.length}/${response.data.items.length} passed filter`);
+      }
+
+    } catch (error) {
+      // Silent fail
+    }
+
+    return news;
+  }
+
+  scoreGoogleResult(item, companyName, companyDomain) {
+    let score = 0;
+    const text = (item.title + ' ' + item.snippet).toLowerCase();
+    const url = item.link.toLowerCase();
+    const companyLower = companyName.toLowerCase();
+
+    // Exact company name in title (strong)
+    if (item.title.toLowerCase().includes(companyLower)) {
+      score += 0.5;
+    }
+
+    // Company domain in URL (very strong)
+    if (companyDomain && url.includes(companyDomain)) {
+      score += 0.4;
+    }
+
+    // Company name in URL path
+    const urlPath = url.split('?')[0];
+    if (urlPath.includes(companyLower.replace(/\s+/g, '-')) || 
+        urlPath.includes(companyLower.replace(/\s+/g, ''))) {
+      score += 0.3;
+    }
+
+    // Blocklist domains (directory/list sites)
+    const blockList = [
+      'wikipedia', 'crunchbase', 'linkedin.com/company', 'indeed.com',
+      'goodfirms', 'clutch.co', 'instagram.com', 'facebook.com',
+      'directory', 'yellowpages', 'list of', 'top 10', 'best cyber'
+    ];
+    
+    if (blockList.some(blocked => url.includes(blocked) || text.includes(blocked))) {
+      score -= 0.6;
+    }
+
+    // Bonus for news sites
+    const newsSites = ['techcrunch', 'techpoint', 'venturebeat', 'reuters', 
+                       'bloomberg', 'businessday', 'guardian', 'punch', 'vanguard'];
+    if (newsSites.some(site => url.includes(site))) {
+      score += 0.3;
+    }
+
+    return Math.max(0, Math.min(1, score));
+  }
+
+  async findBlog(url) {
+    const blog = { found: false, posts: [], url: null };
+
+    try {
+      const cleanUrl = this.cleanUrl(url);
+      const paths = ['/blog', '/news', '/insights', '/articles', '/resources'];
+      
+      for (const path of paths) {
+        try {
+          const blogUrl = `${cleanUrl}${path}`;
+          const response = await axios.get(blogUrl, {
+            timeout: 10000,
+            headers: { 'User-Agent': 'Mozilla/5.0' }
           });
 
           const $ = cheerio.load(response.data);
           
-          await this.analyzeTechnicalStack($, analysis);
-          await this.identifyPositiveAspects($, analysis, company);
-          await this.generateTechnicalInsights($, analysis, cleanUrl);
+          const selectors = ['article h2', 'article h3', '.post-title', '.blog-title', 'h2.entry-title'];
+          
+          for (const selector of selectors) {
+            $(selector).slice(0, 5).each((i, el) => {
+              const title = $(el).text().trim();
+              if (title.length > 15 && title.length < 200) {
+                blog.posts.push({ title });
+              }
+            });
+            
+            if (blog.posts.length > 0) break;
+          }
 
-          websiteAnalyzed = true;
-          console.log(`Website analysis successful for ${company['Company Name']}`);
-          break;
+          if (blog.posts.length > 0) {
+            blog.found = true;
+            blog.url = blogUrl;
+            console.log(`    Blog: ${blog.posts.length} posts`);
+            break;
+          }
 
         } catch (error) {
-          console.log(`  Attempt ${attempt} failed: ${error.message}`);
-          
-          if (attempt < CONFIG.MAX_RETRY_ATTEMPTS) {
-            await this.sleep(3000 * attempt);
-          }
+          continue;
         }
       }
 
-      if (!websiteAnalyzed) {
-        console.log(`Website analysis failed - generating contextual value for ${company['Company Name']}`);
-        await this.generateContextualValue(company, analysis);
-        analysis.skipReason = "Website inaccessible - using company context";
-      }
-
-      analysis.analysisSuccess = true;
-
     } catch (error) {
-      console.log(`Generating contextual value for ${company['Company Name']}`);
-      await this.generateContextualValue(company, analysis);
-      analysis.analysisSuccess = true;
-      analysis.skipReason = `Using company context - ${error.message}`;
+      // Silent fail
     }
 
-    // Calculate final target score
-    await this.calculateTargetScore(analysis, company);
+    return blog;
+  }
+
+  analyzeCompany(findings, prospect) {
+    const analysis = {
+      companyStage: null,
+      industryMatch: null,
+      growthSignals: []
+    };
+
+    const employees = parseInt(prospect['# Employees']) || 0;
+
+    // Determine stage
+    if (employees < 20) analysis.companyStage = 'Early Stage';
+    else if (employees < 100) analysis.companyStage = 'Growth Stage';
+    else if (employees < 500) analysis.companyStage = 'Established';
+    else analysis.companyStage = 'Enterprise';
+
+    // Check if recently funded
+    const fundingNews = findings.news.filter(n => n.type === 'funding');
+    if (fundingNews.length > 0) {
+      analysis.companyStage += ' (Recently Funded)';
+      analysis.growthSignals.push('Recent funding');
+    }
+
+    // Growth signals
+    if (findings.news.length >= 3) {
+      analysis.growthSignals.push('Active in news');
+    }
+    if (findings.blog.found) {
+      analysis.growthSignals.push('Content marketing');
+    }
+
+    // Industry matching
+    const industry = (prospect['Industry'] || '').toLowerCase();
+    const keywords = (prospect['Keywords'] || '').toLowerCase();
+    
+    analysis.industryMatch = this.matchIndustry(industry, keywords);
 
     return analysis;
   }
 
-  async analyzeCompanyContext(company, analysis) {
-    const industry = (company['Industry'] || '').toLowerCase();
-    const employees = parseInt(company['# Employees']) || 0;
-    const title = (company['Title'] || '').toLowerCase();
-    const companyName = company['Company Name'].toLowerCase();
+  matchIndustry(industry, keywords) {
+    const matches = {
+      'saas': ['saas', 'software', 'platform', 'cloud', 'application'],
+      'fintech': ['fintech', 'payment', 'financial', 'banking', 'finance'],
+      'ecommerce': ['e-commerce', 'ecommerce', 'retail', 'shopping', 'marketplace'],
+      'hr': ['hr', 'human resources', 'recruitment', 'staffing', 'workforce'],
+      'logistics': ['logistics', 'delivery', 'shipping', 'transportation', 'supply chain'],
+      'marketing': ['marketing', 'advertising', 'martech', 'analytics', 'campaign']
+    };
 
-    // Determine business context
-    if (industry.includes('saas') || industry.includes('software')) {
-      analysis.businessContext = 'SaaS/Software Company';
-    } else if (industry.includes('fintech') || industry.includes('financial')) {
-      analysis.businessContext = 'Financial Technology';
-    } else if (industry.includes('health') || industry.includes('medical')) {
-      analysis.businessContext = 'Healthcare Technology';
-    } else if (industry.includes('education')) {
-      analysis.businessContext = 'Education Technology';
-    } else if (industry.includes('e-commerce') || industry.includes('retail')) {
-      analysis.businessContext = 'E-commerce/Retail';
-    } else if (industry.includes('logistics') || industry.includes('supply')) {
-      analysis.businessContext = 'Logistics/Supply Chain';
-    } else if (industry.includes('media') || industry.includes('marketing')) {
-      analysis.businessContext = 'Media/Marketing Technology';
-    } else {
-      analysis.businessContext = 'Technology Company';
-    }
-
-    // Add contextual positive observations
-    if (employees > 50) {
-      analysis.positiveObservations.push('established team size and market presence');
-    } else if (employees > 10) {
-      analysis.positiveObservations.push('growing team and scaling operations');
-    }
-
-    if (title.includes('founder') || title.includes('ceo')) {
-      analysis.positiveObservations.push('strong leadership and vision');
-    } else if (title.includes('cto') || title.includes('technical')) {
-      analysis.positiveObservations.push('technical leadership and architecture focus');
-    }
-  }
-
-  async identifyRelevantExperience(company, analysis) {
-    const industry = (company['Industry'] || '').toLowerCase();
-    const businessContext = analysis.businessContext.toLowerCase();
-
-    // Match relevant project experience
-    const experienceMap = {
-      'saas': {
-        project: 'DAstore E-commerce Platform',
-        description: 'Full-stack SaaS platform with subscription management, payment processing, and analytics',
-        relevance: 'scalable architecture patterns and subscription billing systems'
-      },
-      'communication': {
-        project: 'Dassage Communication Platform', 
-        description: 'Real-time messaging system with video calls, file sharing, and team collaboration',
-        relevance: 'real-time communication systems and team collaboration tools'
-      },
-      'hr': {
-        project: 'Crewmanage HR System',
-        description: 'Complete HR platform with scheduling, payroll, and workflow management',
-        relevance: 'business process automation and workflow optimization'
-      },
-      'ecommerce': {
-        project: 'Multi-vendor Marketplace',
-        description: 'Custom marketplace platform with vendor management and payment splitting',
-        relevance: 'complex business logic and multi-tenant architecture'
-      },
-      'fintech': {
-        project: 'Financial Dashboard',
-        description: 'Real-time financial analytics with secure payment integrations',
-        relevance: 'secure financial systems and real-time data processing'
+    for (const [key, terms] of Object.entries(matches)) {
+      if (terms.some(term => industry.includes(term) || keywords.includes(term))) {
+        return key;
       }
-    };
-
-    // Select most relevant experience
-    if (businessContext.includes('saas') || businessContext.includes('software')) {
-      analysis.relevantExperience.push(experienceMap.saas);
-    } else if (businessContext.includes('communication') || industry.includes('media')) {
-      analysis.relevantExperience.push(experienceMap.communication);
-    } else if (businessContext.includes('financial') || industry.includes('fintech')) {
-      analysis.relevantExperience.push(experienceMap.fintech);
-    } else if (businessContext.includes('ecommerce') || businessContext.includes('retail')) {
-      analysis.relevantExperience.push(experienceMap.ecommerce);
-    } else {
-      // Default to most universally applicable
-      analysis.relevantExperience.push(experienceMap.saas);
     }
 
-    // Always add HR system if they have significant team size
-    const employees = parseInt(company['# Employees']) || 0;
-    if (employees > 20) {
-      analysis.relevantExperience.push(experienceMap.hr);
-    }
+    return null;
   }
 
-  async analyzeTechnicalStack($, analysis) {
-    const technologies = {
-      frontend: [],
-      backend: [],
-      cms: [],
-      frameworks: [],
-      interesting: [],
-      primary: null
-    };
+  matchExperience(analysis, prospect) {
+    const matches = [];
+    const industry = (prospect['Industry'] || '').toLowerCase();
+    const keywords = (prospect['Keywords'] || '').toLowerCase();
+    const searchText = industry + ' ' + keywords;
 
-    const scripts = $('script[src]').map((i, el) => $(el).attr('src')).get();
-    const links = $('link[href]').map((i, el) => $(el).attr('href')).get();
-    const pageContent = $('body').html() || '';
-    const allContent = scripts.join(' ') + ' ' + links.join(' ') + ' ' + pageContent;
+    YOUR_EXPERIENCE.projects.forEach(project => {
+      let score = 0;
+      const reasons = [];
 
-    // Modern framework detection
-    if (allContent.includes('react') || allContent.includes('_next/')) {
-      technologies.frontend.push('React');
-      technologies.interesting.push('React');
-      if (!technologies.primary) technologies.primary = 'React';
-    }
-    if (allContent.includes('vue') || allContent.includes('nuxt')) {
-      technologies.frontend.push('Vue.js');
-      technologies.interesting.push('Vue.js');
-      if (!technologies.primary) technologies.primary = 'Vue.js';
-    }
-    if (allContent.includes('angular')) {
-      technologies.frontend.push('Angular');
-      technologies.interesting.push('Angular');
-      if (!technologies.primary) technologies.primary = 'Angular';
-    }
+      // Industry fit (primary signal)
+      project.industryFit.forEach(fit => {
+        if (searchText.includes(fit)) {
+          score += 30;
+          reasons.push(`Industry: ${fit}`);
+        }
+      });
 
-    // Backend/Platform detection
-    if (allContent.includes('wp-content') || allContent.includes('wordpress')) {
-      technologies.cms.push('WordPress');
-      technologies.primary = technologies.primary || 'WordPress';
-    }
-    if (allContent.includes('shopify')) {
-      technologies.cms.push('Shopify');
-      technologies.interesting.push('Shopify');
-      technologies.primary = technologies.primary || 'Shopify';
-    }
-    if (allContent.includes('webflow')) {
-      technologies.cms.push('Webflow');
-      technologies.primary = technologies.primary || 'Webflow';
-    }
+      // Keyword matches
+      project.keywords.forEach(keyword => {
+        if (searchText.includes(keyword)) {
+          score += 5;
+        }
+      });
 
-    // Set default if nothing detected
-    if (!technologies.primary) {
-      technologies.primary = 'custom stack';
-    }
-
-    analysis.detectedTechnologies = technologies;
-  }
-
-  async identifyPositiveAspects($, analysis, company) {
-    const pageText = $('body').text().toLowerCase();
-    const title = $('title').text();
-    const metaDescription = $('meta[name="description"]').attr('content') || '';
-
-    // Look for genuine positive indicators
-    const positiveIndicators = {
-      'clean, modern design': pageText.length > 1000 && $('nav').length > 0,
-      'strong brand presence': title.length > 10 && metaDescription.length > 50,
-      'user-focused content': pageText.includes('customer') || pageText.includes('user'),
-      'established platform': pageText.includes('since') || pageText.includes('established'),
-      'growth indicators': pageText.includes('growing') || pageText.includes('expanding'),
-      'technical sophistication': analysis.detectedTechnologies.frontend.length > 0,
-      'professional presentation': $('img').length > 3 && $('section').length > 2
-    };
-
-    // Add genuine observations
-    Object.entries(positiveIndicators).forEach(([observation, condition]) => {
-      if (condition) {
-        analysis.positiveObservations.push(observation);
+      // Only include strong matches
+      if (score >= 30) {
+        matches.push({
+          project: project.name,
+          description: project.description,
+          score,
+          reasons: reasons.slice(0, 2),
+          techStack: project.techStack.slice(0, 4).join(', '),
+          scale: project.scale
+        });
       }
     });
 
-    // Ensure at least one positive observation
-    if (analysis.positiveObservations.length === 0) {
-      analysis.positiveObservations.push('professional online presence');
-    }
+    return matches.sort((a, b) => b.score - a.score);
   }
 
-  async generateTechnicalInsights($, analysis, websiteUrl) {
-    const pageContent = $('body').html() || '';
-    const technologies = analysis.detectedTechnologies;
+  generateAngles(intel) {
+    const angles = [];
 
-    // Generate genuine technical insights based on what we observe
-    if (technologies.primary === 'React' && technologies.frontend.includes('React')) {
-      analysis.technicalInsights.push('React implementation suggests strong frontend capabilities - similar architecture to our recent SaaS projects');
-    }
-    
-    if (technologies.cms.includes('WordPress') && pageContent.length > 5000) {
-      analysis.technicalInsights.push('WordPress site with substantial content - good foundation for headless CMS architecture we\'ve implemented elsewhere');
-    }
-
-    if (technologies.cms.includes('Shopify')) {
-      analysis.technicalInsights.push('Shopify platform indicates e-commerce focus - we\'ve built custom integrations and advanced features for similar setups');
+    // News angle (highest priority)
+    if (intel.findings.news.length > 0) {
+      const news = intel.findings.news[0];
+      angles.push({
+        type: 'news',
+        priority: 'high',
+        content: `Recent ${news.type}: "${news.title}"`,
+        source: news.url
+      });
     }
 
-    if (pageContent.includes('api') || pageContent.includes('integration')) {
-      analysis.technicalInsights.push('API/integration mentions suggest technical depth - aligns with our integration expertise');
+    // Blog angle
+    if (intel.findings.blog.found && intel.findings.blog.posts.length > 0) {
+      angles.push({
+        type: 'blog',
+        priority: 'medium',
+        content: `Blog post: "${intel.findings.blog.posts[0].title}"`,
+        source: intel.findings.blog.url
+      });
     }
 
-    // Default insight if none generated
-    if (analysis.technicalInsights.length === 0) {
-      analysis.technicalInsights.push(`${technologies.primary} setup indicates solid technical foundation - reminds me of architecture decisions we made in recent projects`);
+    // Experience match
+    if (intel.matches.length > 0) {
+      angles.push({
+        type: 'experience',
+        priority: intel.matches[0].score > 50 ? 'high' : 'medium',
+        content: `${intel.matches[0].project} relevant to their ${intel.analysis.industryMatch || 'industry'}`
+      });
     }
+
+    return angles;
   }
 
-  async generateContextualValue(company, analysis) {
-    const industry = (company['Industry'] || '').toLowerCase();
-    const employees = parseInt(company['# Employees']) || 0;
-    const title = (company['Title'] || '').toLowerCase();
-
-    // Generate contextual insights without website
-    if (industry.includes('software') || industry.includes('technology')) {
-      analysis.technicalInsights.push('Technology company suggests sophisticated development needs - similar to scaling challenges we\'ve solved recently');
-      analysis.positiveObservations.push('established technology focus and team');
+  generateDraft(intel) {
+    // Don't generate if insufficient info
+    if (intel.angles.length === 0 || !intel.findings.websiteWorks) {
+      return "⚠️ INSUFFICIENT DATA - Do manual research before reaching out.\n\nNo verified news, blog, or strong experience match found.";
     }
 
-    if (employees > 50) {
-      analysis.technicalInsights.push('Team size indicates mature operations - similar to enterprise-scale solutions we\'ve built');
-      analysis.positiveObservations.push('substantial team and operational scale');
+    const bestAngle = intel.angles[0];
+    let draft = '';
+
+    // Subject
+    if (bestAngle.type === 'news') {
+      draft += `SUBJECT: ${intel.prospect.firstName} - congrats on ${intel.findings.news[0].type}\n\n`;
+    } else if (bestAngle.type === 'blog') {
+      draft += `SUBJECT: ${intel.prospect.firstName} - your recent article\n\n`;
+    } else {
+      draft += `SUBJECT: ${intel.prospect.firstName} - ${intel.prospect.company} development\n\n`;
     }
 
-    if (title.includes('cto') || title.includes('technical')) {
-      analysis.technicalInsights.push('Technical leadership role suggests architecture-level thinking - aligns with our strategic development approach');
+    // Opening
+    draft += `Hi ${intel.prospect.firstName},\n\n`;
+
+    if (bestAngle.type === 'news') {
+      const news = intel.findings.news[0];
+      draft += `I saw the news about ${intel.prospect.company}'s ${news.type}`;
+      if (news.title.length < 80) {
+        draft += ` - "${news.title}"`;
+      }
+      draft += `. Congratulations!\n\n`;
+    } else if (bestAngle.type === 'blog') {
+      draft += `I read your post "${intel.findings.blog.posts[0].title}" - great insights.\n\n`;
+    } else {
+      draft += `I've been following companies in the ${intel.prospect.industry} space.\n\n`;
     }
 
-    // Ensure minimum positive observations
-    if (analysis.positiveObservations.length === 0) {
-      analysis.positiveObservations.push('established market presence and team');
+    // Experience
+    if (intel.matches.length > 0) {
+      const match = intel.matches[0];
+      draft += `I'm David Ariyo, a Full Stack Developer. I recently built ${match.project} - ${match.description}\n\n`;
+      draft += `Tech: ${match.techStack} | Scale: ${match.scale}\n\n`;
+    } else {
+      draft += `I'm David Ariyo, a Full Stack Developer specializing in MERN stack. I build scalable applications for growing tech companies.\n\n`;
     }
 
-    if (analysis.technicalInsights.length === 0) {
-      analysis.technicalInsights.push(`${analysis.businessContext} focus indicates development needs that align with our recent project experience`);
-    }
+    // CTA
+    draft += `Would you be open to a brief chat if ${intel.prospect.company} ever needs freelance development support?\n\n`;
+
+    // Signature
+    draft += `Best regards,\nDavid Ariyo\nFull Stack Developer\n`;
+    draft += `davidariyo109@gmail.com | (+234) 903-6184-863\n`;
+    draft += `Portfolio: davidariyo.onrender.com`;
+
+    return draft;
   }
 
-  async calculateTargetScore(analysis, company) {
+  calculateConfidence(intel) {
     let score = 0;
-    
-    // Base score for being a qualified target
-    score += 3;
-    
-    // Technical insights quality
-    score += Math.min(analysis.technicalInsights.length * 1.5, 3);
-    
-    // Positive observations
-    score += Math.min(analysis.positiveObservations.length * 0.5, 2);
-    
-    // Relevant experience match
-    score += analysis.relevantExperience.length;
-    
-    // Website analysis success
-    if (analysis.analysisSuccess && !analysis.skipReason?.includes('Website')) {
-      score += 1;
-    }
-    
-    // Decision maker level
-    const title = (company['Title'] || '').toLowerCase();
-    if (title.includes('ceo') || title.includes('founder')) score += 2;
-    else if (title.includes('cto') || title.includes('technical')) score += 1.5;
-    
-    analysis.targetScore = Math.min(score, 10);
-  }
+    const factors = [];
 
-  // VALUE-FIRST EMAIL GENERATION
-  generateValueProposal(company, analysis) {
-    if (!this.shouldContact(analysis)) {
-      return null;
+    // Website working
+    if (intel.findings.websiteWorks) {
+      score += 20;
+      factors.push('Website verified');
+    } else {
+      score -= 15;
+      factors.push('Website inaccessible');
     }
 
-    console.log(`Generating value-first proposal for ${company['Company Name']}...`);
-    
-    const proposal = {
-      companyName: company['Company Name'],
-      contactName: `${company['First Name']} ${company['Last Name']}`,
-      firstName: company['First Name'],
-      title: company['Title'],
-      industry: company['Industry'],
-      email: company['Email'],
-      businessContext: analysis.businessContext,
-      positiveObservations: analysis.positiveObservations,
-      technicalInsights: analysis.technicalInsights,
-      relevantExperience: analysis.relevantExperience,
-      detectedTechnologies: analysis.detectedTechnologies,
-      valueMessage: this.createValueMessage(company, analysis),
-      valueSubject: this.generateValueSubject(company, analysis),
-      targetScore: analysis.targetScore
+    // News (high value)
+    if (intel.findings.news.length >= 2) {
+      score += 35;
+      factors.push(`${intel.findings.news.length} verified news items`);
+    } else if (intel.findings.news.length === 1) {
+      score += 25;
+      factors.push('1 verified news item');
+    }
+
+    // Blog
+    if (intel.findings.blog.found) {
+      score += 15;
+      factors.push('Blog content found');
+    }
+
+    // Strong experience match
+    if (intel.matches.length > 0 && intel.matches[0].score >= 50) {
+      score += 25;
+      factors.push('Strong experience match');
+    } else if (intel.matches.length > 0) {
+      score += 10;
+      factors.push('Moderate experience match');
+    }
+
+    // Tech stack
+    if (intel.findings.techStack.detected.length > 0) {
+      score += 5;
+      factors.push('Tech stack detected');
+    }
+
+    score = Math.max(0, Math.min(100, score));
+
+    let level = 'Low';
+    let rec = 'SKIP';
+
+    if (score >= 70) {
+      level = 'High';
+      rec = 'SEND';
+    } else if (score >= 50) {
+      level = 'Medium';
+      rec = 'REVIEW';
+    } else if (score >= 30) {
+      level = 'Low';
+      rec = 'MANUAL RESEARCH';
+    }
+
+    return {
+      score,
+      level,
+      factors,
+      recommendation: rec
     };
-
-    return proposal;
   }
 
-  createValueMessage(company, analysis) {
-    const firstName = company['First Name'] || 'there';
-    const companyName = company['Company Name'];
-    const industry = this.cleanIndustryName(company['Industry'] || 'tech');
-    
-    // Dynamic opening
-    const openingTemplate = VALUE_OPENING_VARIATIONS[Math.floor(Math.random() * VALUE_OPENING_VARIATIONS.length)];
-    
-    const specificPositive = analysis.positiveObservations[0] || 'professional approach';
-    const technicalObservation = analysis.technicalInsights[0] || `it reminds me of architecture challenges we've solved recently`;
-    const solutionType = analysis.businessContext.toLowerCase();
-    const relevantProject = analysis.relevantExperience[0]?.project || 'similar platform';
-    const positiveAspect = analysis.positiveObservations[0] || 'technical approach';
-    const specificTech = analysis.detectedTechnologies?.primary || 'tech stack';
+  getManualChecks(intel) {
+    const checks = [];
 
-    let message = `${openingTemplate
-      .replace('{firstName}', firstName)
-      .replace('{companyName}', companyName)
-      .replace('{industry}', industry)
-      .replace('{specificPositive}', specificPositive)
-      .replace('{technicalObservation}', technicalObservation)
-      .replace('{solutionType}', solutionType)
-      .replace('{relevantProject}', relevantProject)
-      .replace('{positiveAspect}', positiveAspect)
-      .replace('{specificTech}', specificTech)}\n\n`;
-
-    // Professional introduction - clarify freelance availability
-    message += `I'm David Ariyo, a freelance Full Stack Developer specializing in MERN stack solutions. `;
-    message += `I work with ${solutionType.includes('tech') ? 'technology companies' : `${industry} companies`} on project-based development work.\n\n`;
-
-    // Relevant experience (specific and credible)
-    const primaryExperience = analysis.relevantExperience[0];
-    if (primaryExperience) {
-      message += `Recent relevant work:\n`;
-      message += `• ${primaryExperience.project}: ${primaryExperience.description}\n`;
-      if (analysis.relevantExperience.length > 1) {
-        message += `• ${analysis.relevantExperience[1].project}: ${analysis.relevantExperience[1].description}\n`;
-      }
-      message += `\n`;
-      message += `This experience is relevant because ${primaryExperience.relevance}.\n\n`;
+    if (intel.recommendation === 'SEND') {
+      checks.push('Verify news links are correct');
+      checks.push(`Check LinkedIn: ${intel.prospect.linkedIn}`);
+      checks.push('Personalize draft before sending');
+    } else if (intel.recommendation === 'REVIEW') {
+      checks.push('Spend 10 min on additional research');
+      checks.push(`Visit: ${intel.prospect.website}`);
+      checks.push(`LinkedIn: ${intel.prospect.linkedIn}`);
+      checks.push('Strengthen personalization');
+    } else {
+      checks.push('20+ min manual research needed');
+      checks.push('Or skip this prospect');
     }
 
-    // Technical insight (shows we understand their context)
-    message += `Technical insight: ${analysis.technicalInsights[0] || `Your ${analysis.businessContext} setup suggests similar scaling challenges to projects we've recently completed`}.\n\n`;
-
-    // Value-focused closing
-    const closingTemplate = VALUE_CLOSING_VARIATIONS[Math.floor(Math.random() * VALUE_CLOSING_VARIATIONS.length)];
-    message += closingTemplate.replace('{companyName}', companyName) + '\n\n';
-
-    // Professional signature
-    message += this.generateValueSignature();
-
-    return message;
+    return checks;
   }
 
-  generateValueSignature() {
-    return `Best regards,\n` +
-           `${CONFIG.SENDER_NAME}\n` +
-           `${CONFIG.SENDER_TITLE} | MERN Stack Specialist\n` +
-           `Recent Projects: SaaS Platforms, Real-time Applications, E-commerce Systems\n` +
-           `davidariyo109@gmail.com | (+234) 903-6184-863\n` +
-           `Portfolio: davidariyo.onrender.com\n` +
-           `LinkedIn: linkedin.com/in/david-ariyo-123da`;
+  async saveIntelligence(prospect, intel) {
+    const filename = `${prospect['Company Name'].replace(/[^a-z0-9]/gi, '_')}_research.json`;
+    const filepath = path.join(CONFIG.RESEARCH_DIR, filename);
+    fs.writeFileSync(filepath, JSON.stringify(intel, null, 2));
+
+    const txtFile = filename.replace('.json', '.txt');
+    const txtPath = path.join(CONFIG.RESEARCH_DIR, txtFile);
+    fs.writeFileSync(txtPath, this.formatReport(intel));
   }
 
-  shouldContact(analysis) {
-    // Only contact high-value targets with genuine value proposition
-    if (analysis.targetScore < 5) {
-      console.log(`Low target score: ${analysis.targetScore}/10`);
-      return false;
-    }
-
-    if (analysis.technicalInsights.length === 0) {
-      console.log('No genuine technical insights identified');
-      return false;
-    }
-
-    if (analysis.positiveObservations.length === 0) {
-      console.log('No positive observations to reference');
-      return false;
-    }
-
-    return true;
-  }
-
-  // EMAIL VALIDATION (enhanced for business quality)
-  async validateHighValueProspects(companies) {
-    console.log('Validating high-value prospects...');
+  formatReport(intel) {
+    let r = '';
     
-    const validCompanies = [];
-    const rejectedProspects = [];
+    r += `${'='.repeat(70)}\n`;
+    r += `RESEARCH REPORT: ${intel.prospect.company}\n`;
+    r += `${'='.repeat(70)}\n\n`;
     
-    for (const company of companies) {
-      const email = company['Email'];
-      
-      // Basic email validation
-      if (!email || !this.isValidBusinessEmail(email)) {
-        rejectedProspects.push({
-          company: company['Company Name'],
-          email: email || 'missing',
-          reason: 'Invalid or non-business email'
-        });
-        continue;
-      }
-
-      // Target qualification check
-      if (!this.isHighValueTarget(company)) {
-        rejectedProspects.push({
-          company: company['Company Name'],
-          email: email,
-          reason: 'Not in target criteria (title/industry/size)'
-        });
-        continue;
-      }
-
-      const correctedEmail = this.correctCommonEmailTypos(email);
-      if (correctedEmail !== email) {
-        console.log(`Auto-corrected: ${email} -> ${correctedEmail}`);
-        company['Email'] = correctedEmail;
-      }
-
-      validCompanies.push(company);
-    }
-
-    if (rejectedProspects.length > 0) {
-      const rejectedPath = path.join(CONFIG.OUTPUT_DIR, 'rejected_prospects.json');
-      fs.writeFileSync(rejectedPath, JSON.stringify(rejectedProspects, null, 2));
-      console.log(`${rejectedProspects.length} prospects rejected (see rejected_prospects.json)`);
-    }
-
-    console.log(`${validCompanies.length} high-value prospects qualified`);
-    return validCompanies;
-  }
-
-  isValidBusinessEmail(email) {
-    if (!email || typeof email !== 'string') return false;
+    r += `CONTACT:\n`;
+    r += `  Name: ${intel.prospect.name}\n`;
+    r += `  Title: ${intel.prospect.title}\n`;
+    r += `  Email: ${intel.prospect.email}\n`;
+    r += `  Company: ${intel.prospect.company}\n`;
+    r += `  Industry: ${intel.prospect.industry}\n`;
+    r += `  Size: ${intel.prospect.employees} employees\n`;
+    r += `  Website: ${intel.prospect.website} ${intel.findings.websiteWorks ? '✓' : '✗'}\n`;
+    r += `  LinkedIn: ${intel.prospect.linkedIn}\n\n`;
     
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) return false;
+    r += `CONFIDENCE: ${intel.confidence.level} (${intel.confidence.score}/100)\n`;
+    r += `RECOMMENDATION: ${intel.recommendation}\n`;
+    r += `Factors: ${intel.confidence.factors.join(', ')}\n\n`;
     
-    // Enhanced business email detection
-    const personalDomains = [
-      'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 
-      'aol.com', 'icloud.com', 'protonmail.com', 'mail.com',
-      'yandex.com', 'zoho.com'
-    ];
+    r += `FINDINGS:\n`;
     
-    const domain = email.split('@')[1]?.toLowerCase();
-    return !personalDomains.includes(domain);
-  }
-
-  correctCommonEmailTypos(email) {
-    const corrections = {
-      'gmial.com': 'gmail.com',
-      'gmai.com': 'gmail.com',
-      'yahooo.com': 'yahoo.com',
-      'yaho.com': 'yahoo.com',
-      'hotmial.com': 'hotmail.com',
-      'outlokk.com': 'outlook.com'
-    };
-
-    let corrected = email.toLowerCase();
-    for (const [typo, correct] of Object.entries(corrections)) {
-      corrected = corrected.replace(typo, correct);
+    if (intel.findings.news.length > 0) {
+      r += `\n  NEWS (${intel.findings.news.length} verified):\n`;
+      intel.findings.news.forEach((n, i) => {
+        r += `  ${i+1}. [${n.type}] ${n.title}\n`;
+        r += `     ${n.date} | ${n.source || 'Source'}\n`;
+        r += `     ${n.url}\n`;
+      });
+    } else {
+      r += `\n  NEWS: None found\n`;
     }
-
-    return corrected;
-  }
-
-  // ENHANCED EMAIL SENDING
-  async sendValueEmail(proposal) {
-    if (!proposal.email || !this.isValidBusinessEmail(proposal.email)) {
-      console.log(`Invalid email for ${proposal.companyName}`);
-      return false;
-    }
-
-    if (this.emailsSentToday >= CONFIG.MAX_EMAILS_PER_DAY) {
-      console.log('Daily email limit reached. Quality over quantity approach maintained.');
-      return false;
-    }
-
-    if (this.emailsSentThisHour >= CONFIG.MAX_EMAILS_PER_HOUR) {
-      console.log('Hourly limit reached - maintaining professional pacing...');
-      await this.sleep(3600000); // Wait 1 hour
-      this.emailsSentThisHour = 0;
-    }
-
-    const timeSinceLastEmail = Date.now() - this.lastEmailTime;
-    if (timeSinceLastEmail < CONFIG.EMAIL_DELAY_MIN) {
-      const delay = CONFIG.EMAIL_DELAY_MIN - timeSinceLastEmail;
-      console.log(`Professional pacing: waiting ${Math.round(delay/1000)}s...`);
-      await this.sleep(delay);
-    }
-
-    const mailOptions = {
-      from: `"${CONFIG.SENDER_NAME} - ${CONFIG.SENDER_TITLE}" <${process.env.EMAIL_USER}>`,
-      to: proposal.email,
-      subject: proposal.valueSubject,
-      text: proposal.valueMessage,
-      html: this.convertToHTML(proposal.valueMessage),
-      replyTo: process.env.EMAIL_USER
-    };
-
-    try {
-      await this.emailTransporter.sendMail(mailOptions);
-      console.log(`Value-first outreach sent to ${proposal.contactName} at ${proposal.companyName} (Score: ${proposal.targetScore}/10)`);
-      
-      this.processedEmails.add(proposal.email.toLowerCase());
-      this.emailsSentToday++;
-      this.emailsSentThisHour++;
-      this.lastEmailTime = Date.now();
-      
-      this.logValueOutreach(proposal);
-      this.saveDailyEmailCount();
-      
-      return true;
-    } catch (error) {
-      console.error(`Failed to send to ${proposal.companyName}:`, error.message);
-      return false;
-    }
-  }
-
-  convertToHTML(message) {
-    return message
-      .replace(/\n\n/g, '</p><p>')
-      .replace(/\n/g, '<br>')
-      .replace(/^/, '<div style="font-family: Georgia, serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;"><p>')
-      .replace(/$/, '</p></div>')
-      .replace(/• /g, '• '); // Preserve bullet points
-  }
-
-  logValueOutreach(proposal) {
-    const logEntry = {
-      timestamp: new Date().toISOString(),
-      company: proposal.companyName,
-      contact: proposal.contactName,
-      email: proposal.email,
-      subject: proposal.valueSubject,
-      businessContext: proposal.businessContext,
-      targetScore: proposal.targetScore,
-      positiveObservations: proposal.positiveObservations.length,
-      technicalInsights: proposal.technicalInsights.length,
-      relevantExperience: proposal.relevantExperience.map(exp => exp.project)
-    };
     
-    let logs = [];
-    
-    try {
-      if (fs.existsSync(this.emailLogPath)) {
-        logs = JSON.parse(fs.readFileSync(this.emailLogPath, 'utf8'));
-      }
-      
-      logs.push(logEntry);
-      fs.writeFileSync(this.emailLogPath, JSON.stringify(logs, null, 2));
-    } catch (error) {
-      console.error('Error logging outreach:', error.message);
+    if (intel.findings.blog.found) {
+      r += `\n  BLOG: Found at ${intel.findings.blog.url}\n`;
+      intel.findings.blog.posts.slice(0, 3).forEach((p, i) => {
+        r += `  ${i+1}. "${p.title}"\n`;
+      });
+    } else {
+      r += `\n  BLOG: None found\n`;
     }
-  }
-
-  // MAIN EXECUTION
-  async run() {
-    console.log('Starting Value-First Freelance Developer Outreach...');
-    console.log(`Daily limit: ${CONFIG.MAX_EMAILS_PER_DAY} high-quality emails`);
-    console.log(`Current target: Technical decision makers at 10-500 person companies`);
-    console.log(`Already sent today: ${this.emailsSentToday} emails`);
     
-    try {
-      await this.setupEmailTransporter();
-      
-      const { companies, processedFiles } = await this.processCSVFiles();
-      
-      if (companies.length === 0) {
-        console.log('No new companies to process');
-        return;
-      }
-
-      console.log(`\nTARGET QUALIFICATION:`);
-      console.log(`Initial prospects: ${companies.length}`);
-
-      const validatedCompanies = await this.validateHighValueProspects(companies);
-      
-      if (validatedCompanies.length === 0) {
-        console.log('No qualified high-value targets found');
-        console.log('\nTARGET CRITERIA REMINDER:');
-        console.log('• Title: CEO, CTO, Founder, VP Engineering, Technical Director');
-        console.log('• Industry: Technology, Software, SaaS, FinTech, E-commerce');
-        console.log('• Size: 10-500 employees');
-        console.log('• Email: Business domain only');
-        return;
-      }
-      
-      console.log(`Qualified high-value targets: ${validatedCompanies.length}`);
-      console.log(`Analyzing for value proposition and technical fit...`);
-      
-      const batchSize = CONFIG.MAX_CONCURRENT_ANALYSIS;
-      let totalProcessed = 0;
-      let totalQualified = 0;
-      let totalRejected = 0;
-      
-      for (let i = 0; i < validatedCompanies.length; i += batchSize) {
-        const batch = validatedCompanies.slice(i, i + batchSize);
-        const batchNumber = Math.floor(i/batchSize) + 1;
-        const totalBatches = Math.ceil(validatedCompanies.length/batchSize);
-        
-        console.log(`\nAnalyzing batch ${batchNumber}/${totalBatches} (${batch.length} companies)`);
-        
-        const batchResults = await Promise.allSettled(batch.map(async (company) => {
-          try {
-            if (this.isAlreadyProcessed(company)) {
-              console.log(`Skipping ${company['Company Name']} - already contacted`);
-              return { status: 'skipped', reason: 'already contacted' };
-            }
-
-            const analysis = await this.analyzeForValue(company);
-            const proposal = this.generateValueProposal(company, analysis);
-            
-            if (!proposal) {
-              console.log(`Rejected ${company['Company Name']} - insufficient value proposition (Score: ${analysis.targetScore}/10)`);
-              this.qualifiedLeadsLog.push({
-                company: company['Company Name'],
-                reason: 'insufficient value proposition',
-                targetScore: analysis.targetScore,
-                technicalInsights: analysis.technicalInsights.length,
-                positiveObservations: analysis.positiveObservations.length
-              });
-              return { status: 'rejected', reason: 'insufficient value' };
-            }
-            
-            this.emailQueue.push({ proposal });
-            
-            await this.saveValueAnalysis(company, analysis, proposal);
-            
-            console.log(`✓ Qualified ${company['Company Name']} for outreach (Score: ${proposal.targetScore}/10)`);
-            return { status: 'qualified', company: company['Company Name'], score: proposal.targetScore };
-            
-          } catch (error) {
-            console.error(`Error analyzing ${company['Company Name']}:`, error.message);
-            return { status: 'error', company: company['Company Name'], error: error.message };
-          }
-        }));
-        
-        batchResults.forEach(result => {
-          if (result.status === 'fulfilled') {
-            if (result.value.status === 'qualified') totalQualified++;
-            else if (result.value.status === 'rejected') totalRejected++;
-            totalProcessed++;
-          }
-        });
-        
-        // Professional pacing between batches
-        if (i + batchSize < validatedCompanies.length) {
-          console.log('Pausing between analysis batches...');
-          await this.sleep(10000);
+    if (intel.findings.techStack.detected.length > 0) {
+      r += `\n  TECH STACK: ${intel.findings.techStack.detected.join(', ')}\n`;
+    }
+    
+    r += `\nANALYSIS:\n`;
+    r += `  Stage: ${intel.analysis.companyStage}\n`;
+    if (intel.analysis.industryMatch) {
+      r += `  Industry Match: ${intel.analysis.industryMatch}\n`;
+    }
+    if (intel.analysis.growthSignals.length > 0) {
+      r += `  Growth: ${intel.analysis.growthSignals.join(', ')}\n`;
+    }
+    
+    if (intel.matches.length > 0) {
+      r += `\nEXPERIENCE MATCHES:\n`;
+      intel.matches.forEach((m, i) => {
+        r += `  ${i+1}. ${m.project} (Score: ${m.score})\n`;
+        r += `     ${m.description}\n`;
+        r += `     Tech: ${m.techStack}\n`;
+        if (m.reasons.length > 0) {
+          r += `     Why: ${m.reasons.join(', ')}\n`;
         }
-      }
-      
-      console.log(`\nANALYSIS COMPLETE:`);
-      console.log(`  Total analyzed: ${totalProcessed}`);
-      console.log(`  Qualified for value outreach: ${totalQualified}`);
-      console.log(`  Rejected (insufficient value): ${totalRejected}`);
-      
-      if (this.emailQueue.length > 0 && this.emailsSentToday < CONFIG.MAX_EMAILS_PER_DAY) {
-        const remainingCapacity = CONFIG.MAX_EMAILS_PER_DAY - this.emailsSentToday;
-        const emailsToSend = Math.min(this.emailQueue.length, remainingCapacity);
-        
-        console.log(`\nStarting high-value outreach (${emailsToSend} qualified prospects)...`);
-        
-        // Sort by target score (highest first)
-        this.emailQueue.sort((a, b) => b.proposal.targetScore - a.proposal.targetScore);
-        
-        await this.processValueEmailQueue(emailsToSend);
-      } else if (this.emailsSentToday >= CONFIG.MAX_EMAILS_PER_DAY) {
-        console.log(`Daily email limit reached (${this.emailsSentToday}/${CONFIG.MAX_EMAILS_PER_DAY}). Quality-focused approach maintained.`);
-      }
-      
-      // Move processed files
-      for (const file of processedFiles) {
-        await this.moveProcessedCSV(file);
-      }
-      
-      await this.generateValueReport();
-      
-      console.log('\nValue-first outreach campaign complete!');
-      
-    } catch (error) {
-      console.error('System error:', error);
+      });
+    } else {
+      r += `\nEXPERIENCE MATCHES: None strong enough\n`;
     }
+    
+    if (intel.angles.length > 0) {
+      r += `\nPERSONALIZATION ANGLES:\n`;
+      intel.angles.forEach((a, i) => {
+        r += `  ${i+1}. [${a.priority}] ${a.type}: ${a.content}\n`;
+      });
+    }
+    
+    r += `\nMANUAL CHECKLIST:\n`;
+    intel.manualChecks.forEach(c => {
+      r += `  [ ] ${c}\n`;
+    });
+    
+    r += `\n${'='.repeat(70)}\n`;
+    r += `DRAFT EMAIL\n`;
+    r += `${'='.repeat(70)}\n\n`;
+    r += intel.draft;
+    r += `\n\n${'='.repeat(70)}\n`;
+    
+    return r;
   }
 
-  async processValueEmailQueue(maxEmails = null) {
-    const emailsToProcess = maxEmails ? this.emailQueue.slice(0, maxEmails) : this.emailQueue;
+  async reviewMode() {
+   console.log('\n' + '='.repeat(60));
+    console.log('REVIEW MODE');
+    console.log('='.repeat(60) + '\n');
     
-    if (emailsToProcess.length === 0) {
-      console.log('No qualified prospects for outreach');
+    const reports = fs.readdirSync(CONFIG.RESEARCH_DIR)
+      .filter(f => f.endsWith('_research.json'))
+      .map(f => {
+        const data = JSON.parse(fs.readFileSync(path.join(CONFIG.RESEARCH_DIR, f), 'utf8'));
+        return { file: f, data };
+      })
+      .sort((a, b) => b.data.confidence.score - a.data.confidence.score);
+    
+    if (reports.length === 0) {
+      console.log('No reports found. Run research first.\n');
       return;
     }
 
-    console.log(`Sending value-first outreach to ${emailsToProcess.length} high-quality prospects...`);
-    let successfulSends = 0;
-    let skippedEmails = 0;
+    const send = reports.filter(r => r.data.recommendation === 'SEND');
+    const review = reports.filter(r => r.data.recommendation === 'REVIEW');
+    const skip = reports.filter(r => r.data.recommendation === 'SKIP' || r.data.recommendation === 'MANUAL RESEARCH');
+
+    console.log(`Total prospects: ${reports.length}\n`);
     
-    for (const emailData of emailsToProcess) {
-      if (this.emailsSentToday >= CONFIG.MAX_EMAILS_PER_DAY) {
-        console.log('Daily email limit reached. Remaining high-quality prospects saved for tomorrow.');
-        break;
+    console.log(`READY TO SEND (${send.length}):`);
+    console.log('High confidence - verify and personalize\n');
+    send.forEach((r, i) => {
+      const intel = r.data;
+      console.log(`  ${i+1}. ${intel.prospect.company} (${intel.confidence.score}/100)`);
+      if (intel.findings.news.length > 0) {
+        console.log(`     News: ${intel.findings.news[0].title.substring(0, 60)}...`);
       }
-
-      const success = await this.sendValueEmail(emailData.proposal);
-      
-      if (success) {
-        successfulSends++;
-      } else {
-        skippedEmails++;
-      }
-
-      // Professional pacing with more variation
-      const baseDelay = CONFIG.EMAIL_DELAY_MIN;
-      const randomVariation = Math.random() * (CONFIG.EMAIL_DELAY_MAX - CONFIG.EMAIL_DELAY_MIN);
-      const totalDelay = baseDelay + randomVariation;
-      
-      console.log(`Professional pacing: ${Math.round(totalDelay/1000)}s delay...`);
-      await this.sleep(totalDelay);
-    }
-    
-    console.log(`Value outreach complete: ${successfulSends} sent, ${skippedEmails} skipped`);
-    console.log(`Daily total: ${this.emailsSentToday}/${CONFIG.MAX_EMAILS_PER_DAY} quality emails sent`);
-  }
-
-  async saveValueAnalysis(company, analysis, proposal) {
-    const result = {
-      company: company['Company Name'],
-      contact: `${company['First Name']} ${company['Last Name']}`,
-      email: company['Email'],
-      targetScore: analysis.targetScore,
-      businessContext: analysis.businessContext,
-      analysis,
-      proposal,
-      processedAt: new Date().toISOString()
-    };
-    
-    const filename = `${company['Company Name'].replace(/[^a-z0-9]/gi, '_')}_value_analysis.json`;
-    const filepath = path.join(CONFIG.OUTPUT_DIR, filename);
-    
-    fs.writeFileSync(filepath, JSON.stringify(result, null, 2));
-    this.processedCompanies.push(result);
-  }
-
-  async generateValueReport() {
-    const highValueContacts = this.processedCompanies.filter(c => c.targetScore >= 7);
-    const mediumValueContacts = this.processedCompanies.filter(c => c.targetScore >= 5 && c.targetScore < 7);
-    
-    const summary = {
-      campaignType: 'Value-First Freelance Technical Outreach',
-      totalAnalyzed: this.processedCompanies.length,
-      totalContacted: this.emailsSentToday,
-      highValueContacts: highValueContacts.length,
-      mediumValueContacts: mediumValueContacts.length,
-      averageTargetScore: this.calculateAverageTargetScore(),
-      topIndustries: this.getTopIndustries(),
-      targetCriteriaMet: this.emailQueue.length,
-      rejectedLowValue: this.qualifiedLeadsLog.length,
-      generatedAt: new Date().toISOString()
-    };
-    
-    const summaryPath = path.join(CONFIG.OUTPUT_DIR, 'value_campaign_summary.json');
-    fs.writeFileSync(summaryPath, JSON.stringify(summary, null, 2));
-    
-    console.log('\nVALUE CAMPAIGN SUMMARY:');
-    console.log('========================');
-    console.log(`Companies analyzed: ${summary.totalAnalyzed}`);
-    console.log(`High-value targets (7+ score): ${summary.highValueContacts}`);
-    console.log(`Emails sent today: ${summary.totalContacted}/${CONFIG.MAX_EMAILS_PER_DAY}`);
-    console.log(`Average target score: ${summary.averageTargetScore.toFixed(1)}/10`);
-    console.log(`Top industries: ${summary.topIndustries.join(', ')}`);
-  }
-
-  calculateAverageTargetScore() {
-    if (this.processedCompanies.length === 0) return 0;
-    
-    const totalScore = this.processedCompanies.reduce((sum, c) => sum + (c.targetScore || 0), 0);
-    return totalScore / this.processedCompanies.length;
-  }
-
-  getTopIndustries() {
-    const industries = {};
-    this.processedCompanies.forEach(c => {
-      const industry = c.analysis?.businessContext || 'Unknown';
-      industries[industry] = (industries[industry] || 0) + 1;
+      console.log(`     Draft ready in: ${r.file.replace('.json', '.txt')}`);
     });
     
-    return Object.entries(industries)
-      .sort(([,a], [,b]) => b - a)
-      .slice(0, 3)
-      .map(([industry]) => industry);
-  }
-
-  // CSV PROCESSING
-  async processCSVFiles() {
-    const csvFiles = await this.findCSVFiles();
+    console.log(`\n\nNEEDS REVIEW (${review.length}):`);
+    console.log('Add 10 min research before sending\n');
+    review.slice(0, 5).forEach((r, i) => {
+      console.log(`  ${i+1}. ${r.data.prospect.company} (${r.data.confidence.score}/100)`);
+    });
     
-    if (csvFiles.length === 0) {
-      console.log('No CSV files found in csv/ directory');
-      console.log('Please add your Apollo CSV exports to the csv/ folder');
-      console.log('\nTarget CSV should include: First Name, Last Name, Title, Company, Email, Website, Industry, # Employees');
-      return { companies: [], processedFiles: [] };
-    }
-
-    let allCompanies = [];
-    let processedFiles = [];
-
-    for (const file of csvFiles) {
-      console.log(`\nProcessing: ${file.name}`);
-      
-      const validation = await this.validateCSV(file.path);
-      if (!validation.isValid) {
-        console.log(`Skipping ${file.name} - missing required columns`);
-        continue;
-      }
-
-      try {
-        const companies = await this.readCSV(file.path);
-        const originalCount = companies.length;
-        
-        const newCompanies = companies.filter(company => {
-          const email = company['Email'];
-          if (!email) return false;
-          
-          const isProcessed = this.processedEmails.has(email.toLowerCase());
-          
-          if (isProcessed) {
-            console.log(`Skipping ${company['Company Name']} - already contacted`);
-          }
-          
-          return !isProcessed;
-        });
-
-        console.log(`${file.name}: ${originalCount} total, ${newCompanies.length} new, ${originalCount - newCompanies.length} already processed`);
-        
-        if (newCompanies.length > 0) {
-          allCompanies = allCompanies.concat(newCompanies);
-          processedFiles.push(file);
-        }
-
-      } catch (error) {
-        console.log(`Error processing ${file.name}: ${error.message}`);
-      }
-    }
-
-    console.log(`\nTotal new prospects to analyze: ${allCompanies.length}`);
-    return { companies: allCompanies, processedFiles };
+    console.log(`\n\nSKIP/LOW PRIORITY (${skip.length}):`);
+    console.log('Insufficient data - skip unless you have extra time\n');
+    
+  console.log('='.repeat(60))
+    console.log('\nNEXT STEPS:');
+    console.log('1. Focus on "READY TO SEND" prospects first');
+    console.log('2. Read TXT files in: ' + CONFIG.RESEARCH_DIR);
+    console.log('3. Verify news links (click to confirm)');
+    console.log('4. Check LinkedIn profiles');
+    console.log('5. Add personal touch to drafts');
+    console.log('6. Send 5-10 quality emails per day\n');
+    console.log('Quality beats quantity. Every. Single. Time.\n');
   }
 
-  cleanWebsiteUrl(url) {
+  // Utility functions
+  cleanUrl(url) {
     if (!url) return null;
-    
     try {
-      let cleanUrl = url.trim().toLowerCase();
-      
-      if (cleanUrl.startsWith('www.')) {
-        cleanUrl = 'https://' + cleanUrl;
-      } else if (!cleanUrl.startsWith('http://') && !cleanUrl.startsWith('https://')) {
-        cleanUrl = 'https://' + cleanUrl;
-      }
-      
-      const urlObj = new URL(cleanUrl);
-      
-      const invalidDomains = ['example.com', 'test.com', 'placeholder.com', 'domain.com'];
-      if (invalidDomains.some(domain => urlObj.hostname.includes(domain))) {
-        return null;
-      }
-      
-      return cleanUrl;
+      let clean = url.trim().toLowerCase();
+      if (clean.startsWith('www.')) clean = 'https://' + clean;
+      else if (!clean.startsWith('http')) clean = 'https://' + clean;
+      return clean;
     } catch (error) {
       return null;
     }
   }
 
-  async validateCSV(filePath) {
-    console.log(`Validating CSV format: ${path.basename(filePath)}`);
-    
-    return new Promise((resolve) => {
-      const requiredColumns = [
-        'First Name', 'Last Name', 'Title', 'Company Name', 
-        'Email', 'Website', 'Industry', '# Employees'
-      ];
-      
-      let headerChecked = false;
-      let isValid = false;
-      let foundColumns = [];
+  extractDomain(url) {
+    try {
+      const clean = this.cleanUrl(url);
+      if (!clean) return null;
+      const match = clean.match(/https?:\/\/(?:www\.)?([^\/]+)/);
+      return match ? match[1] : null;
+    } catch (error) {
+      return null;
+    }
+  }
 
-      fs.createReadStream(filePath)
-        .pipe(csv())
-        .on('headers', (headers) => {
-          foundColumns = headers;
-          const hasRequired = requiredColumns.every(col => headers.includes(col));
-          
-          if (hasRequired) {
-            console.log('CSV format validated - all required columns present');
-            isValid = true;
-          } else {
-            const missing = requiredColumns.filter(col => !headers.includes(col));
-            console.log(`CSV missing required columns: ${missing.join(', ')}`);
-          }
-          headerChecked = true;
-        })
-        .on('data', () => {
-          if (headerChecked) {
-            resolve({ isValid, foundColumns });
-          }
-        })
-        .on('end', () => {
-          if (!headerChecked) {
-            resolve({ isValid: false, foundColumns: [] });
-          } else {
-            resolve({ isValid, foundColumns });
-          }
-        })
-        .on('error', (error) => {
-          console.log(`Error reading CSV: ${error.message}`);
-          resolve({ isValid: false, foundColumns: [] });
-        });
-    });
+  getDateXDaysAgo(days) {
+    const date = new Date();
+    date.setDate(date.getDate() - days);
+    return date.toISOString().split('T')[0];
+  }
+
+  formatDate(dateString) {
+    try {
+      const date = new Date(dateString);
+      const now = new Date();
+      const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+      
+      if (diffDays === 0) return 'Today';
+      if (diffDays === 1) return '1 day ago';
+      if (diffDays < 7) return `${diffDays} days ago`;
+      if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch (error) {
+      return 'Recent';
+    }
+  }
+
+  extractDate(item) {
+    const match = item.snippet?.match(/(\d{1,2}\s+(days?|weeks?|months?)\s+ago)/i);
+    if (match) return match[0];
+    
+    const specificDate = item.snippet?.match(/(\w+\s+\d{1,2},?\s+\d{4})/);
+    if (specificDate) return specificDate[0];
+    
+    return 'Recent';
+  }
+
+  categorizeNews(title, snippet) {
+    const text = ((title || '') + ' ' + (snippet || '')).toLowerCase();
+    
+    if (text.includes('fund') || text.includes('raise') || text.includes('investment') || text.includes('series')) {
+      return 'funding';
+    }
+    if (text.includes('launch') || text.includes('release') || text.includes('unveil') || text.includes('introduce')) {
+      return 'product launch';
+    }
+    if (text.includes('partner') || text.includes('acquisition') || text.includes('merge') || text.includes('collaborate')) {
+      return 'partnership';
+    }
+    if (text.includes('expand') || text.includes('open') || text.includes('grow') || text.includes('hire')) {
+      return 'expansion';
+    }
+    if (text.includes('award') || text.includes('win') || text.includes('recognition')) {
+      return 'achievement';
+    }
+    
+    return 'announcement';
   }
 
   async readCSV(filePath) {
     return new Promise((resolve, reject) => {
-      const companies = [];
+      const prospects = [];
       fs.createReadStream(filePath)
         .pipe(csv())
-        .on('data', (data) => companies.push(data))
-        .on('end', () => resolve(companies))
+        .on('data', (data) => prospects.push(data))
+        .on('end', () => resolve(prospects))
         .on('error', reject);
     });
-  }
-
-  async findCSVFiles() {
-    console.log('Scanning for CSV files...');
-    
-    if (!fs.existsSync(CONFIG.CSV_DIR)) {
-      console.log(`CSV directory not found: ${CONFIG.CSV_DIR}`);
-      console.log('Please create a "csv" folder and place your Apollo CSV files there');
-      return [];
-    }
-
-    const files = fs.readdirSync(CONFIG.CSV_DIR)
-      .filter(file => file.toLowerCase().endsWith('.csv'))
-      .map(file => ({
-        name: file,
-        path: path.join(CONFIG.CSV_DIR, file),
-        stats: fs.statSync(path.join(CONFIG.CSV_DIR, file))
-      }))
-      .sort((a, b) => b.stats.mtime - a.stats.mtime);
-
-    console.log(`Found ${files.length} CSV files:`);
-    files.forEach((file, index) => {
-      console.log(`${index + 1}. ${file.name} (${file.stats.size} bytes)`);
-    });
-
-    return files;
-  }
-
-  isAlreadyProcessed(company) {
-    const email = company['Email'];
-    if (!email) return true;
-    
-    return this.processedEmails.has(email.toLowerCase());
-  }
-
-  async moveProcessedCSV(file) {
-    const timestamp = new Date().toISOString().split('T')[0];
-    const newName = `${timestamp}_${file.name}`;
-    const newPath = path.join(CONFIG.PROCESSED_CSV_DIR, newName);
-    
-    try {
-      fs.renameSync(file.path, newPath);
-      console.log(`Moved processed CSV: ${file.name} -> processed/${newName}`);
-    } catch (error) {
-      console.log(`Could not move CSV file: ${error.message}`);
-    }
   }
 
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-
-  // UTILITY METHODS
-  async getStatus() {
-    const csvFiles = await this.findCSVFiles();
-    const processedCSVs = fs.existsSync(CONFIG.PROCESSED_CSV_DIR) ? 
-      fs.readdirSync(CONFIG.PROCESSED_CSV_DIR).filter(f => f.endsWith('.csv')) : [];
-    
-    console.log('\nVALUE-FIRST FREELANCE OUTREACH SYSTEM STATUS:');
-    console.log('=============================================');
-    console.log(`CSV files ready: ${csvFiles.length}`);
-    console.log(`CSV files processed: ${processedCSVs.length}`);
-    console.log(`High-value prospects contacted: ${this.processedEmails.size}`);
-    console.log(`Emails sent today: ${this.emailsSentToday}/${CONFIG.MAX_EMAILS_PER_DAY}`);
-    console.log('');
-    console.log('TARGET CRITERIA:');
-    console.log(`• Titles: ${TARGET_CRITERIA.PRIMARY_TITLES.slice(0, 5).join(', ')}...`);
-    console.log(`• Industries: ${TARGET_CRITERIA.HIGH_VALUE_INDUSTRIES.slice(0, 5).join(', ')}...`);
-    console.log(`• Company size: ${TARGET_CRITERIA.IDEAL_EMPLOYEE_RANGE.min}-${TARGET_CRITERIA.IDEAL_EMPLOYEE_RANGE.max} employees`);
-    console.log(`• Email: Business domains only`);
-    console.log('');
-    console.log('VALUE-FIRST FEATURES:');
-    console.log(`• ${VALUE_SUBJECT_TEMPLATES.length} professional subject variations`);
-    console.log(`• ${VALUE_OPENING_VARIATIONS.length} value-focused openings`);
-    console.log(`• ${VALUE_CLOSING_VARIATIONS.length} freelance-specific closings`);
-    console.log(`• Technical insight generation`);
-    console.log(`• Relevant experience matching`);
-    console.log(`• Professional pacing (${CONFIG.EMAIL_DELAY_MIN/1000}-${CONFIG.EMAIL_DELAY_MAX/1000}s)`);
-    console.log(`• Quality scoring (5+ required)`);
-    
-    return {
-      pendingCSVs: csvFiles.length,
-      processedCSVs: processedCSVs.length,
-      contactedProspects: this.processedEmails.size,
-      dailyEmailCount: this.emailsSentToday,
-      dailyLimit: CONFIG.MAX_EMAILS_PER_DAY,
-      targetQuality: 'High-value technical decision makers'
-    };
-  }
-
-  resetOutreachHistory() {
-    console.log('Resetting outreach history...');
-    this.processedEmails.clear();
-    this.emailsSentToday = 0;
-    
-    try {
-      if (fs.existsSync(this.emailLogPath)) {
-        fs.unlinkSync(this.emailLogPath);
-      }
-      const dailyCountPath = path.join(CONFIG.OUTPUT_DIR, 'daily_email_count.json');
-      if (fs.existsSync(dailyCountPath)) {
-        fs.unlinkSync(dailyCountPath);
-      }
-      console.log('All tracking files deleted');
-      console.log('All prospects can now be contacted again');
-    } catch (error) {
-      console.error('Error deleting files:', error.message);
-    }
-  }
 }
 
 // MAIN EXECUTION
 async function main() {
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-    console.log('Email credentials required!');
-    console.log('');
-    console.log('GMAIL SETUP:');
-    console.log('1. Enable 2-Factor Authentication');
-    console.log('2. Generate App Password: https://support.google.com/accounts/answer/185833');
-    console.log('3. Create .env file:');
-    console.log('   EMAIL_USER=your-email@gmail.com');
-    console.log('   EMAIL_PASSWORD=your-16-char-app-password');
-    return;
-  }
-
-  const system = new ValueFirstOutreachSystem();
-  
+  const assistant = new ProductionResearchAssistant();
   const command = process.argv[2];
-  
-  if (command === 'status') {
-    await system.getStatus();
-    return;
-  }
-  
-  if (command === 'reset') {
-    system.resetOutreachHistory();
-    return;
-  }
-  
-  if (command === 'test') {
-    console.log('Running in test mode...');
-    CONFIG.MAX_CONCURRENT_ANALYSIS = 1;
-    CONFIG.MAX_EMAILS_PER_DAY = 3;
-    CONFIG.MAX_EMAILS_PER_HOUR = 1;
-    console.log('Test mode: 1 concurrent analysis, max 3 emails/day, 1/hour');
-  }
-  
-  try {
-    await system.run();
-  } catch (error) {
-    console.error('System error:', error);
-    process.exit(1);
+
+  if (command === 'research' || command === 'batch') {
+    const csvFile = process.argv[3] || path.join(CONFIG.CSV_DIR, 'prospects.csv');
+    
+    if (!fs.existsSync(csvFile)) {
+      console.log(`\nERROR: CSV file not found: ${csvFile}\n`);
+      console.log('Usage: node lead_automation.js research <csv-file>\n');
+      return;
+    }
+    
+    console.log('\n' + '='.repeat(60));
+    console.log('PRODUCTION LEAD RESEARCH ASSISTANT');
+    console.log('='.repeat(60) + '\n');
+    
+    console.log('APIs configured:');
+    if (process.env.NEWSAPI_KEY) {
+      console.log('  ✓ NewsAPI (primary - most accurate)');
+    } else {
+      console.log('  ✗ NewsAPI - Add NEWSAPI_KEY to .env');
+      console.log('    Get free key: https://newsapi.org/register');
+    }
+    
+    if (process.env.GOOGLE_API_KEY && process.env.GOOGLE_CX_ID) {
+      console.log('  ✓ Google Custom Search (fallback)');
+    } else {
+      console.log('  ✗ Google Custom Search - Add to .env');
+    }
+    
+    if (!process.env.NEWSAPI_KEY && !process.env.GOOGLE_API_KEY) {
+      console.log('\n⚠️  WARNING: No news APIs configured!');
+      console.log('Tool will work but with limited news discovery.\n');
+    } else {
+      console.log('');
+    }
+    
+    await assistant.batchResearch(csvFile);
+    
+  } else if (command === 'review') {
+    await assistant.reviewMode();
+    
+  } else if (command === 'setup') {
+    console.log('\n' + '='.repeat(60));
+    console.log('SETUP GUIDE');
+    console.log('='.repeat(60) + '\n');
+    
+    console.log('STEP 1: Get NewsAPI Key (RECOMMENDED)\n');
+    console.log('1. Visit: https://newsapi.org/register');
+    console.log('2. Sign up (free tier: 100 requests/day)');
+    console.log('3. Copy your API key');
+    console.log('4. Add to .env file:\n');
+    console.log('   NEWSAPI_KEY=your_key_here\n');
+    
+    console.log('STEP 2: Get Google Custom Search (OPTIONAL)\n');
+    console.log('1. Visit: https://console.cloud.google.com');
+    console.log('2. Create project, enable Custom Search API');
+    console.log('3. Create API key');
+    console.log('4. Create search engine: https://programmablesearchengine.google.com');
+    console.log('5. Add to .env file:\n');
+    console.log('   GOOGLE_API_KEY=your_key_here');
+    console.log('   GOOGLE_CX_ID=your_search_engine_id\n');
+    
+    console.log('STEP 3: Prepare CSV\n');
+    console.log('Required columns:');
+    console.log('  - First Name, Last Name, Title, Email');
+    console.log('  - Company Name, Website, Industry');
+    console.log('  - # Employees, Keywords');
+    console.log('  - Person Linkedin Url\n');
+    
+    console.log('STEP 4: Run Research\n');
+    console.log('  node lead_automation.js research ./csv/prospects.csv\n');
+    
+    console.log('STEP 5: Review Results\n');
+    console.log('  node lead_automation.js review\n');
+    
+  } else {
+    console.log('\n' + '='.repeat(60));
+    console.log('PRODUCTION LEAD RESEARCH ASSISTANT');
+    console.log('='.repeat(60) + '\n');
+    
+    console.log('COMMANDS:\n');
+    console.log('  node lead_automation.js research <csv>  - Research prospects');
+    console.log('  node lead_automation.js review          - Review results');
+    console.log('  node lead_automation.js setup           - Setup guide\n');
+    
+    console.log('KEY FEATURES:\n');
+    console.log('  ✓ NewsAPI integration (accurate company news)');
+    console.log('  ✓ Google Custom Search fallback');
+    console.log('  ✓ Strict relevance filtering (70%+ threshold)');
+    console.log('  ✓ Website verification');
+    console.log('  ✓ Blog post discovery');
+    console.log('  ✓ Tech stack detection');
+    console.log('  ✓ Smart experience matching');
+    console.log('  ✓ Accurate confidence scoring');
+    console.log('  ✓ Quality draft generation\n');
+    
+    console.log('WHAT TO EXPECT:\n');
+    console.log('  - High confidence (70+): 20-30% of prospects');
+    console.log('  - Medium (50-69): 30-40% of prospects');
+    console.log('  - Low/Skip (<50): 30-50% of prospects\n');
+    
+    console.log('This is normal! Better to skip bad prospects than send bad emails.\n');
+    
+    console.log('QUICK START:\n');
+    console.log('  1. node lead_automation.js setup');
+    console.log('  2. Configure APIs in .env');
+    console.log('  3. Prepare CSV file');
+    console.log('  4. node lead_automation.js research ./csv/prospects.csv');
+    console.log('  5. node lead_automation.js review\n');
   }
 }
-
-// SYSTEM INFORMATION
-console.log('Value-First Freelance Developer Outreach System');
-console.log('===============================================');
-console.log('Focus: High-quality prospects seeking freelance development support');
-console.log('');
-console.log('KEY FEATURES:');
-console.log('• Targets technical decision makers (CTO, CEO, Founders)');
-console.log('• 10-500 employee companies in tech/software/SaaS');
-console.log('• Business email addresses only');
-console.log('• Value-first messaging with freelance positioning');
-console.log('• Technical insights based on real analysis');
-console.log('• Relevant experience matching');
-console.log('• Professional pacing and daily limits');
-console.log('');
-console.log('DIRECTORY STRUCTURE:');
-console.log('  csv/       - Place Apollo CSV exports here');
-console.log('  processed/ - Processed CSV files');
-console.log('  output/    - Analysis results and logs');
-console.log('');
-console.log('COMMANDS:');
-console.log('  node value-outreach.js        - Run value-first outreach');
-console.log('  node value-outreach.js status - System status');
-console.log('  node value-outreach.js reset  - Reset outreach history');
-console.log('  node value-outreach.js test   - Test mode (limited)');
-console.log('');
-console.log('TARGET REMINDER:');
-console.log('Best results with Apollo exports targeting:');
-console.log('• CTOs, CEOs, Founders, VPs of Engineering');
-console.log('• Software/Technology/SaaS companies');
-console.log('• 10-500 employees');
-console.log('• Business email addresses');
 
 if (require.main === module) {
   main().catch(console.error);
 }
 
-module.exports = ValueFirstOutreachSystem;
+module.exports = ProductionResearchAssistant;

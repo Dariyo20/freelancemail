@@ -1,0 +1,109 @@
+{
+  "prospect": {
+    "name": "Sunday David",
+    "firstName": "Sunday",
+    "title": "CTO",
+    "email": "sunday@lotusbetaanalytics.com",
+    "company": "Lotus Beta Analytics",
+    "industry": "information technology & services",
+    "employees": "86",
+    "website": "https://lotusbetaanalytics.com",
+    "linkedIn": "http://www.linkedin.com/in/sunday-david-299714a0"
+  },
+  "findings": {
+    "news": [
+      {
+        "title": "Project and Product Development Intern at Lotus Beta Analytics ...",
+        "snippet": "Aug 13, 2025 ... Lotus Beta Analytics Nigeria Ltd. (LBAN) is well focused on the provision of Information Technology Solutions and Services. ... partnership with the world's ...",
+        "url": "https://www.myjobmag.com/job/project-and-product-development-intern-lotus-beta-analytics-limited",
+        "date": "Aug 13, 2025",
+        "type": "partnership",
+        "relevance": 80,
+        "verified": true
+      }
+    ],
+    "blog": {
+      "found": false,
+      "posts": [],
+      "url": null
+    },
+    "techStack": {
+      "detected": [
+        "React",
+        "Angular"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Growth Stage",
+    "industryMatch": "saas",
+    "growthSignals": []
+  },
+  "matches": [
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 65,
+      "reasons": [
+        "Industry: productivity",
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    },
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 40,
+      "reasons": [
+        "Industry: enterprise"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 40,
+      "reasons": [
+        "Industry: analytics"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    }
+  ],
+  "angles": [
+    {
+      "type": "news",
+      "priority": "high",
+      "content": "Recent partnership: \"Project and Product Development Intern at Lotus Beta Analytics ...\"",
+      "source": "https://www.myjobmag.com/job/project-and-product-development-intern-lotus-beta-analytics-limited"
+    },
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "Dassage Communication Platform relevant to their saas"
+    }
+  ],
+  "draft": "SUBJECT: Sunday - congrats on partnership\n\nHi Sunday,\n\nI saw the news about Lotus Beta Analytics's partnership - \"Project and Product Development Intern at Lotus Beta Analytics ...\". Congratulations!\n\nI'm David Ariyo, a Full Stack Developer. I recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture\n\nTech: React, Node.js, MongoDB, WebSocket | Scale: 100+ concurrent users\n\nWould you be open to a brief chat if Lotus Beta Analytics ever needs freelance development support?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer\ndavidariyo109@gmail.com | (+234) 903-6184-863\nPortfolio: davidariyo.onrender.com",
+  "confidence": {
+    "score": 75,
+    "level": "High",
+    "factors": [
+      "Website verified",
+      "1 verified news item",
+      "Strong experience match",
+      "Tech stack detected"
+    ],
+    "recommendation": "SEND"
+  },
+  "recommendation": "SEND",
+  "manualChecks": [
+    "Verify news links are correct",
+    "Check LinkedIn: http://www.linkedin.com/in/sunday-david-299714a0",
+    "Personalize draft before sending"
+  ]
+}
