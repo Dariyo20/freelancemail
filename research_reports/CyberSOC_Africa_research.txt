@@ -1,0 +1,45 @@
+======================================================================
+RESEARCH REPORT: CyberSOC Africa
+======================================================================
+
+CONTACT:
+  Name: Yaniv Ovitz
+  Title: CTO
+  Email: yaniv@cybersocafrica.com
+  Company: CyberSOC Africa
+  Industry: information technology & services
+  Size: 78 employees
+  Website: https://cybersocafrica.com ✓
+  LinkedIn: http://www.linkedin.com/in/yaniv-ovitz-5273321a
+
+CONFIDENCE: Low (25/100)
+RECOMMENDATION: SKIP
+Factors: Website verified, Tech stack detected
+
+FINDINGS:
+
+  NEWS: None found
+
+  BLOG: None found
+
+  TECH STACK: React, Angular
+
+ANALYSIS:
+  Stage: Growth Stage
+  Industry Match: saas
+
+EXPERIENCE MATCHES: None strong enough
+
+MANUAL CHECKLIST:
+  [ ] 20+ min manual research needed
+  [ ] Or skip this prospect
+
+======================================================================
+DRAFT EMAIL
+======================================================================
+
+⚠️ INSUFFICIENT DATA - Do manual research before reaching out.
+
+No verified news, blog, or strong experience match found.
+
+======================================================================

@@ -1,0 +1,86 @@
+======================================================================
+RESEARCH REPORT: Heirs Technologies
+======================================================================
+
+CONTACT:
+  Name: Romanus Eke
+  Title: Tech Nerd | Ag. CTO @ Heirs Technologies
+  Email: romanus.eke@heirstechnologies.com
+  Company: Heirs Technologies
+  Industry: information technology & services
+  Size: 56 employees
+  Website: https://heirstechnologies.com ✓
+  LinkedIn: http://www.linkedin.com/in/romanus-eke-14794474
+
+CONFIDENCE: High (70/100)
+RECOMMENDATION: SEND
+Factors: Website verified, 3 verified news items, Moderate experience match, Tech stack detected
+
+FINDINGS:
+
+  NEWS (3 verified):
+  1. [funding] Africa's Digital Leap: Cloud, Connectivity & AI in the Next Decade
+     Sep 2, 2025 | Source
+     https://heirstechnologies.com/africa-digital-leap-report/assets/report/Heirs-Tech-Industry-Report_Africa%E2%80%99s-Digital-Leap-Cloud,Connectivity-&-AI-in-the-Next-Decade.pdf
+  2. [announcement] Africa's Digital Leap Report - Heirs Technologies -
+     Sep 8, 2025 | Source
+     https://heirstechnologies.com/africa-digital-leap-report/
+  3. [funding] Heirs Technologies Calls for Bold Investments to Unlock Africa's ...
+     Sep 1, 2025 | Source
+     https://www.africaneconomyinc.com/post/heirs-technologies-calls-for-bold-investments-to-unlock-africa-s--700b-digital-economy-by-2030
+
+  BLOG: None found
+
+  TECH STACK: Angular, WordPress
+
+ANALYSIS:
+  Stage: Growth Stage (Recently Funded)
+  Industry Match: saas
+  Growth: Recent funding, Active in news
+
+EXPERIENCE MATCHES:
+  1. Crewmanage HR System (Score: 45)
+     HR management with scheduling, payroll, workflow automation, RBAC
+     Tech: React, Node.js, MongoDB, Role-based access
+     Why: Industry: enterprise
+  2. Durl URL Shortener (Score: 40)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: analytics
+  3. Dassage Communication Platform (Score: 30)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: software
+
+PERSONALIZATION ANGLES:
+  1. [high] news: Recent funding: "Africa's Digital Leap: Cloud, Connectivity & AI in the Next Decade"
+  2. [medium] experience: Crewmanage HR System relevant to their saas
+
+MANUAL CHECKLIST:
+  [ ] Verify news links are correct
+  [ ] Check LinkedIn: http://www.linkedin.com/in/romanus-eke-14794474
+  [ ] Personalize draft before sending
+
+======================================================================
+DRAFT EMAIL
+======================================================================
+
+SUBJECT: Romanus - congrats on funding
+
+Hi Romanus,
+
+I saw the news about Heirs Technologies's funding - "Africa's Digital Leap: Cloud, Connectivity & AI in the Next Decade". Congratulations!
+
+I'm David Ariyo, a Full Stack Developer. I recently built Crewmanage HR System - HR management with scheduling, payroll, workflow automation, RBAC
+
+Tech: React, Node.js, MongoDB, Role-based access | Scale: Enterprise HR features
+
+Would you be open to a brief chat if Heirs Technologies ever needs freelance development support?
+
+Best regards,
+David Ariyo
+Full Stack Developer
+davidariyo109@gmail.com | (+234) 903-6184-863
+Portfolio: davidariyo.onrender.com
+
+======================================================================

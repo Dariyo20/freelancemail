@@ -1,0 +1,104 @@
+{
+  "prospect": {
+    "name": "Kelechi Oti",
+    "firstName": "Kelechi",
+    "title": "CTO / Cofounder",
+    "email": "kelechi@startbutton.africa",
+    "company": "Startbutton Africa",
+    "industry": "information technology & services",
+    "employees": "27",
+    "website": "https://startbutton.africa",
+    "linkedIn": "http://www.linkedin.com/in/kelechi-oti-2a677385"
+  },
+  "findings": {
+    "news": [],
+    "blog": {
+      "found": false,
+      "posts": [],
+      "url": null
+    },
+    "techStack": {
+      "detected": [
+        "React",
+        "Angular"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Growth Stage",
+    "industryMatch": "saas",
+    "growthSignals": []
+  },
+  "matches": [
+    {
+      "project": "DAstore E-Commerce Platform",
+      "description": "Luxury e-commerce with 140+ products, payment processing, cart management",
+      "score": 100,
+      "reasons": [
+        "Industry: e-commerce",
+        "Industry: retail"
+      ],
+      "techStack": "Next.js, MongoDB, REST API, JWT",
+      "scale": "140+ products, 7 categories"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 60,
+      "reasons": [
+        "Industry: saas",
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    },
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 40,
+      "reasons": [
+        "Industry: enterprise"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 30,
+      "reasons": [
+        "Industry: saas"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "DAstore E-Commerce Platform relevant to their saas"
+    }
+  ],
+  "draft": "SUBJECT: Kelechi - Startbutton Africa development\n\nHi Kelechi,\n\nI've been following companies in the information technology & services space.\n\nI'm David Ariyo, a Full Stack Developer. I recently built DAstore E-Commerce Platform - Luxury e-commerce with 140+ products, payment processing, cart management\n\nTech: Next.js, MongoDB, REST API, JWT | Scale: 140+ products, 7 categories\n\nWould you be open to a brief chat if Startbutton Africa ever needs freelance development support?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer\ndavidariyo109@gmail.com | (+234) 903-6184-863\nPortfolio: davidariyo.onrender.com",
+  "confidence": {
+    "score": 50,
+    "level": "Medium",
+    "factors": [
+      "Website verified",
+      "Strong experience match",
+      "Tech stack detected"
+    ],
+    "recommendation": "REVIEW"
+  },
+  "recommendation": "REVIEW",
+  "manualChecks": [
+    "Spend 10 min on additional research",
+    "Visit: https://startbutton.africa",
+    "LinkedIn: http://www.linkedin.com/in/kelechi-oti-2a677385",
+    "Strengthen personalization"
+  ]
+}

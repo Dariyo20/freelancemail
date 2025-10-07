@@ -1,0 +1,52 @@
+{
+  "prospect": {
+    "name": "Adah Jonathan",
+    "firstName": "Adah",
+    "title": "Co-Founder & CTO",
+    "email": "adah@itechplatform.net",
+    "company": "I-Tech Platform Limited",
+    "industry": "information technology & services",
+    "employees": "20",
+    "website": "https://itechplatform.net",
+    "linkedIn": "http://www.linkedin.com/in/josephadah"
+  },
+  "findings": {
+    "news": [],
+    "blog": {
+      "found": false,
+      "posts": [],
+      "url": null
+    },
+    "techStack": {
+      "detected": [
+        "React",
+        "Angular"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Growth Stage",
+    "industryMatch": null,
+    "growthSignals": []
+  },
+  "matches": [],
+  "angles": [],
+  "draft": "⚠️ INSUFFICIENT DATA - Do manual research before reaching out.\n\nNo verified news, blog, or strong experience match found.",
+  "confidence": {
+    "score": 25,
+    "level": "Low",
+    "factors": [
+      "Website verified",
+      "Tech stack detected"
+    ],
+    "recommendation": "SKIP"
+  },
+  "recommendation": "SKIP",
+  "manualChecks": [
+    "20+ min manual research needed",
+    "Or skip this prospect"
+  ]
+}

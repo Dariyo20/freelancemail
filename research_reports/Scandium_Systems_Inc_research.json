@@ -1,0 +1,97 @@
+{
+  "prospect": {
+    "name": "Sodeeq Elusoji",
+    "firstName": "Sodeeq",
+    "title": "Co-Founder & CTO",
+    "email": "sdk@getscandium.com",
+    "company": "Scandium Systems Inc",
+    "industry": "information technology & services",
+    "employees": "20",
+    "website": "https://getscandium.com",
+    "linkedIn": "http://www.linkedin.com/in/elusojisodeeq"
+  },
+  "findings": {
+    "news": [],
+    "blog": {
+      "found": true,
+      "posts": [
+        {
+          "title": "Why Scandium Stands Out Among Test Automation Tools"
+        },
+        {
+          "title": "Scandium at Web Summit Qatar 2025"
+        },
+        {
+          "title": "Scandium at ANST Annual Conference 2025: Championing Quality and Innovation"
+        },
+        {
+          "title": "Top Test Automation Tools in 2025: What QA Teams Should Know"
+        },
+        {
+          "title": "Test Automation in 2025: How Tools Like Scandium Are Redefining QA"
+        }
+      ],
+      "url": "https://getscandium.com/blog"
+    },
+    "techStack": {
+      "detected": [
+        "Angular",
+        "WordPress"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Growth Stage",
+    "industryMatch": "saas",
+    "growthSignals": [
+      "Content marketing"
+    ]
+  },
+  "matches": [
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 35,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "blog",
+      "priority": "medium",
+      "content": "Blog post: \"Why Scandium Stands Out Among Test Automation Tools\"",
+      "source": "https://getscandium.com/blog"
+    },
+    {
+      "type": "experience",
+      "priority": "medium",
+      "content": "Dassage Communication Platform relevant to their saas"
+    }
+  ],
+  "draft": "SUBJECT: Sodeeq - your recent article\n\nHi Sodeeq,\n\nI read your post \"Why Scandium Stands Out Among Test Automation Tools\" - great insights.\n\nI'm David Ariyo, a Full Stack Developer. I recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture\n\nTech: React, Node.js, MongoDB, WebSocket | Scale: 100+ concurrent users\n\nWould you be open to a brief chat if Scandium Systems Inc ever needs freelance development support?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer\ndavidariyo109@gmail.com | (+234) 903-6184-863\nPortfolio: davidariyo.onrender.com",
+  "confidence": {
+    "score": 50,
+    "level": "Medium",
+    "factors": [
+      "Website verified",
+      "Blog content found",
+      "Moderate experience match",
+      "Tech stack detected"
+    ],
+    "recommendation": "REVIEW"
+  },
+  "recommendation": "REVIEW",
+  "manualChecks": [
+    "Spend 10 min on additional research",
+    "Visit: https://getscandium.com",
+    "LinkedIn: http://www.linkedin.com/in/elusojisodeeq",
+    "Strengthen personalization"
+  ]
+}

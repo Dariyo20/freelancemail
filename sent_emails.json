@@ -1,0 +1,46 @@
+{
+  "emails": {
+    "yemisi@seamlesshr.com": {
+      "sentAt": "2025-10-07T03:51:56.583Z",
+      "company": "SeamlessHR",
+      "name": "Oluwayemisi Kareem",
+      "subject": "Oluwayemisi - saw news about SeamlessHR",
+      "confidence": 85,
+      "messageId": "<e4a41f89-1d4f-9a91-5d0a-dffbb4ef25d2@gmail.com>"
+    },
+    "sunday@lotusbetaanalytics.com": {
+      "sentAt": "2025-10-07T03:52:05.226Z",
+      "company": "Lotus Beta Analytics",
+      "name": "Sunday David",
+      "subject": "Sunday - congrats on the partnership",
+      "confidence": 75,
+      "messageId": "<580e334c-55f5-1c36-3e7d-d2d8f085ceb5@gmail.com>"
+    },
+    "emmanuel@yiponline.com": {
+      "sentAt": "2025-10-07T03:52:13.814Z",
+      "company": "Yip",
+      "name": "KK Onas",
+      "subject": "KK - congrats on the partnership",
+      "confidence": 75,
+      "messageId": "<56e104b3-cfaf-ec93-841a-af79a68cdfb3@gmail.com>"
+    },
+    "emmanuel.okeke@chowdeck.com": {
+      "sentAt": "2025-10-07T03:52:22.947Z",
+      "company": "Chowdeck",
+      "name": "Emmanuel Okeke",
+      "subject": "Emmanuel - saw news about Chowdeck",
+      "confidence": 70,
+      "messageId": "<df253f04-c65f-a1e4-da79-a1ba55e73970@gmail.com>"
+    },
+    "romanus.eke@heirstechnologies.com": {
+      "sentAt": "2025-10-07T03:52:30.622Z",
+      "company": "Heirs Technologies",
+      "name": "Romanus Eke",
+      "subject": "Romanus - congrats on the funding round",
+      "confidence": 70,
+      "messageId": "<dadbb328-6014-abe2-ac04-af28aee2d77b@gmail.com>"
+    }
+  },
+  "lastSent": "2025-10-07T03:52:30.622Z",
+  "totalSent": 5
+}

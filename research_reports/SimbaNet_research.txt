@@ -1,0 +1,72 @@
+======================================================================
+RESEARCH REPORT: SimbaNet
+======================================================================
+
+CONTACT:
+  Name: Himanshu Singh
+  Title: CTO & Group IT Head
+  Email: himanshu@simba.com.ng
+  Company: SimbaNet
+  Industry: information technology & services
+  Size: 110 employees
+  Website: https://simbanet.co ✓
+  LinkedIn: http://www.linkedin.com/in/himanshu-singh-089628221
+
+CONFIDENCE: Medium (50/100)
+RECOMMENDATION: REVIEW
+Factors: Website verified, Strong experience match, Tech stack detected
+
+FINDINGS:
+
+  NEWS: None found
+
+  BLOG: None found
+
+  TECH STACK: Angular, WordPress
+
+ANALYSIS:
+  Stage: Established
+  Industry Match: saas
+
+EXPERIENCE MATCHES:
+  1. Dassage Communication Platform (Score: 70)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: communication, Industry: software
+  2. Crewmanage HR System (Score: 30)
+     HR management with scheduling, payroll, workflow automation, RBAC
+     Tech: React, Node.js, MongoDB, Role-based access
+     Why: Industry: enterprise
+
+PERSONALIZATION ANGLES:
+  1. [high] experience: Dassage Communication Platform relevant to their saas
+
+MANUAL CHECKLIST:
+  [ ] Spend 10 min on additional research
+  [ ] Visit: https://simbanet.co
+  [ ] LinkedIn: http://www.linkedin.com/in/himanshu-singh-089628221
+  [ ] Strengthen personalization
+
+======================================================================
+DRAFT EMAIL
+======================================================================
+
+SUBJECT: Himanshu - SimbaNet development
+
+Hi Himanshu,
+
+I've been following companies in the information technology & services space.
+
+I'm David Ariyo, a Full Stack Developer. I recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture
+
+Tech: React, Node.js, MongoDB, WebSocket | Scale: 100+ concurrent users
+
+Would you be open to a brief chat if SimbaNet ever needs freelance development support?
+
+Best regards,
+David Ariyo
+Full Stack Developer
+davidariyo109@gmail.com | (+234) 903-6184-863
+Portfolio: davidariyo.onrender.com
+
+======================================================================

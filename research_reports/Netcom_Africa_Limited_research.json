@@ -1,0 +1,119 @@
+{
+  "prospect": {
+    "name": "Yen Choi",
+    "firstName": "Yen",
+    "title": "President & Group CTO",
+    "email": "y.choi@netcomafrica.com",
+    "company": "Netcom Africa Limited",
+    "industry": "telecommunications",
+    "employees": "210",
+    "website": "https://netcomafrica.com",
+    "linkedIn": "http://www.linkedin.com/in/yenchoi"
+  },
+  "findings": {
+    "news": [],
+    "blog": {
+      "found": true,
+      "posts": [
+        {
+          "title": "IT solutions businesses"
+        },
+        {
+          "title": "Netcom Africa zeta web on technology convergence leaders hit list"
+        },
+        {
+          "title": "Netcom Africa partners top global providers in IT security"
+        },
+        {
+          "title": "We have grown Netcom as a brand built on  quality and trust – Sean Hsu"
+        },
+        {
+          "title": "Netcom Africa changing business model"
+        }
+      ],
+      "url": "https://netcomafrica.com/news"
+    },
+    "techStack": {
+      "detected": [
+        "Angular",
+        "WordPress"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Established",
+    "industryMatch": "saas",
+    "growthSignals": [
+      "Content marketing"
+    ]
+  },
+  "matches": [
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 95,
+      "reasons": [
+        "Industry: saas",
+        "Industry: communication"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 65,
+      "reasons": [
+        "Industry: marketing",
+        "Industry: saas"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 40,
+      "reasons": [
+        "Industry: enterprise"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    }
+  ],
+  "angles": [
+    {
+      "type": "blog",
+      "priority": "medium",
+      "content": "Blog post: \"IT solutions businesses\"",
+      "source": "https://netcomafrica.com/news"
+    },
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "Dassage Communication Platform relevant to their saas"
+    }
+  ],
+  "draft": "SUBJECT: Yen - your recent article\n\nHi Yen,\n\nI read your post \"IT solutions businesses\" - great insights.\n\nI'm David Ariyo, a Full Stack Developer. I recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture\n\nTech: React, Node.js, MongoDB, WebSocket | Scale: 100+ concurrent users\n\nWould you be open to a brief chat if Netcom Africa Limited ever needs freelance development support?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer\ndavidariyo109@gmail.com | (+234) 903-6184-863\nPortfolio: davidariyo.onrender.com",
+  "confidence": {
+    "score": 65,
+    "level": "Medium",
+    "factors": [
+      "Website verified",
+      "Blog content found",
+      "Strong experience match",
+      "Tech stack detected"
+    ],
+    "recommendation": "REVIEW"
+  },
+  "recommendation": "REVIEW",
+  "manualChecks": [
+    "Spend 10 min on additional research",
+    "Visit: https://netcomafrica.com",
+    "LinkedIn: http://www.linkedin.com/in/yenchoi",
+    "Strengthen personalization"
+  ]
+}

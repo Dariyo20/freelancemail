@@ -1,0 +1,94 @@
+{
+  "prospect": {
+    "name": "Samuel ",
+    "firstName": "Samuel",
+    "title": "CTO",
+    "email": "samuelo@nubiaville.com",
+    "company": "Nubiaville Ltd",
+    "industry": "information technology & services",
+    "employees": "12",
+    "website": "https://nubiaville.com",
+    "linkedIn": "http://www.linkedin.com/in/abaobe"
+  },
+  "findings": {
+    "news": [],
+    "blog": {
+      "found": false,
+      "posts": [],
+      "url": null
+    },
+    "techStack": {
+      "detected": [
+        "Angular",
+        "WordPress"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Early Stage",
+    "industryMatch": "saas",
+    "growthSignals": []
+  },
+  "matches": [
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 75,
+      "reasons": [
+        "Industry: enterprise",
+        "Industry: recruitment"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 60,
+      "reasons": [
+        "Industry: productivity",
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 40,
+      "reasons": [
+        "Industry: analytics"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "Crewmanage HR System relevant to their saas"
+    }
+  ],
+  "draft": "SUBJECT: Samuel - Nubiaville Ltd development\n\nHi Samuel,\n\nI've been following companies in the information technology & services space.\n\nI'm David Ariyo, a Full Stack Developer. I recently built Crewmanage HR System - HR management with scheduling, payroll, workflow automation, RBAC\n\nTech: React, Node.js, MongoDB, Role-based access | Scale: Enterprise HR features\n\nWould you be open to a brief chat if Nubiaville Ltd ever needs freelance development support?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer\ndavidariyo109@gmail.com | (+234) 903-6184-863\nPortfolio: davidariyo.onrender.com",
+  "confidence": {
+    "score": 50,
+    "level": "Medium",
+    "factors": [
+      "Website verified",
+      "Strong experience match",
+      "Tech stack detected"
+    ],
+    "recommendation": "REVIEW"
+  },
+  "recommendation": "REVIEW",
+  "manualChecks": [
+    "Spend 10 min on additional research",
+    "Visit: https://nubiaville.com",
+    "LinkedIn: http://www.linkedin.com/in/abaobe",
+    "Strengthen personalization"
+  ]
+}

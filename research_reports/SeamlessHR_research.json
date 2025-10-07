@@ -1,0 +1,141 @@
+{
+  "prospect": {
+    "name": "Oluwayemisi Kareem",
+    "firstName": "Oluwayemisi",
+    "title": "Executive Assistant to CTO & Co-Founder",
+    "email": "yemisi@seamlesshr.com",
+    "company": "SeamlessHR",
+    "industry": "information technology & services",
+    "employees": "240",
+    "website": "https://seamlesshr.com",
+    "linkedIn": "http://www.linkedin.com/in/oluwayemisi-kareem"
+  },
+  "findings": {
+    "news": [
+      {
+        "title": "SeamlessHR's Blueprint for FCSSIP 25 Implementation - SeamlessHR",
+        "snippet": "Sep 2, 2025 ... HR Tech Intervention, Benefit to Civil Service. Pillar 1: Capability ... SeamlessHR technology provides the essential digital infrastructure to achieve this.",
+        "url": "https://seamlesshr.com/blog/seamlesshrs-blueprint-for-fcssip25-implementation/",
+        "date": "Sep 2, 2025",
+        "type": "announcement",
+        "relevance": 100,
+        "verified": true
+      },
+      {
+        "title": "FCSSIP25: Nigeria's Federal Civil Service Strategy Explained ...",
+        "snippet": "Sep 2, 2025 ... The partnership between an end-to-en HR platform like SeamlessHR and the public sector is not just a technological upgrade; it is a strategic alliance aimed at ...",
+        "url": "https://seamlesshr.com/blog/fcssip25-nigerias-federal-civil-service-strategy-explained/",
+        "date": "Sep 2, 2025",
+        "type": "partnership",
+        "relevance": 70,
+        "verified": true
+      },
+      {
+        "title": "Events - SeamlessHR",
+        "snippet": "Sep 25, 2025 ... ... Partnership. Channel Partners · Refer and Earn · SeamlessTribe. Insights ... Kileleshwa, Nairobi. Global HR Tech. Copyright © 2025. SeamlessHR. All Rights ...",
+        "url": "https://seamlesshr.com/events/",
+        "date": "Sep 25, 2025",
+        "type": "partnership",
+        "relevance": 100,
+        "verified": true
+      }
+    ],
+    "blog": {
+      "found": false,
+      "posts": [],
+      "url": null
+    },
+    "techStack": {
+      "detected": [
+        "Angular",
+        "WordPress"
+      ],
+      "confidence": "medium"
+    },
+    "websiteWorks": true,
+    "linkedInData": null
+  },
+  "analysis": {
+    "companyStage": "Established",
+    "industryMatch": "saas",
+    "growthSignals": [
+      "Active in news"
+    ]
+  },
+  "matches": [
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 180,
+      "reasons": [
+        "Industry: hr tech",
+        "Industry: workforce"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 90,
+      "reasons": [
+        "Industry: saas",
+        "Industry: remote work"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 75,
+      "reasons": [
+        "Industry: analytics",
+        "Industry: saas"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "DAstore E-Commerce Platform",
+      "description": "Luxury e-commerce with 140+ products, payment processing, cart management",
+      "score": 35,
+      "reasons": [
+        "Industry: retail"
+      ],
+      "techStack": "Next.js, MongoDB, REST API, JWT",
+      "scale": "140+ products, 7 categories"
+    }
+  ],
+  "angles": [
+    {
+      "type": "news",
+      "priority": "high",
+      "content": "Recent announcement: \"SeamlessHR's Blueprint for FCSSIP 25 Implementation - SeamlessHR\"",
+      "source": "https://seamlesshr.com/blog/seamlesshrs-blueprint-for-fcssip25-implementation/"
+    },
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "Crewmanage HR System relevant to their saas"
+    }
+  ],
+  "draft": "SUBJECT: Oluwayemisi - congrats on announcement\n\nHi Oluwayemisi,\n\nI saw the news about SeamlessHR's announcement - \"SeamlessHR's Blueprint for FCSSIP 25 Implementation - SeamlessHR\". Congratulations!\n\nI'm David Ariyo, a Full Stack Developer. I recently built Crewmanage HR System - HR management with scheduling, payroll, workflow automation, RBAC\n\nTech: React, Node.js, MongoDB, Role-based access | Scale: Enterprise HR features\n\nWould you be open to a brief chat if SeamlessHR ever needs freelance development support?\n\nBest regards,\nDavid Ariyo\nFull Stack Developer\ndavidariyo109@gmail.com | (+234) 903-6184-863\nPortfolio: davidariyo.onrender.com",
+  "confidence": {
+    "score": 85,
+    "level": "High",
+    "factors": [
+      "Website verified",
+      "3 verified news items",
+      "Strong experience match",
+      "Tech stack detected"
+    ],
+    "recommendation": "SEND"
+  },
+  "recommendation": "SEND",
+  "manualChecks": [
+    "Verify news links are correct",
+    "Check LinkedIn: http://www.linkedin.com/in/oluwayemisi-kareem",
+    "Personalize draft before sending"
+  ]
+}
