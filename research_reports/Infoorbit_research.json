@@ -1,0 +1,66 @@
+{
+  "prospect": {
+    "firstName": "Victor",
+    "lastName": "Anjorin",
+    "name": "Victor Anjorin",
+    "title": "CEO",
+    "email": "victor@infoorbit.net",
+    "company": "Infoorbit",
+    "industry": "information technology & services",
+    "employees": "1",
+    "website": "https://infoorbit.com",
+    "linkedIn": "http://www.linkedin.com/in/victor-a-147aa06",
+    "companyLinkedIn": "http://www.linkedin.com/company/infoorbit",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "it services & it consulting, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": [],
+    "linkedInPosts": [],
+    "techStack": [
+      "Apache"
+    ],
+    "websiteWorks": false,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "it services",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [],
+  "angles": [],
+  "aiDraft": "⚠️ INSUFFICIENT DATA - Manual research required\n\nNo strong personalization angles found. Consider:\n1. Manual LinkedIn research\n2. Company website deep dive\n3. Recent news search\n4. Industry-specific research",
+  "confidence": {
+    "score": 32,
+    "level": "Very Low",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website inaccessible"
+    ]
+  },
+  "recommendation": "SKIP"
+}

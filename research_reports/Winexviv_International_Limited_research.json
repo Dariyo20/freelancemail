@@ -1,0 +1,98 @@
+{
+  "prospect": {
+    "firstName": "Alex",
+    "lastName": "Onyia",
+    "name": "Alex Onyia",
+    "title": "CEO",
+    "email": "alex@educare.ng",
+    "company": "Winexviv International Limited",
+    "industry": "information technology & services",
+    "employees": "14",
+    "website": "https://winexviv.com",
+    "linkedIn": "http://www.linkedin.com/in/alex-onyia-baa39873",
+    "companyLinkedIn": "http://www.linkedin.com/company/winexviv",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "keywords": "educare, mobile app, unlimited power & customization abilities, our flagship product, sms integration, software development, payment integration, it services & it consulting, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "DigitalOcean",
+      "Webmail",
+      "Android"
+    ],
+    "websiteWorks": true,
+    "aboutContent": "ABOUT US\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\t\tHome\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\t\tAbout us\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\n\t\t\n\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\t\tDon’t worry, you’re in safe hands.\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\t\tHaving seen the indisputable influence technology has in the development of a society, it is imperative for as many tech initiatives as possible to be birthed. For this reason was Winexviv born in 2015. Winexviv International Limited is a software development company situated in Lagos, Nigeria and is privileged to be on of the leading providers of technical services and solutions to coope",
+    "careersPage": true
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [
+      "Hiring (careers page active)"
+    ],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 25,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "hiring",
+      "priority": "medium",
+      "content": "Active hiring (careers page updated)"
+    },
+    {
+      "type": "experience",
+      "priority": "medium",
+      "content": "Dassage Communication Platform relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Alex - Winexviv International Limited development support\n\nHi Alex,\n\nNoticed Winexviv International Limited is hiring. Scaling the team?\n\nI'm David Ariyo, Full Stack Developer. Recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture.\n\nTech: React, Node.js, MongoDB, WebSocket | 100+ concurrent users\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Winexviv International Limited?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 66,
+    "level": "High",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Company info found",
+      "Active hiring",
+      "Moderate experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

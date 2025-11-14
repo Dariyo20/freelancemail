@@ -1,0 +1,117 @@
+{
+  "prospect": {
+    "firstName": "Temitope",
+    "lastName": "Elegbede",
+    "name": "Temitope Elegbede",
+    "title": "CEO",
+    "email": "temitope.elegbede@silverware.com.ng",
+    "company": "Silverware Business Technologies",
+    "industry": "information technology & services",
+    "employees": "1",
+    "website": "https://silverware.com.ng",
+    "linkedIn": "http://www.linkedin.com/in/temitopelegbede",
+    "companyLinkedIn": "http://www.linkedin.com/company/silverwareng",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "keywords": "it infrastructure services, cloud computing, fire & intruder alarm, business continuity technologies, tech training, electronic access control, networking structured cabling, web intelligence, biometric solutions, cctvvideo surveillance, renewable energy, electronic time aattendance, networking amp structured cabling, it services & it consulting, biometrics, electronic access control systems, it solutions, security systems integration, mobile authentication, parking management, it support services, smart locks, video door entry, access control, face recognition, it infrastructure, network security, electronic security, fingerprint recognition, electrical equipment and appliance manufacturing, car parking systems, fire alarm systems, security and surveillance equipment manufacturing, software development, hr management software, cctv surveillance, hotel locks, networking, visitor management, information technology and services, biometric devices, business continuity, structured cabling, multi-modal biometric systems, fire alarms, turnstile management, biometric sdk integration, rfid technology, enterprise applications, b2b, consulting, services, computer systems design and related services, information technology, digital marketing, enterprise software, enterprises, computer software, information technology & services, clean energy & technology, environmental services, renewables & environment, computer vision, artificial intelligence, marketing & advertising"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "MailChimp SPF",
+      "Google Font API",
+      "Bootstrap Framework",
+      "JQuery 2.1.1",
+      "WordPress.org",
+      "Apache",
+      "Mobile Friendly",
+      "Android",
+      "Flutter",
+      "Render"
+    ],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 65,
+      "reasons": [
+        "Industry: marketing",
+        "Industry: digital marketing"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 35,
+      "reasons": [
+        "Industry: enterprise"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 30,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "Durl URL Shortener relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Temitope - quick question\n\nHi Temitope,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.\n\nTech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Silverware Business Technologies?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 59,
+    "level": "Medium",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Strong experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

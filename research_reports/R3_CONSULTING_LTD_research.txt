@@ -1,0 +1,87 @@
+================================================================================
+🎯 RESEARCH REPORT: R3 CONSULTING LTD
+================================================================================
+
+📋 CONTACT INFO:
+  Name: Gideon Makinwa
+  Title: CEO
+  Seniority: C suite
+  Email: gideon@r3consultingltd.com ✅ VERIFIED
+  Company: R3 CONSULTING LTD
+  Industry: information technology & services
+  Size: 10 employees
+  Location: , Nigeria
+  Website: https://r3consultingltd.com ✅
+  LinkedIn: http://www.linkedin.com/in/gideon-makinwa-aat-aca-70225845
+  Company LinkedIn: http://www.linkedin.com/company/r3consultingltd
+
+🎯 CONFIDENCE: High (71/100)
+📊 RECOMMENDATION: REVIEW
+Factors: Email verified by Apollo, Decision maker level, Website verified, Tech match: Google Analytics, Strong experience match
+
+💰 APOLLO DATA:
+  Tech Stack: reCAPTCHA, Google Tag Manager, WordPress.org, Google Analytics, Mobile Friendly, Google Font API, Apache, SAP
+
+🔍 FINDINGS:
+
+📊 ANALYSIS:
+  Stage: Early Stage Startup
+  Industry Match: saas
+  Tech Stack Matches:
+    • Google Analytics → Durl URL Shortener
+
+🎯 EXPERIENCE MATCHES:
+  1. DAstore E-Commerce Platform (Score: 120)
+     Luxury e-commerce with 140+ products, payment processing, cart management
+     Tech: Next.js, MongoDB, REST API, JWT
+     Why: Industry: e-commerce, Industry: retail, Industry: consumer
+  2. Durl URL Shortener (Score: 85)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: analytics, Industry: saas, Tech: google analytics
+  3. Dassage Communication Platform (Score: 50)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: saas, Industry: software
+  4. Crewmanage HR System (Score: 35)
+     HR management with scheduling, payroll, workflow automation, RBAC
+     Tech: React, Node.js, MongoDB, Role-based access
+     Why: Industry: enterprise
+
+💡 PERSONALIZATION ANGLES:
+  1. [medium] tech: Tech stack match: Google Analytics (Durl URL Shortener)
+  2. [high] experience: DAstore E-Commerce Platform relevant to their saas
+
+================================================================================
+📧 GROQ AI-GENERATED EMAIL DRAFT
+================================================================================
+
+SUBJECT: Gideon - quick question
+
+Hi Gideon,
+
+I've been following information technology & services companies in Nigeria.
+
+I'm David Ariyo, Full Stack Developer. Recently built DAstore E-Commerce Platform - Luxury e-commerce with 140+ products, payment processing, cart management.
+
+Tech: Next.js, MongoDB, REST API, JWT | 140+ products, 7 categories
+
+Noticed you use Google Analytics - I've worked with similar systems.
+
+Based in Nigeria too - always excited to support local tech growth.
+
+Ever need freelance dev support at R3 CONSULTING LTD?
+
+Best,
+David Ariyo
+Full Stack Developer | MERN Stack
+davidariyo109@gmail.com | (+234) 903-6184-863
+davidariyo.onrender.com
+
+================================================================================
+
+⚠️  ACTION: Spend 5-10 min reviewing
+  1. Visit website for more context
+  2. Check LinkedIn for recent posts/activity
+  3. Strengthen personalization
+  4. Then decide: send or skip

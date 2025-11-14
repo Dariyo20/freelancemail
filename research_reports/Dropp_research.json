@@ -1,0 +1,100 @@
+{
+  "prospect": {
+    "firstName": "Tunde",
+    "lastName": "Ogunkunle",
+    "name": "Tunde Ogunkunle",
+    "title": "CEO",
+    "email": "tunde@getdropp.com",
+    "company": "Dropp",
+    "industry": "information technology & services",
+    "employees": "5",
+    "website": "https://ohmeinthasid.com.ng",
+    "linkedIn": "http://www.linkedin.com/in/tunde-ogunkunle-2232129b",
+    "companyLinkedIn": "http://www.linkedin.com/company/getdropp",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "technology, information & internet, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": true,
+      "posts": [
+        {
+          "title": "Real estate agent fees in Lagos"
+        },
+        {
+          "title": "How to avoid property fraud in Lagos"
+        },
+        {
+          "title": "How to Buy Property in Lagos as a Foreigner: A Step-by-Step Guide"
+        },
+        {
+          "title": "How to Sell Property in Lagos: A Comprehensive Guide"
+        },
+        {
+          "title": "How to Profit from Lagos Real Estate Market."
+        }
+      ],
+      "url": "https://ohmeinthasid.com.ng/blog"
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "NSOne",
+      "Rackspace MailGun",
+      "Amazon AWS",
+      "Mobile Friendly"
+    ],
+    "websiteWorks": true,
+    "aboutContent": "About Us\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\t\tOHMEIN-THASID Nigeria Limited is a versatile Nigerian company based in Lagos, specializing in real estate, property management, event planning, and more. We offer high-quality services in real estate development, logistics, scrap metal sales, and consultancy, all aimed at providing reliable solutions that add value to our clients and communities.\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\tOur Core Values\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntegrity: We uphold the highest standards of honesty and transparency in all our dealings, fostering trust and long-lastin",
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": null,
+    "growthSignals": [
+      "Active content marketing"
+    ],
+    "techStackMatch": []
+  },
+  "matches": [],
+  "angles": [
+    {
+      "type": "blog",
+      "priority": "medium",
+      "content": "Recent post: \"Real estate agent fees in Lagos\"",
+      "source": "https://ohmeinthasid.com.ng/blog"
+    }
+  ],
+  "aiDraft": "SUBJECT: Tunde - quick question\n\nHi Tunde,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer (MERN stack). I build scalable web applications for growing companies.\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Dropp?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 58,
+    "level": "Medium",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Company info found",
+      "Active blog"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

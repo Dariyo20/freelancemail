@@ -1,0 +1,152 @@
+{
+  "prospect": {
+    "firstName": "Adetokunbo",
+    "lastName": "Omotosho",
+    "name": "Adetokunbo Omotosho",
+    "title": "CEO",
+    "email": "ade@cybervergent.com",
+    "company": "Cybervergent",
+    "industry": "information technology & services",
+    "employees": "84",
+    "website": "https://cybervergent.com",
+    "linkedIn": "http://www.linkedin.com/in/ade-omotosho",
+    "companyLinkedIn": "http://www.linkedin.com/company/cybervergent-inc",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "infrastructure security posture management, compliance posture management, data security posture management, automation platform, framework audits, cyber operation center, red teaming, digital forensics, digital trust, cybersecurity engineering, threat intelligence, vulnerability assessment, penetration testing, api security, cloud security, technology, information & internet, cybersecurity compliance, cloud security integration, ai-powered compliance, security automation, security policies, security reporting, vulnerability management, security operations, ai-driven security, security incident automation, automated risk assessment, risk management, real-time risk monitoring, security vulnerability scanning, security controls, posture management, security posture, security audit, security automation rpa, cybersecurity, security assessment, compliance automation, security policy builder, information technology and services, security orchestration, security governance, security framework, incident response, security control automation, security monitoring, automated security, cyber threat detection, security framework mapping, security analytics, threat hunting, software development, security threat intelligence, security asset inventory, risk assessment, b2b, government, consulting, services, computer systems design and related services, data protection, regulatory compliance, network security, computer & network security, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [
+      {
+        "title": "Bluebulb renews NDPA Licence, reinforces data compliance in ...",
+        "snippet": "Sep 19, 2025 ... Cybervergent Spearheads Effortless NDPA Compliance through Innovative AI-Driven Platform Ahead of March 15th 2024 Deadline ... “Renewing our NDPA licence ...",
+        "url": "https://nairametrics.com/2025/09/19/bluebulb-renews-ndpa-licence-reinforces-data-compliance-in-nigeria/",
+        "date": "Sep 19, 2025",
+        "source": "Nairametrics",
+        "type": "achievement",
+        "verified": true,
+        "category": "African Tech News"
+      }
+    ],
+    "pressReleases": [
+      {
+        "title": "Platform Overview",
+        "source": "company website"
+      },
+      {
+        "title": "AI-driven, unified control Platform",
+        "source": "company website"
+      },
+      {
+        "title": "Real-time Posture Visibility",
+        "source": "company website"
+      }
+    ],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "Route 53",
+      "Outlook",
+      "Amazon AWS",
+      "Nginx",
+      "Bootstrap Framework",
+      "WordPress.org",
+      "Google Tag Manager",
+      "Mobile Friendly",
+      "Google Font API"
+    ],
+    "websiteWorks": true,
+    "aboutContent": "Compliance. Fast. Guaranteed |Request a demo Trusted by hundreds of enterprises and fast-growing companies AI-driven, unified control Platform TrustPulse gives you instant visibility, automated governance, and continuous assurance across cloud-native and hybrid setups. Move fast, stay compliant, and build security. Real-time Posture VisibilityContinuous monitoring and visibility across cloud and on-premise environments with AI-powered threat detectionInfrastructure MonitoringAutomated Threat DetectionReal-time AlertingRapid ResponseAccelerate incident response with AI-powered recommendations a",
+    "careersPage": true
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Growth Stage",
+    "industryMatch": "saas",
+    "growthSignals": [
+      "Hiring (careers page active)",
+      "3 press releases"
+    ],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 35,
+      "reasons": [
+        "Industry: analytics"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 30,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "african_tech_news",
+      "priority": "high",
+      "content": "Featured in Nairametrics: \"Bluebulb renews NDPA Licence, reinforces data compliance in ...\"",
+      "source": "https://nairametrics.com/2025/09/19/bluebulb-renews-ndpa-licence-reinforces-data-compliance-in-nigeria/"
+    },
+    {
+      "type": "press",
+      "priority": "high",
+      "content": "Company announcement: \"Platform Overview\""
+    },
+    {
+      "type": "hiring",
+      "priority": "medium",
+      "content": "Active hiring (careers page updated)"
+    },
+    {
+      "type": "experience",
+      "priority": "medium",
+      "content": "Durl URL Shortener relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Adetokunbo - saw Cybervergent in the news\n\nHi Adetokunbo,\n\nSaw Cybervergent featured in Nairametrics - achievement. Impressive!\n\nI'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.\n\nTech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Cybervergent?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 91,
+    "level": "Very High",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "1 African tech news",
+      "3 press releases",
+      "Company info found",
+      "Active hiring",
+      "Moderate experience match"
+    ]
+  },
+  "recommendation": "SEND"
+}

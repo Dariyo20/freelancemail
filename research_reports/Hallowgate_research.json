@@ -1,0 +1,72 @@
+{
+  "prospect": {
+    "firstName": "Peter",
+    "lastName": "Ogunkanmi",
+    "name": "Peter Ogunkanmi",
+    "title": "CEO",
+    "email": "peter@hallowgate.com",
+    "company": "Hallowgate",
+    "industry": "information technology & services",
+    "employees": "8",
+    "website": "https://hallowgate.com",
+    "linkedIn": "http://www.linkedin.com/in/peter-ogunkanmi-13251265",
+    "companyLinkedIn": "http://www.linkedin.com/company/hallowgate",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "Abuja",
+    "state": "Federal Capital Territory",
+    "country": "Nigeria",
+    "keywords": "it services & it consulting, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "Apache",
+      "Mobile Friendly",
+      "Woo Commerce",
+      "WordPress.org"
+    ],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "it services",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [],
+  "angles": [],
+  "aiDraft": "⚠️ INSUFFICIENT DATA - Manual research required\n\nNo strong personalization angles found. Consider:\n1. Manual LinkedIn research\n2. Company website deep dive\n3. Recent news search\n4. Industry-specific research",
+  "confidence": {
+    "score": 47,
+    "level": "Low",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified"
+    ]
+  },
+  "recommendation": "MANUAL RESEARCH"
+}

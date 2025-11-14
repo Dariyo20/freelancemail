@@ -1,0 +1,92 @@
+{
+  "prospect": {
+    "firstName": "Albert",
+    "lastName": "Eze",
+    "name": "Albert Eze",
+    "title": "CEO",
+    "email": "aeze@worldbank.org",
+    "company": "Topsoftweb solutions",
+    "industry": "information technology & services",
+    "employees": "4",
+    "website": "https://topsoftwebsolutions.com",
+    "linkedIn": "http://www.linkedin.com/in/albert-eze-5b510561",
+    "companyLinkedIn": "http://www.linkedin.com/company/topsoftweb-solutions",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "bulksms, network infrastructure, software design, mobile application, website hosting, website design, mobile marketing, cyber security, computer & network security, information technology & services, software development, internet, computer software, web design, marketing & advertising"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": [],
+    "linkedInPosts": [],
+    "techStack": [],
+    "websiteWorks": false,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": true,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 30,
+      "reasons": [
+        "Industry: marketing"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 25,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "medium",
+      "content": "Durl URL Shortener relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Albert - quick question\n\nHi Albert,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.\n\nTech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Topsoftweb solutions?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 38,
+    "level": "Very Low",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website inaccessible",
+      "Moderate experience match"
+    ]
+  },
+  "recommendation": "SKIP"
+}

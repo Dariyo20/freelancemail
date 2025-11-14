@@ -1,0 +1,78 @@
+================================================================================
+🎯 RESEARCH REPORT: Silverware Business Technologies
+================================================================================
+
+📋 CONTACT INFO:
+  Name: Temitope Elegbede
+  Title: CEO
+  Seniority: C suite
+  Email: temitope.elegbede@silverware.com.ng ✅ VERIFIED
+  Company: Silverware Business Technologies
+  Industry: information technology & services
+  Size: 1 employees
+  Location: , Lagos, Nigeria
+  Website: https://silverware.com.ng ✅
+  LinkedIn: http://www.linkedin.com/in/temitopelegbede
+  Company LinkedIn: http://www.linkedin.com/company/silverwareng
+
+🎯 CONFIDENCE: Medium (59/100)
+📊 RECOMMENDATION: REVIEW
+Factors: Email verified by Apollo, Decision maker level, Website verified, Strong experience match
+
+💰 APOLLO DATA:
+  Tech Stack: MailChimp SPF, Google Font API, Bootstrap Framework, JQuery 2.1.1, WordPress.org, Apache, Mobile Friendly, Android, Flutter, Render
+
+🔍 FINDINGS:
+
+📊 ANALYSIS:
+  Stage: Early Stage Startup
+  Industry Match: saas
+
+🎯 EXPERIENCE MATCHES:
+  1. Durl URL Shortener (Score: 65)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: marketing, Industry: digital marketing
+  2. Crewmanage HR System (Score: 35)
+     HR management with scheduling, payroll, workflow automation, RBAC
+     Tech: React, Node.js, MongoDB, Role-based access
+     Why: Industry: enterprise
+  3. Dassage Communication Platform (Score: 30)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: software
+
+💡 PERSONALIZATION ANGLES:
+  1. [high] experience: Durl URL Shortener relevant to their saas
+
+================================================================================
+📧 GROQ AI-GENERATED EMAIL DRAFT
+================================================================================
+
+SUBJECT: Temitope - quick question
+
+Hi Temitope,
+
+I've been following information technology & services companies in Nigeria.
+
+I'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.
+
+Tech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections
+
+Based in Nigeria too - always excited to support local tech growth.
+
+Ever need freelance dev support at Silverware Business Technologies?
+
+Best,
+David Ariyo
+Full Stack Developer | MERN Stack
+davidariyo109@gmail.com | (+234) 903-6184-863
+davidariyo.onrender.com
+
+================================================================================
+
+⚠️  ACTION: Spend 5-10 min reviewing
+  1. Visit website for more context
+  2. Check LinkedIn for recent posts/activity
+  3. Strengthen personalization
+  4. Then decide: send or skip

@@ -1,0 +1,113 @@
+{
+  "prospect": {
+    "firstName": "Moses",
+    "lastName": "Braimah",
+    "name": "Moses Braimah",
+    "title": "CEO",
+    "email": "mosesb@computics.com.ng",
+    "company": "Computics Limited",
+    "industry": "information technology & services",
+    "employees": "1",
+    "website": "https://computics.com.ng",
+    "linkedIn": "http://www.linkedin.com/in/moses-braimah-mncs-mcpn-4629a117",
+    "companyLinkedIn": "http://www.linkedin.com/company/computics-limited",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "it services & it consulting, business continuity, security and data protection, vulnerability assessment, regulatory compliance, cyber risk management, information technology and services, data risk minimization, it consultancy, security training, incident response, data lifecycle management, security product expertise, vciso, training, consulting services, data management, it infrastructure management, data governance & privacy, ndpr compliance, gdpr compliance, cybersecurity, it security, managed services, b2b, government, consulting, services, computer systems design and related services, information technology & services, it consulting, management consulting, computer & network security"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [
+      {
+        "title": "LASG to Develop Improved Data Governance to Aid Delivery of Quality Healthcare",
+        "source": "company website"
+      },
+      {
+        "title": "Moses Braimah @Lagos Ministry of Health Data Governance and Privacy Workshop",
+        "source": "company website"
+      }
+    ],
+    "blog": {
+      "found": true,
+      "posts": [
+        {
+          "title": "LASG to Develop Improved Data Governance to Aid Delivery of Quality Healthcare"
+        },
+        {
+          "title": "LASG to Develop Improved Data Governance to Aid Delivery of Quality Healthcare"
+        },
+        {
+          "title": "Moses Braimah @Lagos Ministry of Health Data Governance and Privacy Workshop"
+        },
+        {
+          "title": "Moses Braimah @Lagos Ministry of Health Data Governance and Privacy Workshop"
+        }
+      ],
+      "url": "https://computics.com.ng/news"
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "Google Maps",
+      "Mobile Friendly",
+      "Google Font API",
+      "WordPress.org",
+      "Remote"
+    ],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": true,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "it services",
+    "growthSignals": [
+      "Active content marketing",
+      "2 press releases"
+    ],
+    "techStackMatch": []
+  },
+  "matches": [],
+  "angles": [
+    {
+      "type": "press",
+      "priority": "high",
+      "content": "Company announcement: \"LASG to Develop Improved Data Governance to Aid Delivery of Quality Healthcare\""
+    },
+    {
+      "type": "blog",
+      "priority": "medium",
+      "content": "Recent post: \"LASG to Develop Improved Data Governance to Aid Delivery of Quality Healthcare\"",
+      "source": "https://computics.com.ng/news"
+    }
+  ],
+  "aiDraft": "SUBJECT: Moses - quick question\n\nHi Moses,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer (MERN stack). I build scalable web applications for growing companies.\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Computics Limited?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 63,
+    "level": "Medium",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "2 press releases",
+      "Active blog"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

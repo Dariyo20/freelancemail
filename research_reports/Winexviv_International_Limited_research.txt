@@ -1,0 +1,100 @@
+================================================================================
+🎯 RESEARCH REPORT: Winexviv International Limited
+================================================================================
+
+📋 CONTACT INFO:
+  Name: Alex Onyia
+  Title: CEO
+  Seniority: C suite
+  Email: alex@educare.ng ✅ VERIFIED
+  Company: Winexviv International Limited
+  Industry: information technology & services
+  Size: 14 employees
+  Location: , Lagos, Nigeria
+  Website: https://winexviv.com ✅
+  LinkedIn: http://www.linkedin.com/in/alex-onyia-baa39873
+  Company LinkedIn: http://www.linkedin.com/company/winexviv
+
+🎯 CONFIDENCE: High (66/100)
+📊 RECOMMENDATION: REVIEW
+Factors: Email verified by Apollo, Decision maker level, Website verified, Company info found, Active hiring, Moderate experience match
+
+💰 APOLLO DATA:
+  Tech Stack: DigitalOcean, Webmail, Android
+
+🔍 FINDINGS:
+
+  💼 CAREERS: Active hiring page found
+
+  ℹ️  ABOUT: ABOUT US				
+				
+				
+		
+				
+				
+									Home								
+				
+				
+				
+									About us								
+				
+				
+				
+		
+		
+		
+				
+				
+									Don’t worry, you’re in safe hands.								
+				
+				
+				
+									Having seen the indisputable influence technology has in the development of a society, it i...
+
+📊 ANALYSIS:
+  Stage: Early Stage Startup
+  Industry Match: saas
+  Growth Signals:
+    • Hiring (careers page active)
+
+🎯 EXPERIENCE MATCHES:
+  1. Dassage Communication Platform (Score: 25)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: software
+
+💡 PERSONALIZATION ANGLES:
+  1. [medium] hiring: Active hiring (careers page updated)
+  2. [medium] experience: Dassage Communication Platform relevant to their saas
+
+================================================================================
+📧 GROQ AI-GENERATED EMAIL DRAFT
+================================================================================
+
+SUBJECT: Alex - Winexviv International Limited development support
+
+Hi Alex,
+
+Noticed Winexviv International Limited is hiring. Scaling the team?
+
+I'm David Ariyo, Full Stack Developer. Recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture.
+
+Tech: React, Node.js, MongoDB, WebSocket | 100+ concurrent users
+
+Based in Nigeria too - always excited to support local tech growth.
+
+Ever need freelance dev support at Winexviv International Limited?
+
+Best,
+David Ariyo
+Full Stack Developer | MERN Stack
+davidariyo109@gmail.com | (+234) 903-6184-863
+davidariyo.onrender.com
+
+================================================================================
+
+⚠️  ACTION: Spend 5-10 min reviewing
+  1. Visit website for more context
+  2. Check LinkedIn for recent posts/activity
+  3. Strengthen personalization
+  4. Then decide: send or skip

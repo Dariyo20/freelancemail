@@ -1,0 +1,82 @@
+================================================================================
+🎯 RESEARCH REPORT: Stylebitt
+================================================================================
+
+📋 CONTACT INFO:
+  Name: Precious Aleaji
+  Title: CEO
+  Seniority: C suite
+  Email: precious@stylebitt.com ✅ VERIFIED
+  Company: Stylebitt
+  Industry: information technology & services
+  Size: 5 employees
+  Location: , Lagos, Nigeria
+  Website: https://stylebitt.com ✅
+  LinkedIn: http://www.linkedin.com/in/precious-aleaji-30743314b
+  Company LinkedIn: http://www.linkedin.com/company/stylebitt
+
+🎯 CONFIDENCE: Medium (59/100)
+📊 RECOMMENDATION: REVIEW
+Factors: Email verified by Apollo, Decision maker level, Website verified, Strong experience match
+
+💰 APOLLO DATA:
+  Tech Stack: Blue Host, Microsoft Office 365, Google Font API, Mobile Friendly, WordPress.org, Google Tag Manager, Google Play, Nginx, Data Analytics, AI
+
+🔍 FINDINGS:
+
+📊 ANALYSIS:
+  Stage: Early Stage Startup
+  Industry Match: saas
+
+🎯 EXPERIENCE MATCHES:
+  1. DAstore E-Commerce Platform (Score: 60)
+     Luxury e-commerce with 140+ products, payment processing, cart management
+     Tech: Next.js, MongoDB, REST API, JWT
+     Why: Industry: retail, Industry: fashion
+  2. Durl URL Shortener (Score: 45)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: analytics
+  3. Crewmanage HR System (Score: 35)
+     HR management with scheduling, payroll, workflow automation, RBAC
+     Tech: React, Node.js, MongoDB, Role-based access
+     Why: Industry: enterprise
+  4. Dassage Communication Platform (Score: 25)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: software
+
+💡 PERSONALIZATION ANGLES:
+  1. [high] experience: DAstore E-Commerce Platform relevant to their saas
+
+================================================================================
+📧 GROQ AI-GENERATED EMAIL DRAFT
+================================================================================
+
+SUBJECT: Precious - quick question
+
+Hi Precious,
+
+I've been following information technology & services companies in Nigeria.
+
+I'm David Ariyo, Full Stack Developer. Recently built DAstore E-Commerce Platform - Luxury e-commerce with 140+ products, payment processing, cart management.
+
+Tech: Next.js, MongoDB, REST API, JWT | 140+ products, 7 categories
+
+Based in Nigeria too - always excited to support local tech growth.
+
+Ever need freelance dev support at Stylebitt?
+
+Best,
+David Ariyo
+Full Stack Developer | MERN Stack
+davidariyo109@gmail.com | (+234) 903-6184-863
+davidariyo.onrender.com
+
+================================================================================
+
+⚠️  ACTION: Spend 5-10 min reviewing
+  1. Visit website for more context
+  2. Check LinkedIn for recent posts/activity
+  3. Strengthen personalization
+  4. Then decide: send or skip

@@ -41,6 +41,188 @@
       "messageId": "<dadbb328-6014-abe2-ac04-af28aee2d77b@gmail.com>"
     }
   },
+  "drafts": {
+    "tunde@getdropp.com": {
+      "draftId": "r2232328055640139295",
+      "createdAt": "2025-10-08T11:58:25.105Z",
+      "company": "Dropp",
+      "name": "Tunde Ogunkunle",
+      "subject": "Tunde - saw your product launch",
+      "confidence": 75,
+      "needsReview": false
+    },
+    "precious@stylebitt.com": {
+      "draftId": "r7066826107377350897",
+      "createdAt": "2025-10-08T14:07:42.004Z",
+      "company": "Stylebitt",
+      "name": "Precious Aleaji",
+      "subject": "Precious - saw news about Stylebitt",
+      "confidence": 75,
+      "needsReview": false
+    },
+    "segun@getanchor.co": {
+      "draftId": "r2162172473583042853",
+      "createdAt": "2025-10-08T14:07:43.678Z",
+      "company": "Anchor",
+      "name": "Segun Adeyemi",
+      "subject": "Segun - saw news about Anchor",
+      "confidence": 70,
+      "needsReview": false
+    },
+    "emmanuel.oriaifo@cms.com.ng": {
+      "draftId": "r-147520527800915328",
+      "createdAt": "2025-10-08T14:07:45.764Z",
+      "company": "Contemporary Media Solutions",
+      "name": "Emmanuel Oriaifo",
+      "subject": "[NEEDS REVIEW] Emmanuel - your recent article",
+      "confidence": 65,
+      "needsReview": true
+    },
+    "abdulazeez@esusu.africa": {
+      "draftId": "r5946626140942160515",
+      "createdAt": "2025-10-08T14:07:47.520Z",
+      "company": "EsusuAfrica",
+      "name": "Abdulazeez Oguntoyinbo",
+      "subject": "[NEEDS REVIEW] Abdulazeez - your recent article",
+      "confidence": 65,
+      "needsReview": true
+    },
+    "abrahamoluwambe@lifi.net.ng": {
+      "draftId": "r1393907196275959431",
+      "createdAt": "2025-10-08T14:07:48.974Z",
+      "company": "LiFi.net",
+      "name": "Abraham Oluwambe",
+      "subject": "[NEEDS REVIEW] Abraham - your recent article",
+      "confidence": 65,
+      "needsReview": true
+    },
+    "y.choi@netcomafrica.com": {
+      "draftId": "r-8524490845764894288",
+      "createdAt": "2025-10-08T14:07:50.452Z",
+      "company": "Netcom Africa Limited",
+      "name": "Yen Choi",
+      "subject": "[NEEDS REVIEW] Yen - your recent article",
+      "confidence": 65,
+      "needsReview": true
+    },
+    "victor@naijadomains.com": {
+      "draftId": "r8451567948108916181",
+      "createdAt": "2025-10-08T14:07:52.116Z",
+      "company": "Naija Domains",
+      "name": "Victor Nwachukwu",
+      "subject": "[NEEDS REVIEW] Victor - congrats on the partnership",
+      "confidence": 60,
+      "needsReview": true
+    },
+    "ik@alvative.com": {
+      "draftId": "r-5314937790628508416",
+      "createdAt": "2025-10-08T14:07:53.614Z",
+      "company": "Alvative",
+      "name": "Ik Obi",
+      "subject": "[NEEDS REVIEW] Ik - Alvative development",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "demola.oke@bamtechnologies.com": {
+      "draftId": "r7862637129171319137",
+      "createdAt": "2025-10-08T14:07:55.072Z",
+      "company": "Bam Technologies Ltd",
+      "name": "Ademola Oke",
+      "subject": "[NEEDS REVIEW] Ademola - Bam Technologies Ltd development",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "fadeagbo@comnavig.com": {
+      "draftId": "r393040410344460928",
+      "createdAt": "2025-10-08T14:07:56.526Z",
+      "company": "Comnavig ICT Advisers",
+      "name": "Olufemi Adeagbo",
+      "subject": "[NEEDS REVIEW] Olufemi - Comnavig ICT Advisers development",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "kingsley@creditchek.africa": {
+      "draftId": "r-1768740210725180166",
+      "createdAt": "2025-10-08T14:07:58.140Z",
+      "company": "Creditchek",
+      "name": "Kingsley Ibe",
+      "subject": "[NEEDS REVIEW] Kingsley - Creditchek development",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "ismail@deveote.com": {
+      "draftId": "r-5383969608283737634",
+      "createdAt": "2025-10-08T14:07:59.773Z",
+      "company": "Deveote",
+      "name": "Ismail Olasunkanmi",
+      "subject": "[NEEDS REVIEW] Ismail - Deveote development",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "peter@hallowgate.com": {
+      "draftId": "r4404812231556108371",
+      "createdAt": "2025-10-08T14:08:01.314Z",
+      "company": "Hallowgate",
+      "name": "Peter Ogunkanmi",
+      "subject": "[NEEDS REVIEW] Peter - saw news about Hallowgate",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "samuelo@nubiaville.com": {
+      "draftId": "r-6541076239282308196",
+      "createdAt": "2025-10-08T14:08:02.762Z",
+      "company": "Nubiaville Ltd",
+      "name": "Samuel ",
+      "subject": "[NEEDS REVIEW] Samuel - Nubiaville Ltd development",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "gideon@r3consultingltd.com": {
+      "draftId": "r-6892771758011685200",
+      "createdAt": "2025-10-08T14:08:04.205Z",
+      "company": "R3 CONSULTING LTD",
+      "name": "Gideon Makinwa",
+      "subject": "[NEEDS REVIEW] Gideon - R3 CONSULTING LTD development",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "sdk@getscandium.com": {
+      "draftId": "r387528056111690072",
+      "createdAt": "2025-10-08T14:08:05.665Z",
+      "company": "Scandium Systems Inc",
+      "name": "Sodeeq Elusoji",
+      "subject": "[NEEDS REVIEW] Sodeeq - your recent article",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "himanshu@simba.com.ng": {
+      "draftId": "r-5927485370514890216",
+      "createdAt": "2025-10-08T14:08:07.128Z",
+      "company": "SimbaNet",
+      "name": "Himanshu Singh",
+      "subject": "[NEEDS REVIEW] Himanshu - SimbaNet development",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "kelechi@startbutton.africa": {
+      "draftId": "r-7703945025079650834",
+      "createdAt": "2025-10-08T14:08:08.581Z",
+      "company": "Startbutton Africa",
+      "name": "Kelechi Oti",
+      "subject": "[NEEDS REVIEW] Kelechi - Startbutton Africa development",
+      "confidence": 50,
+      "needsReview": true
+    },
+    "emmanuel@digitalskillsacademyng.com": {
+      "draftId": "r-2663219992518789456",
+      "createdAt": "2025-10-08T14:08:10.087Z",
+      "company": "Windave Digital Skills Academy",
+      "name": "Emmanuel Agbachi",
+      "subject": "[NEEDS REVIEW] Emmanuel - Windave Digital Skills Academy development",
+      "confidence": 50,
+      "needsReview": true
+    }
+  },
   "lastSent": "2025-10-07T03:52:30.622Z",
   "totalSent": 5
 }

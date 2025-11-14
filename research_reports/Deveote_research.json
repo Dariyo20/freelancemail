@@ -1,0 +1,111 @@
+{
+  "prospect": {
+    "firstName": "Ismail",
+    "lastName": "Olasunkanmi",
+    "name": "Ismail Olasunkanmi",
+    "title": "CEO",
+    "email": "ismail@deveote.com",
+    "company": "Deveote",
+    "industry": "information technology & services",
+    "employees": "3",
+    "website": "https://deveote.com",
+    "linkedIn": "http://www.linkedin.com/in/ismail-olasunkanmi-4b6283a7",
+    "companyLinkedIn": "http://www.linkedin.com/company/deveote",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "keywords": "it services & it consulting, content marketing, digital development, digital marketing and advertising, social media marketing, digital solutions, user experience optimization, website design, technology, digital marketing, digital footprint, online presence, digital marketing strategy, digital branding, digital strategy, seamless digital experience, digital services, seo optimization, customer engagement, branding strategy, web design, web development and design, information technology and services, e-commerce solutions, web development, ux/ui design, mobile-friendly design, seo, branding, mobile app development, online marketing, tailored solutions, digital analytics, website optimization, social media strategy, digital transformation, e-commerce development, user experience, custom software, b2b, e-commerce, consulting, services, information technology & services, marketing & advertising, consumer internet, consumers, internet, marketing, search marketing, software development, ux"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "CloudFlare Hosting"
+    ],
+    "websiteWorks": true,
+    "aboutContent": "Building Tomorrow's Success Stories, TodayWe help visionaries transform bold ideas into successful products that users love and investors back.About UsOur StoryHey there! 👋I'm Ismail, and at the core of Deveote lies a simple belief: great ideas deserve to be built right. Over my 12+ years as a software engineer, CTO, founder, and venture advisor, I've seen too many brilliant ideas fail not because of the vision, but because of how they were executed.That's why I created Deveote. We're not just another development studio - we're a partner that brings together deep technical expertise, strategi",
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 90,
+      "reasons": [
+        "Industry: marketing",
+        "Industry: analytics",
+        "Industry: digital marketing"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "DAstore E-Commerce Platform",
+      "description": "Luxury e-commerce with 140+ products, payment processing, cart management",
+      "score": 55,
+      "reasons": [
+        "Industry: e-commerce",
+        "Industry: consumer"
+      ],
+      "techStack": "Next.js, MongoDB, REST API, JWT",
+      "scale": "140+ products, 7 categories"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 25,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "Durl URL Shortener relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Ismail - quick question\n\nHi Ismail,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.\n\nTech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Deveote?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 64,
+    "level": "Medium",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Company info found",
+      "Strong experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

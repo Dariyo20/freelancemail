@@ -1,0 +1,77 @@
+{
+  "prospect": {
+    "firstName": "Sam",
+    "lastName": "Jude",
+    "name": "Sam Jude",
+    "title": "CEO",
+    "email": "sam.jude@mmg.com",
+    "company": "MMG Ltd.",
+    "industry": "information technology & services",
+    "employees": "11",
+    "website": "https://mmg.com",
+    "linkedIn": "http://www.linkedin.com/in/sam-jude-jude-98126241",
+    "companyLinkedIn": "http://www.linkedin.com/company/mmg-ltd",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "it services & it consulting, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [],
+    "websiteWorks": true,
+    "aboutContent": "Who we areMMG was founded in 2009 and mines for progress, creating wealth for our people, host communities and shareholders.\nWe work in complex jurisdictions with communities who have vastly differing experiences with resource development.\nA long-term outlook, our pride in mining, our commitment to international standards and our respect for people, land and culture underpin our success.\nCompany overview      \n    \n  \n\n\n\nHome / Who we are\n\n  \n    \n      \n        We mine for progress        \n          \n                        Your browser does not support videos.\n          \n        \n      \n    ",
+    "careersPage": true
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": true,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "it services",
+    "growthSignals": [
+      "Hiring (careers page active)"
+    ],
+    "techStackMatch": []
+  },
+  "matches": [],
+  "angles": [
+    {
+      "type": "hiring",
+      "priority": "medium",
+      "content": "Active hiring (careers page updated)"
+    }
+  ],
+  "aiDraft": "SUBJECT: Sam - MMG Ltd. development support\n\nHi Sam,\n\nNoticed MMG Ltd. is hiring. Scaling the team?\n\nI'm David Ariyo, Full Stack Developer (MERN stack). I build scalable web applications for growing companies.\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at MMG Ltd.?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 60,
+    "level": "Medium",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Company info found",
+      "Active hiring"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

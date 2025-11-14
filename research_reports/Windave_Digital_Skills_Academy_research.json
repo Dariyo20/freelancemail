@@ -1,0 +1,123 @@
+{
+  "prospect": {
+    "firstName": "Emmanuel",
+    "lastName": "Agbachi",
+    "name": "Emmanuel Agbachi",
+    "title": "CEO",
+    "email": "emmanuel@digitalskillsacademyng.com",
+    "company": "Windave Digital Skills Academy",
+    "industry": "information technology & services",
+    "employees": "3",
+    "website": "https://digitalskillsacademyng.com",
+    "linkedIn": "http://www.linkedin.com/in/emmanuel-agbachi",
+    "companyLinkedIn": "http://www.linkedin.com/company/digital-skills-academy",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "Abuja",
+    "state": "Federal Capital Territory",
+    "country": "Nigeria",
+    "keywords": "bsc degrees, digital business, digital skills, digital technology, digital design, coding, it services & it consulting, digital marketing, affiliate marketing, remote work skills, practical digital skills, hands-on learning, digital skills for wealth, practical training, e-commerce, facebook ads, google analytics, data analysis, wordpress website creation, cyber security, certification, software development, online advertising, wordpress, online shop setup, education, web development, content marketing, information technology, web design, youtube monetization, social media marketing, email marketing, graphics design, online business, real-life projects, lead generation, local and international digital marketing, online branding, online course creation, digital entrepreneurship, content creation, digital agency, seo, wealth creation, b2c, d2c, services, computer training, information technology & services, marketing & advertising, consumer internet, consumers, internet, data analytics, computer & network security, marketing, education management, graphic design, sales, search marketing"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "Google Tag Manager",
+      "Google Font API",
+      "Facebook Custom Audiences",
+      "Facebook Login (Connect)",
+      "DoubleClick",
+      "Woo Commerce",
+      "Google Dynamic Remarketing",
+      "Google AdSense",
+      "Facebook Widget",
+      "DoubleClick Conversion",
+      "WordPress.org",
+      "Mobile Friendly"
+    ],
+    "websiteWorks": true,
+    "aboutContent": "WHO WE AREWindave Digital Skills Academy is a digital skills education provider based in Abuja, Nigeria. We provide online, in-person and hybrid practical training on various digital skills such as Digital Marketing, Affiliate Marketing, Web Design/Development, Programming/Coding, Social Media Marketing, AI, virtual Assistance, Data Analytics, Mobile App Development, amongst others. We are on a mission to empower 1 Million individuals by year 2030 to acquire the digital skills needed for wealth creation and ultimately live a fulfilled life. We are passionate about wealth creation; that is why ",
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 125,
+      "reasons": [
+        "Industry: marketing",
+        "Industry: analytics",
+        "Industry: digital marketing"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "DAstore E-Commerce Platform",
+      "description": "Luxury e-commerce with 140+ products, payment processing, cart management",
+      "score": 55,
+      "reasons": [
+        "Industry: e-commerce",
+        "Industry: consumer"
+      ],
+      "techStack": "Next.js, MongoDB, REST API, JWT",
+      "scale": "140+ products, 7 categories"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 50,
+      "reasons": [
+        "Industry: remote work",
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "Durl URL Shortener relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Emmanuel - quick question\n\nHi Emmanuel,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.\n\nTech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Windave Digital Skills Academy?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 64,
+    "level": "Medium",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Company info found",
+      "Strong experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

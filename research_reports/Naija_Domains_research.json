@@ -1,0 +1,114 @@
+{
+  "prospect": {
+    "firstName": "Victor",
+    "lastName": "Nwachukwu",
+    "name": "Victor Nwachukwu",
+    "title": "CEO",
+    "email": "victor@naijadomains.com",
+    "company": "Naija Domains",
+    "industry": "information technology & services",
+    "employees": "5",
+    "website": "https://naijadomains.com",
+    "linkedIn": "http://www.linkedin.com/in/victor-nwachukwu-42686915",
+    "companyLinkedIn": "http://www.linkedin.com/company/naijadomains",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "technology, information & internet, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "WordPress.org",
+      "Mobile Friendly",
+      "Facebook Widget",
+      "Facebook Login (Connect)",
+      "Varnish",
+      "Google Play",
+      "Facebook Custom Audiences",
+      "Bootstrap Framework",
+      "Google Tag Manager",
+      "Google Analytics",
+      "Nginx",
+      "Laravel",
+      "Android",
+      "Circle",
+      "React Native",
+      "Node.js"
+    ],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": null,
+    "growthSignals": [],
+    "techStackMatch": [
+      {
+        "tech": "Google Analytics",
+        "project": "Durl URL Shortener"
+      }
+    ]
+  },
+  "matches": [
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 60,
+      "reasons": [
+        "Industry: analytics",
+        "Tech: google analytics"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    }
+  ],
+  "angles": [
+    {
+      "type": "tech",
+      "priority": "medium",
+      "content": "Tech stack match: Google Analytics (Durl URL Shortener)"
+    },
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "Durl URL Shortener relevant to their industry"
+    }
+  ],
+  "aiDraft": "SUBJECT: Victor - quick question\n\nHi Victor,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.\n\nTech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections\n\nNoticed you use Google Analytics - I've worked with similar systems.\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Naija Domains?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 71,
+    "level": "High",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Tech match: Google Analytics",
+      "Strong experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

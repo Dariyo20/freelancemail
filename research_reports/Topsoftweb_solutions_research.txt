@@ -1,0 +1,71 @@
+================================================================================
+🎯 RESEARCH REPORT: Topsoftweb solutions
+================================================================================
+
+📋 CONTACT INFO:
+  Name: Albert Eze
+  Title: CEO
+  Seniority: C suite
+  Email: aeze@worldbank.org ✅ VERIFIED
+  Company: Topsoftweb solutions
+  Industry: information technology & services
+  Size: 4 employees
+  Location: , Nigeria
+  Website: https://topsoftwebsolutions.com ❌
+  LinkedIn: http://www.linkedin.com/in/albert-eze-5b510561
+  Company LinkedIn: http://www.linkedin.com/company/topsoftweb-solutions
+
+🎯 CONFIDENCE: Very Low (38/100)
+📊 RECOMMENDATION: SKIP
+Factors: Email verified by Apollo, Decision maker level, Website inaccessible, Moderate experience match
+
+💰 APOLLO DATA:
+
+🔍 FINDINGS:
+
+📊 ANALYSIS:
+  Stage: Early Stage Startup
+  Industry Match: saas
+
+🎯 EXPERIENCE MATCHES:
+  1. Durl URL Shortener (Score: 30)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: marketing
+  2. Dassage Communication Platform (Score: 25)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: software
+
+💡 PERSONALIZATION ANGLES:
+  1. [medium] experience: Durl URL Shortener relevant to their saas
+
+================================================================================
+📧 GROQ AI-GENERATED EMAIL DRAFT
+================================================================================
+
+SUBJECT: Albert - quick question
+
+Hi Albert,
+
+I've been following information technology & services companies in Nigeria.
+
+I'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.
+
+Tech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections
+
+Based in Nigeria too - always excited to support local tech growth.
+
+Ever need freelance dev support at Topsoftweb solutions?
+
+Best,
+David Ariyo
+Full Stack Developer | MERN Stack
+davidariyo109@gmail.com | (+234) 903-6184-863
+davidariyo.onrender.com
+
+================================================================================
+
+❌ ACTION: Skip or do 15+ min manual research
+  Low confidence - not worth the time unless you have extra capacity
+  Focus on higher-scoring prospects first

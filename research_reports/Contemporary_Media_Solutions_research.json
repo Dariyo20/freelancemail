@@ -1,0 +1,147 @@
+{
+  "prospect": {
+    "firstName": "Emmanuel",
+    "lastName": "Oriaifo",
+    "name": "Emmanuel Oriaifo",
+    "title": "CEO",
+    "email": "emmanuel.oriaifo@cms.com.ng",
+    "company": "Contemporary Media Solutions",
+    "industry": "information technology & services",
+    "employees": "2",
+    "website": "https://cms.com.ng",
+    "linkedIn": "http://www.linkedin.com/in/emmanueloriaifo",
+    "companyLinkedIn": "http://www.linkedin.com/company/contemporary-media-solutions",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "mobile app development, blogging, email template design, strategic management, website design development, business solutions, email marketing, business development, mobile site development & maintenance, business analysis competition analysis, branding rebranding, strategic management business development business solutions business analysis competition analysis w, it services & it consulting, web redesign, social media campaigns, media and advertising, logo design, ngo and nonprofit, business profile video, website development, email templates, content management system, search engine optimization, online marketing, mobile app nigeria, business branding, learning management system nigeria, responsive design, user experience, e-commerce, mobile site development, animations, web development and design, video animation, information technology and services, digital marketing, branding, digital media, powerpoint design, seo, lead generation, ngo website development nigeria, real estate website nigeria, content creation, online advertising, online family album nigeria, programming, social media campaign nigeria, content marketing, video explainer nigeria, graphics design, social media marketing, website design, conversion optimization, bbm advertising nigeria, e-commerce websites nigeria, b2b, non-profit, consulting, services, computer systems design and related services, web development, customer retention, online presence, project management, customer engagement, software development, information technology & services, online media, media, marketing & advertising, marketing, design, content management systems, search marketing, ux, consumer internet, consumers, internet, sales, advertising, graphic design, social media, web design, nonprofit organization management, productivity"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": true,
+      "posts": [
+        {
+          "title": "AI Chatbot to Automate your WordPress Website using WhatsApp, Facebook, Instagram & Telegram"
+        },
+        {
+          "title": "Tips for developing Learning Management System – LMS Websites in Nigeria"
+        },
+        {
+          "title": "Shipping to Nigeria: How I got my personal electronic shipped to Nigeria"
+        },
+        {
+          "title": "What does a successful E-commerce Website need in Nigeria?"
+        },
+        {
+          "title": "Business Opportunities during COVID-19 in Nigeria"
+        }
+      ],
+      "url": "https://cms.com.ng/blog"
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "Cloudflare DNS",
+      "CloudFlare Hosting",
+      "WordPress.org",
+      "YouTube",
+      "reCAPTCHA",
+      "Google Font API",
+      "Mobile Friendly",
+      "Gravity Forms",
+      "Woo Commerce",
+      "Android",
+      "Remote"
+    ],
+    "websiteWorks": true,
+    "aboutContent": "Contemporary Media Solutions (CMS) is a Business Website Development & Media Marketing Agency in Nigeria, registered under Corporate Affairs Commission as “Contem Media Solutions”.The aim of the Contemporary Media Solutions is to render strategic, innovative business solutions and marketing consultancy services to Startup and Small businesses that want to break into their service market as well as businesses that want to improve on and maintain their customer base using contemporary marketing strategies, services and tools through Websites, Graphics, Social Media and Mobile Apps.Our goal is to",
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [
+      "Active content marketing"
+    ],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "DAstore E-Commerce Platform",
+      "description": "Luxury e-commerce with 140+ products, payment processing, cart management",
+      "score": 60,
+      "reasons": [
+        "Industry: e-commerce",
+        "Industry: consumer"
+      ],
+      "techStack": "Next.js, MongoDB, REST API, JWT",
+      "scale": "140+ products, 7 categories"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 60,
+      "reasons": [
+        "Industry: marketing",
+        "Industry: digital marketing"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 55,
+      "reasons": [
+        "Industry: productivity",
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "blog",
+      "priority": "medium",
+      "content": "Recent post: \"AI Chatbot to Automate your WordPress Website using WhatsApp, Facebook, Instagram & Telegram\"",
+      "source": "https://cms.com.ng/blog"
+    },
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "DAstore E-Commerce Platform relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Emmanuel - quick question\n\nHi Emmanuel,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built DAstore E-Commerce Platform - Luxury e-commerce with 140+ products, payment processing, cart management.\n\nTech: Next.js, MongoDB, REST API, JWT | 140+ products, 7 categories\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Contemporary Media Solutions?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 70,
+    "level": "High",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Company info found",
+      "Active blog",
+      "Strong experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

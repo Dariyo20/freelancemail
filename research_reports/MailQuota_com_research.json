@@ -1,0 +1,67 @@
+{
+  "prospect": {
+    "firstName": "Peter",
+    "lastName": "Agbor",
+    "name": "Peter Agbor",
+    "title": "CEO",
+    "email": "peter.agbor@mailquota.com",
+    "company": "MailQuota.com",
+    "industry": "information technology & services",
+    "employees": "1",
+    "website": "https://mailquota.com",
+    "linkedIn": "http://www.linkedin.com/in/peter-agbor-8b34553b",
+    "companyLinkedIn": "http://www.linkedin.com/company/mailquota-com",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "it services & it consulting, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "it services",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [],
+  "angles": [],
+  "aiDraft": "⚠️ INSUFFICIENT DATA - Manual research required\n\nNo strong personalization angles found. Consider:\n1. Manual LinkedIn research\n2. Company website deep dive\n3. Recent news search\n4. Industry-specific research",
+  "confidence": {
+    "score": 47,
+    "level": "Low",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified"
+    ]
+  },
+  "recommendation": "MANUAL RESEARCH"
+}

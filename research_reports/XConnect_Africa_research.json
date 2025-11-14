@@ -1,0 +1,70 @@
+{
+  "prospect": {
+    "firstName": "Gerald",
+    "lastName": "Black",
+    "name": "Gerald Black",
+    "title": "CEO",
+    "email": "gerald@geraldblack.co",
+    "company": "XConnect Africa",
+    "industry": "information technology & services",
+    "employees": "3",
+    "website": "https://geraldblack.co",
+    "linkedIn": "http://www.linkedin.com/in/geraldblack-b4716953",
+    "companyLinkedIn": "http://www.linkedin.com/company/xconnectafrica",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "keywords": "technology, information & internet, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "Mobile Friendly",
+      "Intuit"
+    ],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": null,
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [],
+  "angles": [],
+  "aiDraft": "⚠️ INSUFFICIENT DATA - Manual research required\n\nNo strong personalization angles found. Consider:\n1. Manual LinkedIn research\n2. Company website deep dive\n3. Recent news search\n4. Industry-specific research",
+  "confidence": {
+    "score": 47,
+    "level": "Low",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified"
+    ]
+  },
+  "recommendation": "MANUAL RESEARCH"
+}

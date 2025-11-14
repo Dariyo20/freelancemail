@@ -1,0 +1,74 @@
+================================================================================
+🎯 RESEARCH REPORT: Naija Domains
+================================================================================
+
+📋 CONTACT INFO:
+  Name: Victor Nwachukwu
+  Title: CEO
+  Seniority: C suite
+  Email: victor@naijadomains.com ✅ VERIFIED
+  Company: Naija Domains
+  Industry: information technology & services
+  Size: 5 employees
+  Location: , Nigeria
+  Website: https://naijadomains.com ✅
+  LinkedIn: http://www.linkedin.com/in/victor-nwachukwu-42686915
+  Company LinkedIn: http://www.linkedin.com/company/naijadomains
+
+🎯 CONFIDENCE: High (71/100)
+📊 RECOMMENDATION: REVIEW
+Factors: Email verified by Apollo, Decision maker level, Website verified, Tech match: Google Analytics, Strong experience match
+
+💰 APOLLO DATA:
+  Tech Stack: WordPress.org, Mobile Friendly, Facebook Widget, Facebook Login (Connect), Varnish, Google Play, Facebook Custom Audiences, Bootstrap Framework, Google Tag Manager, Google Analytics
+
+🔍 FINDINGS:
+
+📊 ANALYSIS:
+  Stage: Early Stage Startup
+  Tech Stack Matches:
+    • Google Analytics → Durl URL Shortener
+
+🎯 EXPERIENCE MATCHES:
+  1. Durl URL Shortener (Score: 60)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: analytics, Tech: google analytics
+
+💡 PERSONALIZATION ANGLES:
+  1. [medium] tech: Tech stack match: Google Analytics (Durl URL Shortener)
+  2. [high] experience: Durl URL Shortener relevant to their industry
+
+================================================================================
+📧 GROQ AI-GENERATED EMAIL DRAFT
+================================================================================
+
+SUBJECT: Victor - quick question
+
+Hi Victor,
+
+I've been following information technology & services companies in Nigeria.
+
+I'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.
+
+Tech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections
+
+Noticed you use Google Analytics - I've worked with similar systems.
+
+Based in Nigeria too - always excited to support local tech growth.
+
+Ever need freelance dev support at Naija Domains?
+
+Best,
+David Ariyo
+Full Stack Developer | MERN Stack
+davidariyo109@gmail.com | (+234) 903-6184-863
+davidariyo.onrender.com
+
+================================================================================
+
+⚠️  ACTION: Spend 5-10 min reviewing
+  1. Visit website for more context
+  2. Check LinkedIn for recent posts/activity
+  3. Strengthen personalization
+  4. Then decide: send or skip

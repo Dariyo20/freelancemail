@@ -1,0 +1,94 @@
+{
+  "prospect": {
+    "firstName": "Tayo",
+    "lastName": "Sanni",
+    "name": "Tayo Sanni",
+    "title": "CEO",
+    "email": "tayo.sanni@millng.com",
+    "company": "Millenium Integrated Limited",
+    "industry": "information technology & services",
+    "employees": "7",
+    "website": "https://millng.com",
+    "linkedIn": "http://www.linkedin.com/in/tayo-sanni-922b1715",
+    "companyLinkedIn": "http://www.linkedin.com/company/millenium-integrated-limited",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "software development, information technology & services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "Nginx",
+      "Google Font API",
+      "Ubuntu",
+      "Apache",
+      "Mobile Friendly",
+      "reCAPTCHA",
+      "WordPress.org"
+    ],
+    "websiteWorks": true,
+    "aboutContent": "About Us\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\t\tBuilding smart, scalable ICT solutions for the public and enterprise sectors.\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\n\t\t\t\t\t\n\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\tWho We Are\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\t\tMillenium Integrated Limited is a full-spectrum ICT solutions and systems integration company with over 24 years of experience delivering enterprise-grade technologies to public institutions and private organizations. We specialize in digital infrastructure, geospatial systems, and automation platforms that power transformation at scale.\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t",
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 25,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "medium",
+      "content": "Dassage Communication Platform relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Tayo - quick question\n\nHi Tayo,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture.\n\nTech: React, Node.js, MongoDB, WebSocket | 100+ concurrent users\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Millenium Integrated Limited?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 58,
+    "level": "Medium",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Company info found",
+      "Moderate experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

@@ -1,0 +1,128 @@
+{
+  "prospect": {
+    "firstName": "Precious",
+    "lastName": "Aleaji",
+    "name": "Precious Aleaji",
+    "title": "CEO",
+    "email": "precious@stylebitt.com",
+    "company": "Stylebitt",
+    "industry": "information technology & services",
+    "employees": "5",
+    "website": "https://stylebitt.com",
+    "linkedIn": "http://www.linkedin.com/in/precious-aleaji-30743314b",
+    "companyLinkedIn": "http://www.linkedin.com/company/stylebitt",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "keywords": "software development, measurement management, measurement tracking, fashion order management, order and payment management, fashion retail, order and invoice automation, order management, app development, customer data security, business dashboard, order notifications, invoice and receipts, mobile app, order history, customer profiles, fashion business app, order fulfillment software, cash flow management, fashion business growth, order fulfillment, business growth tools, invoice creation, measurement data management, business management software, customer measurement storage, payment automation, order delivery tracking, order status updates, order history tracking, fashion invoicing software, fashion entrepreneur tools, business analytics, customer management, business reporting, debt tracking, fashion business analytics, order tracking, multi-location management, financial analytics, b2b, services, retail, computer systems design and related services, financial reporting, customer engagement, cloud computing, data security, digital transformation, inventory management, information technology & services, apps, mobile apps, enterprise software, enterprises, computer software, computer & network security"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "Blue Host",
+      "Microsoft Office 365",
+      "Google Font API",
+      "Mobile Friendly",
+      "WordPress.org",
+      "Google Tag Manager",
+      "Google Play",
+      "Nginx",
+      "Data Analytics",
+      "AI",
+      "Android"
+    ],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "DAstore E-Commerce Platform",
+      "description": "Luxury e-commerce with 140+ products, payment processing, cart management",
+      "score": 60,
+      "reasons": [
+        "Industry: retail",
+        "Industry: fashion"
+      ],
+      "techStack": "Next.js, MongoDB, REST API, JWT",
+      "scale": "140+ products, 7 categories"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 45,
+      "reasons": [
+        "Industry: analytics"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 35,
+      "reasons": [
+        "Industry: enterprise"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 25,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "DAstore E-Commerce Platform relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Precious - quick question\n\nHi Precious,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built DAstore E-Commerce Platform - Luxury e-commerce with 140+ products, payment processing, cart management.\n\nTech: Next.js, MongoDB, REST API, JWT | 140+ products, 7 categories\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at Stylebitt?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 59,
+    "level": "Medium",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Strong experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

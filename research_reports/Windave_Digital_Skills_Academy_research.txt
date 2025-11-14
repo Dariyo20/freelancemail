@@ -1,0 +1,80 @@
+================================================================================
+🎯 RESEARCH REPORT: Windave Digital Skills Academy
+================================================================================
+
+📋 CONTACT INFO:
+  Name: Emmanuel Agbachi
+  Title: CEO
+  Seniority: C suite
+  Email: emmanuel@digitalskillsacademyng.com ✅ VERIFIED
+  Company: Windave Digital Skills Academy
+  Industry: information technology & services
+  Size: 3 employees
+  Location: Abuja, Federal Capital Territory, Nigeria
+  Website: https://digitalskillsacademyng.com ✅
+  LinkedIn: http://www.linkedin.com/in/emmanuel-agbachi
+  Company LinkedIn: http://www.linkedin.com/company/digital-skills-academy
+
+🎯 CONFIDENCE: Medium (64/100)
+📊 RECOMMENDATION: REVIEW
+Factors: Email verified by Apollo, Decision maker level, Website verified, Company info found, Strong experience match
+
+💰 APOLLO DATA:
+  Tech Stack: Google Tag Manager, Google Font API, Facebook Custom Audiences, Facebook Login (Connect), DoubleClick, Woo Commerce, Google Dynamic Remarketing, Google AdSense, Facebook Widget, DoubleClick Conversion
+
+🔍 FINDINGS:
+
+  ℹ️  ABOUT: WHO WE AREWindave Digital Skills Academy is a digital skills education provider based in Abuja, Nigeria. We provide online, in-person and hybrid practical training on various digital skills such as Digital Marketing, Affiliate Marketing, Web Design/Development, Programming/Coding, Social Media Marke...
+
+📊 ANALYSIS:
+  Stage: Early Stage Startup
+  Industry Match: saas
+
+🎯 EXPERIENCE MATCHES:
+  1. Durl URL Shortener (Score: 125)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: marketing, Industry: analytics, Industry: digital marketing
+  2. DAstore E-Commerce Platform (Score: 55)
+     Luxury e-commerce with 140+ products, payment processing, cart management
+     Tech: Next.js, MongoDB, REST API, JWT
+     Why: Industry: e-commerce, Industry: consumer
+  3. Dassage Communication Platform (Score: 50)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: remote work, Industry: software
+
+💡 PERSONALIZATION ANGLES:
+  1. [high] experience: Durl URL Shortener relevant to their saas
+
+================================================================================
+📧 GROQ AI-GENERATED EMAIL DRAFT
+================================================================================
+
+SUBJECT: Emmanuel - quick question
+
+Hi Emmanuel,
+
+I've been following information technology & services companies in Nigeria.
+
+I'm David Ariyo, Full Stack Developer. Recently built Durl URL Shortener - URL shortening with analytics, rate limiting, thousands of monthly redirections.
+
+Tech: Next.js, Node.js, MongoDB, SHA-256 | Thousands of monthly redirections
+
+Based in Nigeria too - always excited to support local tech growth.
+
+Ever need freelance dev support at Windave Digital Skills Academy?
+
+Best,
+David Ariyo
+Full Stack Developer | MERN Stack
+davidariyo109@gmail.com | (+234) 903-6184-863
+davidariyo.onrender.com
+
+================================================================================
+
+⚠️  ACTION: Spend 5-10 min reviewing
+  1. Visit website for more context
+  2. Check LinkedIn for recent posts/activity
+  3. Strengthen personalization
+  4. Then decide: send or skip

@@ -1,0 +1,125 @@
+{
+  "prospect": {
+    "firstName": "Abraham",
+    "lastName": "Oluwambe",
+    "name": "Abraham Oluwambe",
+    "title": "CEO",
+    "email": "abrahamoluwambe@lifi.net.ng",
+    "company": "LiFi.net",
+    "industry": "information technology & services",
+    "employees": "4",
+    "website": "https://lifi.net.ng",
+    "linkedIn": "http://www.linkedin.com/in/abraham-oluwambe-883b8824",
+    "companyLinkedIn": "http://www.linkedin.com/company/lifingnet",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "keywords": "technology, information & internet, overseas branch connectivity, private leased line, fiber axes in lagos, mpls, network security, point-to-point private line, lagos internet provider, smes internet solutions, sub-second path repair, bandwidth on demand, secure connectivity, business data exchange, wireless internet, content delivery networks (cdns), low jitter connections, layer 2 ethernet, data exchange, fiber laying, low latency, ethernet circuits, nigeria internet exchange, network infrastructure, 24/7 support, internet service provider, peering connection, layer 3 services, data center services, sd-wan, video conferencing, part-rate bandwidths, secure connections, jitter-free connections, network monitoring, gaming platforms peering, virtual 'pipes', fiber backbone, peering, microsoft azure peering, overlay sd-wan technology, telecommunications, support services, private circuits, affordable internet, enterprise connectivity, smes services, dedicated internet access, reliable internet, private server housing, direct microsoft cloud connection, nigeria internet exchange membership, information technology and services, fiber internet, iplc, unmetered bandwidth, point-to-multi-point connectivity, third-party server housing, fiber splicing, broadband connectivity, vpn-free, vpn-free connections, high-speed internet, media services, private extension circuits, data center, b2b, services, wired and wireless telecommunications carriers (except satellite), information technology & services, computer & network security, computer software, internet service providers"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": true,
+      "posts": [
+        {
+          "title": "Digital Realty Expands with Launch of LKK2 Data Center in Lagos"
+        },
+        {
+          "title": "What Does “Unlimited Internet” Really Mean?"
+        },
+        {
+          "title": "Why Your Internet Is Slow — And What You Can Do About It"
+        },
+        {
+          "title": "One Connection at a Time - LiFiNet at NOVACOM Summit, Diani Kenya"
+        }
+      ],
+      "url": "https://lifi.net.ng/blog"
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "Google Cloud Hosting",
+      "Varnish",
+      "Wix",
+      "Mobile Friendly"
+    ],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "telecommunications",
+    "growthSignals": [
+      "Active content marketing"
+    ],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 85,
+      "reasons": [
+        "Industry: communication",
+        "Industry: telecommunications",
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    },
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 25,
+      "reasons": [
+        "Industry: enterprise"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    }
+  ],
+  "angles": [
+    {
+      "type": "blog",
+      "priority": "medium",
+      "content": "Recent post: \"Digital Realty Expands with Launch of LKK2 Data Center in Lagos\"",
+      "source": "https://lifi.net.ng/blog"
+    },
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "Dassage Communication Platform relevant to their telecommunications"
+    }
+  ],
+  "aiDraft": "SUBJECT: Abraham - quick question\n\nHi Abraham,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture.\n\nTech: React, Node.js, MongoDB, WebSocket | 100+ concurrent users\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at LiFi.net?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 65,
+    "level": "High",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Active blog",
+      "Strong experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

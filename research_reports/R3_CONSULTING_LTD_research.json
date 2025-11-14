@@ -1,0 +1,140 @@
+{
+  "prospect": {
+    "firstName": "Gideon",
+    "lastName": "Makinwa",
+    "name": "Gideon Makinwa",
+    "title": "CEO",
+    "email": "gideon@r3consultingltd.com",
+    "company": "R3 CONSULTING LTD",
+    "industry": "information technology & services",
+    "employees": "10",
+    "website": "https://r3consultingltd.com",
+    "linkedIn": "http://www.linkedin.com/in/gideon-makinwa-aat-aca-70225845",
+    "companyLinkedIn": "http://www.linkedin.com/company/r3consultingltd",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "sap business one, sap customer checkout, sap business by design, it services & it consulting, software customization, enterprise software, cloud-native erp, it consulting, digital transformation, sap s4/hana cloud, cloud-based erp, sap integration services, enterprise software solutions, digital solutions, computec processforce, transportation logistics sap, sap crystal reports, sap crystal report, sap analytics, magento ecommerce, cloud computing, software implementation, software support, enterprise software for manufacturing, digital transformation services, sap localized solutions nigeria, sap integration, energy, sap s4/hana cloud nigeria, sap saas deployment nigeria, business automation, sap industry solutions nigeria, information technology and services, software support services, real estate management software, sap business bydesign africa, user adoption support, sap industry-specific modules, sap field service management, business process integration, cloud erp deployment, retail erp solutions, business support, enterprise application development, industry focus, industry-specific sap solutions, business intelligence tools, it solutions nigeria, nigeria it consulting, consulting services, erp for energy sector, software development, software consulting, custom development, industry-specific solutions, enterprise resource planning, public sector, software training, software project management, cloud erp, software implementation support, sap analytics for africa, nigeria it services, cloud software solutions, it infrastructure, software deployment, engineering industry sap, sap business bydesign, business process automation, wholesale distribution erp, it consulting services, retail, business consulting, sap project support africa, sap analytics cloud, sap erp, business process management, public sector sap solutions, manufacturing, business efficiency tools, sap business one sme, erp solutions, business transformation, cloud erp nigeria, sap cloud migration nigeria, business support services, custom software development, logistics, sap custom development nigeria, b2b, e-commerce, consulting, services, computer systems design and related services, information technology & services, enterprises, computer software, management consulting, oil & energy, mechanical or industrial engineering, logistics & supply chain, consumer internet, consumers, internet"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "reCAPTCHA",
+      "Google Tag Manager",
+      "WordPress.org",
+      "Google Analytics",
+      "Mobile Friendly",
+      "Google Font API",
+      "Apache",
+      "SAP"
+    ],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [],
+    "techStackMatch": [
+      {
+        "tech": "Google Analytics",
+        "project": "Durl URL Shortener"
+      }
+    ]
+  },
+  "matches": [
+    {
+      "project": "DAstore E-Commerce Platform",
+      "description": "Luxury e-commerce with 140+ products, payment processing, cart management",
+      "score": 120,
+      "reasons": [
+        "Industry: e-commerce",
+        "Industry: retail",
+        "Industry: consumer"
+      ],
+      "techStack": "Next.js, MongoDB, REST API, JWT",
+      "scale": "140+ products, 7 categories"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 85,
+      "reasons": [
+        "Industry: analytics",
+        "Industry: saas",
+        "Tech: google analytics"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    },
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 50,
+      "reasons": [
+        "Industry: saas",
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    },
+    {
+      "project": "Crewmanage HR System",
+      "description": "HR management with scheduling, payroll, workflow automation, RBAC",
+      "score": 35,
+      "reasons": [
+        "Industry: enterprise"
+      ],
+      "techStack": "React, Node.js, MongoDB, Role-based access",
+      "scale": "Enterprise HR features"
+    }
+  ],
+  "angles": [
+    {
+      "type": "tech",
+      "priority": "medium",
+      "content": "Tech stack match: Google Analytics (Durl URL Shortener)"
+    },
+    {
+      "type": "experience",
+      "priority": "high",
+      "content": "DAstore E-Commerce Platform relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Gideon - quick question\n\nHi Gideon,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built DAstore E-Commerce Platform - Luxury e-commerce with 140+ products, payment processing, cart management.\n\nTech: Next.js, MongoDB, REST API, JWT | 140+ products, 7 categories\n\nNoticed you use Google Analytics - I've worked with similar systems.\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at R3 CONSULTING LTD?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 71,
+    "level": "High",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Tech match: Google Analytics",
+      "Strong experience match"
+    ]
+  },
+  "recommendation": "REVIEW"
+}

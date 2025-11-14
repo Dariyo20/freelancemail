@@ -1,0 +1,111 @@
+{
+  "prospect": {
+    "firstName": "Mark",
+    "lastName": "Afolabi",
+    "name": "Mark Afolabi",
+    "title": "CEO",
+    "email": "mark@stablestack.xyz",
+    "company": "StableStack",
+    "industry": "information technology & services",
+    "employees": "1",
+    "website": "https://stablestack.xyz",
+    "linkedIn": "http://www.linkedin.com/in/afolabimark",
+    "companyLinkedIn": "http://www.linkedin.com/company/stablestack",
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "city": "",
+    "state": "",
+    "country": "Nigeria",
+    "keywords": "software development, cryptocurrency, crypto payment solutions, fintech, payment apis, secure api, blockchain security, crypto settlement, blockchain technology, cryptocurrency payments, stablecoin liquidity, blockchain api, stablecoin transfer, payment processing, crypto transaction api, secure transactions, api developer tools, crypto payment security, decentralized payments, crypto payment gateway, payment infrastructure, stablecoin settlement, crypto infrastructure, stablecoin api, fintech innovation, payment platform, stablecoin payments, blockchain integration, api security, api-first, defi, financial technology, crypto compliance, blockchain payment protocol, digital payments, api integration, digital asset management, stablecoin, crypto wallet integration, payment gateway, digital currency, real-time payments, b2b, services, financial transactions processing, reserve, and clearinghouse activities, information technology & services, finance technology, financial services"
+  },
+  "findings": {
+    "news": [],
+    "nigerianTechNews": [],
+    "pressReleases": [],
+    "blog": {
+      "found": false,
+      "posts": []
+    },
+    "linkedInPosts": [],
+    "techStack": [
+      "NSOne",
+      "Gmail",
+      "Amazon AWS",
+      "Google Tag Manager",
+      "Mobile Friendly"
+    ],
+    "websiteWorks": true,
+    "aboutContent": null,
+    "careersPage": false
+  },
+  "apollo": {
+    "emailVerified": true,
+    "emailConfidence": "unknown",
+    "catchAll": false,
+    "seniority": "C suite",
+    "departments": "C-Suite",
+    "funding": {
+      "total": "",
+      "latest": "",
+      "latestAmount": "",
+      "lastRaised": ""
+    }
+  },
+  "analysis": {
+    "companyStage": "Early Stage Startup",
+    "industryMatch": "saas",
+    "growthSignals": [],
+    "techStackMatch": []
+  },
+  "matches": [
+    {
+      "project": "Dassage Communication Platform",
+      "description": "Real-time messaging with video calls, file sharing, WebSocket architecture",
+      "score": 30,
+      "reasons": [
+        "Industry: software"
+      ],
+      "techStack": "React, Node.js, MongoDB, WebSocket",
+      "scale": "100+ concurrent users"
+    },
+    {
+      "project": "DAstore E-Commerce Platform",
+      "description": "Luxury e-commerce with 140+ products, payment processing, cart management",
+      "score": 30,
+      "reasons": [
+        "Industry: fintech"
+      ],
+      "techStack": "Next.js, MongoDB, REST API, JWT",
+      "scale": "140+ products, 7 categories"
+    },
+    {
+      "project": "Durl URL Shortener",
+      "description": "URL shortening with analytics, rate limiting, thousands of monthly redirections",
+      "score": 25,
+      "reasons": [
+        "Industry: developer tools"
+      ],
+      "techStack": "Next.js, Node.js, MongoDB, SHA-256",
+      "scale": "Thousands of monthly redirections"
+    }
+  ],
+  "angles": [
+    {
+      "type": "experience",
+      "priority": "medium",
+      "content": "Dassage Communication Platform relevant to their saas"
+    }
+  ],
+  "aiDraft": "SUBJECT: Mark - quick question\n\nHi Mark,\n\nI've been following information technology & services companies in Nigeria.\n\nI'm David Ariyo, Full Stack Developer. Recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture.\n\nTech: React, Node.js, MongoDB, WebSocket | 100+ concurrent users\n\nBased in Nigeria too - always excited to support local tech growth.\n\nEver need freelance dev support at StableStack?\n\nBest,\nDavid Ariyo\nFull Stack Developer | MERN Stack\ndavidariyo109@gmail.com | (+234) 903-6184-863\ndavidariyo.onrender.com",
+  "confidence": {
+    "score": 53,
+    "level": "Low",
+    "factors": [
+      "Email verified by Apollo",
+      "Decision maker level",
+      "Website verified",
+      "Moderate experience match"
+    ]
+  },
+  "recommendation": "MANUAL RESEARCH"
+}

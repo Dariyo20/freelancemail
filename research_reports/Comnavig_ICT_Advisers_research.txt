@@ -1,0 +1,78 @@
+================================================================================
+🎯 RESEARCH REPORT: Comnavig ICT Advisers
+================================================================================
+
+📋 CONTACT INFO:
+  Name: Olufemi Adeagbo
+  Title: CEO
+  Seniority: C suite
+  Email: fadeagbo@comnavig.com ✅ VERIFIED
+  Company: Comnavig ICT Advisers
+  Industry: information technology & services
+  Size: 7 employees
+  Location: , Nigeria
+  Website: https://comnavig.com ✅
+  LinkedIn: http://www.linkedin.com/in/olufemi-adeagbo-a0664444
+  Company LinkedIn: http://www.linkedin.com/company/comnavig-ict-advisers
+
+🎯 CONFIDENCE: Medium (59/100)
+📊 RECOMMENDATION: REVIEW
+Factors: Email verified by Apollo, Decision maker level, Website verified, Strong experience match
+
+💰 APOLLO DATA:
+  Tech Stack: Gmail, Google Apps, Apache, Mobile Friendly, Google Plus, Bootstrap Framework, AI, IoT, Remote, Render
+
+🔍 FINDINGS:
+
+📊 ANALYSIS:
+  Stage: Early Stage Startup
+  Industry Match: saas
+
+🎯 EXPERIENCE MATCHES:
+  1. Dassage Communication Platform (Score: 80)
+     Real-time messaging with video calls, file sharing, WebSocket architecture
+     Tech: React, Node.js, MongoDB, WebSocket
+     Why: Industry: productivity, Industry: software, Tech: teams
+  2. Crewmanage HR System (Score: 30)
+     HR management with scheduling, payroll, workflow automation, RBAC
+     Tech: React, Node.js, MongoDB, Role-based access
+     Why: Industry: enterprise
+  3. Durl URL Shortener (Score: 30)
+     URL shortening with analytics, rate limiting, thousands of monthly redirections
+     Tech: Next.js, Node.js, MongoDB, SHA-256
+     Why: Industry: marketing
+
+💡 PERSONALIZATION ANGLES:
+  1. [high] experience: Dassage Communication Platform relevant to their saas
+
+================================================================================
+📧 GROQ AI-GENERATED EMAIL DRAFT
+================================================================================
+
+SUBJECT: Olufemi - quick question
+
+Hi Olufemi,
+
+I've been following information technology & services companies in Nigeria.
+
+I'm David Ariyo, Full Stack Developer. Recently built Dassage Communication Platform - Real-time messaging with video calls, file sharing, WebSocket architecture.
+
+Tech: React, Node.js, MongoDB, WebSocket | 100+ concurrent users
+
+Based in Nigeria too - always excited to support local tech growth.
+
+Ever need freelance dev support at Comnavig ICT Advisers?
+
+Best,
+David Ariyo
+Full Stack Developer | MERN Stack
+davidariyo109@gmail.com | (+234) 903-6184-863
+davidariyo.onrender.com
+
+================================================================================
+
+⚠️  ACTION: Spend 5-10 min reviewing
+  1. Visit website for more context
+  2. Check LinkedIn for recent posts/activity
+  3. Strengthen personalization
+  4. Then decide: send or skip
