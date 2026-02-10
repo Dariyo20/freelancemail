@@ -15,7 +15,14 @@ class ReplyDetectionService {
    */
   async initialize() {
     try {
-      const credentials = require('../gmail_credentials.json');
+      let credentials;
+      try {
+        credentials = require('../gmail_credentials.json');
+      } catch (err) {
+        console.warn('⚠ gmail_credentials.json not found, reply detection disabled');
+        console.log('   Manual reply marking will be required');
+        return false;
+      }
       const { client_id, client_secret, redirect_uris } = credentials.installed || credentials.web;
       
       this.oauth2Client = new google.auth.OAuth2(
