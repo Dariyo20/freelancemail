@@ -304,8 +304,8 @@ class EmailService {
           await this.sendEmail(lead, 1);
           stats.initial++;
           
-          // Small delay to avoid rate limits
-          await this.sleep(2000);
+          // Random delay (10-60 sec) to look human and avoid spam detection
+          await this.randomDelay();
         } catch (error) {
           stats.errors++;
         }
@@ -320,8 +320,8 @@ class EmailService {
           await this.sendEmail(lead, nextStage);
           stats.followups++;
           
-          // Small delay
-          await this.sleep(2000);
+          // Random delay (10-60 sec) to look human
+          await this.randomDelay();
         } catch (error) {
           stats.errors++;
         }
@@ -344,6 +344,18 @@ class EmailService {
    */
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
+  /**
+   * Utility: Random delay (10-60 seconds)
+   * Makes email sending look more human and avoids spam detection
+   */
+  randomDelay() {
+    const minDelay = 10000; // 10 seconds
+    const maxDelay = 60000; // 60 seconds
+    const randomMs = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
+    console.log(`   ⏱️  Waiting ${Math.floor(randomMs / 1000)} seconds...`);
+    return this.sleep(randomMs);
   }
 }
 

@@ -46,19 +46,27 @@ class AutomationWorker {
       
       console.log('🚀 Starting Automation Worker...\n');
       
-      // Task 1: Process email queue (every 2 hours during business hours)
-      // Runs at: 9am, 11am, 1pm, 3pm, 5pm (Mon-Fri)
-      const emailTask = cron.schedule('0 9,11,13,15,17 * * 1-5', async () => {
-        console.log('\n⏰ Running scheduled email task...');
-        try {
-          await emailService.processQueue(20);
-        } catch (error) {
-          console.error('Email task error:', error.message);
+      // Task 1: Process email queue (optimized timing for better engagement)
+      // Runs at: 9am, 10:30am, 12pm, 2pm, 4pm (Mon-Fri)
+      // Avoids 5pm dead zone and post-lunch slump
+      const emailTask = cron.schedule('0,30 9,10,12,14,16 * * 1-5', async () => {
+        const hour = new Date().getHours();
+        const min = new Date().getMinutes();
+        // Only run at: 9:00, 10:30, 12:00, 14:00, 16:00
+        if ((hour === 9 && min === 0) || (hour === 10 && min === 30) || 
+            (hour === 12 && min === 0) || (hour === 14 && min === 0) || 
+            (hour === 16 && min === 0)) {
+          console.log('\n⏰ Running scheduled email task...');
+          try {
+            await emailService.processQueue(20);
+          } catch (error) {
+            console.error('Email task error:', error.message);
+          }
         }
       });
       
       this.tasks.push({ name: 'Email Queue', task: emailTask });
-      console.log('✓ Email Queue scheduled (9am, 11am, 1pm, 3pm, 5pm Mon-Fri)');
+      console.log('✓ Email Queue scheduled (9am, 10:30am, 12pm, 2pm, 4pm Mon-Fri)');
       
       // Task 2: Check for replies (every hour during business hours)
       // Runs every hour from 9am to 6pm (Mon-Fri)
