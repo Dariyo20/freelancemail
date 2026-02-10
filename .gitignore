@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Gmail Credentials (DO NOT COMMIT)
+gmail_credentials.json
+gmail_token.json
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# Database
+*.db
+*.sqlite
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Cache
+cache/
+.cache/
+
+# Processed files (optional - keep in git if you want history)
+# processed/
+
+# Research reports (optional - these can be large)
+research_reports/*.json
+research_reports/*.txt
+
+# Email drafts
+email_drafts/
+
+# Old files (your legacy implementation)
+lead_automation.js
+email_sender.js
+gmail_draft_sender.js
+test-gmail.js
+sent_emails.json

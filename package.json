@@ -1,14 +1,39 @@
 {
+  "name": "lead-automation",
+  "version": "2.0.0",
+  "description": "Automated outreach + email automation + lead handling system",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "worker": "node worker.js",
+    "dev": "nodemon server.js",
+    "import": "node scripts/importLeads.js",
+    "send-emails": "node scripts/sendEmails.js",
+    "check-replies": "node scripts/checkReplies.js",
+    "seed-blacklist": "node scripts/seedBlacklist.js",
+    "reset": "node scripts/resetDatabase.js"
+  },
+  "keywords": [
+    "lead-automation",
+    "email-automation",
+    "outreach",
+    "crm"
+  ],
+  "author": "David Ariyo",
+  "license": "ISC",
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
     "axios": "^1.12.2",
     "cheerio": "^1.1.2",
+    "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "googleapis": "^161.0.0",
-    "nodemailer": "^7.0.6",
-    "pdfkit": "^0.17.2",
-    "puppeteer": "^24.22.0"
+    "mongoose": "^8.0.0",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^7.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
