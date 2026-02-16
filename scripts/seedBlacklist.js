@@ -7,7 +7,12 @@ const Lead = require('../models/Lead');
 const RESPONDED_EMAILS = [
   'ab@trydecide.co',
   'adewalea@synercomgroup.net',
-  'maro.malaka@planteer.cc'
+  'maro.malaka@planteer.cc',
+  'MAILER-DAEMON@worldbankgroup.org',
+  'stylebitt@gmail.com',
+  'babalola.stephen@prints48.com',
+  'aogunsakin@gavelintl.com',
+  'ezeani@ruut.chat'
 ];
 
 async function seedRespondedEmails() {

@@ -1,0 +1,56 @@
+name: Daily Email Campaign
+
+on:
+  # Send emails at 9 AM WAT (8 AM UTC) on weekdays
+  schedule:
+    - cron: '0 8 * * 1-5'  # Monday to Friday at 9 AM WAT
+  
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  send-daily-emails:
+    name: Send Daily Outreach Emails
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup Gmail credentials
+        env:
+          GMAIL_CREDENTIALS: ${{ secrets.GMAIL_CREDENTIALS }}
+          GMAIL_TOKEN: ${{ secrets.GMAIL_TOKEN }}
+        run: |
+          echo "$GMAIL_CREDENTIALS" > gmail_credentials.json
+          echo "$GMAIL_TOKEN" > gmail_token.json
+
+      - name: Setup environment variables
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        run: |
+          echo "MONGODB_URI=$MONGODB_URI" >> .env
+          echo "PERPLEXITY_API_KEY=$PERPLEXITY_API_KEY" >> .env
+          echo "FIRECRAWL_API_KEY=$FIRECRAWL_API_KEY" >> .env
+
+      - name: Send emails
+        run: npm run send-emails
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: sent daily emails [automated]"
+          git push || echo "No changes to push"
