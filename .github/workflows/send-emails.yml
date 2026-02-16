@@ -39,6 +39,7 @@ jobs:
           SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           SENDER_NAME: ${{ secrets.SENDER_NAME }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
