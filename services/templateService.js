@@ -57,7 +57,22 @@ class TemplateService {
     personalized = personalized.replace(/\{\{industry\}\}/gi, lead.industry || '');
     personalized = personalized.replace(/\{\{title\}\}/gi, lead.title || '');
     
+    // Dynamic quarter tokens
+    const { currentQuarter, nextQuarter } = this.getCurrentQuarters();
+    personalized = personalized.replace(/\{\{currentQuarter\}\}/gi, currentQuarter);
+    personalized = personalized.replace(/\{\{nextQuarter\}\}/gi, nextQuarter);
+    
     return personalized;
+  }
+  
+  /**
+   * Get current quarter and next quarter for dynamic content
+   */
+  getCurrentQuarters() {
+    const now = new Date();
+    const currentQuarter = Math.floor(now.getMonth() / 3) + 1;
+    const nextQuarter = currentQuarter === 4 ? 1 : currentQuarter + 1;
+    return { currentQuarter, nextQuarter };
   }
   
   /**
@@ -190,7 +205,7 @@ David Ariyo`
 
 I know inboxes get crazy, so I wanted to reach out one more time.
 
-If {{company}} is exploring any web development projects in Q1/Q2, I'd love to be considered.
+If {{company}} is exploring any web development projects in Q{{currentQuarter}}/Q{{nextQuarter}}, I'd love to be considered.
 
 Otherwise, I'll stop bothering you! 😊
 
@@ -291,21 +306,20 @@ Full Stack Developer`
    */
   async updateTemplateStats(templateName, replied = false) {
     try {
-      const update = replied 
-        ? { $inc: { total_replies: 1 } }
-        : {};
-      
-      const template = await Template.findOneAndUpdate(
-        { name: templateName },
-        update,
-        { new: true }
-      );
-      
+      if (replied) {
+        await Template.findOneAndUpdate(
+          { name: templateName },
+          { $inc: { total_replies: 1 } }
+        );
+      }
+
+      const template = await Template.findOne({ name: templateName });
+
       if (template && template.total_sent > 0) {
         template.reply_rate = (template.total_replies / template.total_sent) * 100;
         await template.save();
       }
-      
+
     } catch (error) {
       console.error('Error updating template stats:', error.message);
     }

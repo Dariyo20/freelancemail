@@ -12,7 +12,18 @@ const RESPONDED_EMAILS = [
   'stylebitt@gmail.com',
   'babalola.stephen@prints48.com',
   'aogunsakin@gavelintl.com',
-  'ezeani@ruut.chat'
+  'ezeani@ruut.chat',
+  'olatunjio@nutshell.com',
+  'special@strategicmediainc.com',
+  'alfreddivine@res00lvetech.com',
+  'popoola@venueri.com',
+  'christianchristmas@microihost.com',
+  'obi@myclassspace.com',
+  'victor@infoorbit.net',
+  'uche.ottah@vowchat.ai',
+  'olusola@trafficaraves.com',
+  'theo@vowchat.ai',
+  'amala@etailhero.com'
 ];
 
 async function seedRespondedEmails() {
