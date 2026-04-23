@@ -1,7 +1,7 @@
 {
   "name": "lead-automation",
   "version": "2.0.0",
-  "description": "Automated outreach + email automation + lead handling system",
+  "description": "Striat Dollar Pipeline - studio client acquisition automation",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -10,6 +10,8 @@
     "import": "node scripts/importLeads.js",
     "send-emails": "node scripts/sendEmails.js",
     "check-replies": "node scripts/checkReplies.js",
+    "test-alert": "node scripts/testAlert.js",
+    "backfill": "node scripts/backfillLeads.js",
     "seed-blacklist": "node scripts/seedBlacklist.js",
     "reset": "node scripts/resetDatabase.js"
   },
@@ -31,7 +33,8 @@
     "googleapis": "^161.0.0",
     "mongoose": "^8.0.0",
     "node-cron": "^3.0.3",
-    "nodemailer": "^7.0.6"
+    "nodemailer": "^7.0.6",
+    "resend": "^4.8.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

@@ -1,35 +1,35 @@
 const Template = require('../models/Template');
 
 class TemplateService {
-  
+
   /**
    * Get a random template for a specific stage
-   * @param {String} stage - 'initial', 'followup_1', 'followup_2', 'followup_3'
+   * @param {String} stage - 'initial', 'followup_1', 'followup_2'
    * @returns {Object} Template with random subject and body
    */
   async getTemplate(stage) {
     try {
       const templates = await Template.find({ type: stage, active: true });
-      
+
       if (!templates || templates.length === 0) {
         throw new Error(`No active templates found for stage: ${stage}`);
       }
-      
+
       // Pick random template
       const template = templates[Math.floor(Math.random() * templates.length)];
-      
+
       // Pick random subject
       const subject = template.subjects[Math.floor(Math.random() * template.subjects.length)];
-      
+
       // Pick random body
       const body = template.bodies[Math.floor(Math.random() * template.bodies.length)];
-      
+
       // Update usage stats
       await Template.findByIdAndUpdate(template._id, {
         $inc: { times_used: 1, total_sent: 1 },
         $set: { last_used_at: new Date() }
       });
-      
+
       return {
         template_name: template.name,
         subject,
@@ -40,7 +40,7 @@ class TemplateService {
       throw error;
     }
   }
-  
+
   /**
    * Personalize email content with lead data
    * @param {String} content - Email content with tokens
@@ -49,22 +49,22 @@ class TemplateService {
    */
   personalize(content, lead) {
     let personalized = content;
-    
+
     // Replace tokens
     personalized = personalized.replace(/\{\{first_name\}\}/gi, lead.first_name || '');
     personalized = personalized.replace(/\{\{last_name\}\}/gi, lead.last_name || '');
     personalized = personalized.replace(/\{\{company\}\}/gi, lead.company || '');
     personalized = personalized.replace(/\{\{industry\}\}/gi, lead.industry || '');
     personalized = personalized.replace(/\{\{title\}\}/gi, lead.title || '');
-    
+
     // Dynamic quarter tokens
     const { currentQuarter, nextQuarter } = this.getCurrentQuarters();
     personalized = personalized.replace(/\{\{currentQuarter\}\}/gi, currentQuarter);
     personalized = personalized.replace(/\{\{nextQuarter\}\}/gi, nextQuarter);
-    
+
     return personalized;
   }
-  
+
   /**
    * Get current quarter and next quarter for dynamic content
    */
@@ -74,220 +74,214 @@ class TemplateService {
     const nextQuarter = currentQuarter === 4 ? 1 : currentQuarter + 1;
     return { currentQuarter, nextQuarter };
   }
-  
+
+  /**
+   * Detect if existing templates are v1 (freelancer MERN positioning)
+   */
+  async isV1Templates() {
+    const templates = await Template.find({});
+    for (const t of templates) {
+      for (const body of t.bodies) {
+        if (body.includes('MERN') || body.includes('Full Stack Developer')) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Seed Striat studio templates (v2)
+   * Deletes all existing templates and inserts new studio sequence
+   */
+  async seedStudioTemplates() {
+    // Wipe existing templates
+    await Template.deleteMany({});
+    console.log('  Cleared old templates');
+
+    const templates = [
+      // INITIAL EMAIL (Day 0)
+      {
+        name: 'Striat - Initial - MVP Offer',
+        type: 'initial',
+        subjects: [
+          'Quick one for {{company}}',
+          '{{first_name}} \u2014 shipping something in the next month?',
+          'MVP for {{company}}, 1-3 weeks',
+          'Production code for {{company}}',
+          '{{first_name}}, 3 weeks to a live MVP'
+        ],
+        bodies: [
+          `Hi {{first_name}},
+
+Saw what you're building at {{company}}. Sharp positioning.
+
+Quick context on why I'm writing: I run Striat, a small engineering studio. We ship production MVPs for funded founders in 1-3 weeks, flat rate from $10K.
+
+A quick proof point before I take more of your time \u2014 I'm the solo engineer behind Daily Manna's backend, the Deeper Life devotional platform, now serving millions of daily users across 190+ countries in 12+ languages. Also shipped a healthcare coordination platform with QuickBooks integration that's tracking millions in live revenue for a private medical network.
+
+If you're planning to ship something for {{company}} in the next 30-60 days, the work is at striat.dev. Reply if it's relevant and I'll send you the three projects closest to what you're building.
+
+If the timing's not right, no worries \u2014 I'll close the loop politely in two weeks and leave you alone.
+
+Dave
+Striat \u00b7 striat.dev`,
+
+          `Hi {{first_name}},
+
+Direct pitch: Striat builds production MVPs for founders like you, 1-3 weeks, flat rate from $10K, end-to-end delivery including infrastructure and handover.
+
+Why you should keep reading for 30 more seconds: I'm the solo engineer behind Daily Manna's backend \u2014 the Deeper Life devotional platform now serving millions of daily users across 190+ countries in 12+ languages. I also shipped a full healthcare coordination system with QuickBooks integration tracking millions in live revenue.
+
+If {{company}} needs something shipped quickly and reliably \u2014 not a prototype, production code you can actually deploy to paying users \u2014 the studio's work is at striat.dev.
+
+Reply if it's relevant to what you're building, and I'll send the three closest case studies. If not, no follow-up spam from me.
+
+Dave
+Striat \u00b7 striat.dev`,
+
+          `{{first_name}},
+
+Short version: I run Striat, an engineering studio. You might need what we do.
+
+Production MVPs in 1-3 weeks, flat rate from $10K. End-to-end \u2014 architecture, build, deploy, documentation. No hourly billing, no scope creep.
+
+Proof: solo engineer on Daily Manna's backend \u2014 the Deeper Life devotional platform now serving millions of daily users across 190+ countries in 12+ languages. Also shipped a healthcare platform with QuickBooks revenue integration for a private clinical network, tracking millions in invoices.
+
+The studio's selected work is at striat.dev. If {{company}} has something that needs building in the next month or two, reply and I'll send you the three most relevant case studies.
+
+Dave
+Striat \u00b7 striat.dev`
+        ],
+        active: true
+      },
+
+      // FOLLOW-UP 1 (Day 5)
+      {
+        name: 'Striat - Followup 1 - Direct Value',
+        type: 'followup_1',
+        subjects: [
+          'Re: Quick one for {{company}}',
+          '{{first_name}} \u2014 one thought',
+          'Following up, {{company}}'
+        ],
+        bodies: [
+          `{{first_name}},
+
+Quick follow-up. You're busy, so I'll keep this short.
+
+If {{company}} has a product you need live in the next 4-6 weeks and you're either between engineering hires, waiting on an offshore team that keeps slipping deadlines, or trying to stretch a junior team past their limit \u2014 Striat can ship the whole thing in 1-3 weeks.
+
+Two quick questions you can reply with yes/no:
+1. Is there something you need shipped in the next 60 days?
+2. Is the blocker engineering capacity or speed?
+
+If both answers are yes, we should talk. If not, I'll leave you alone.
+
+Dave
+Striat \u00b7 striat.dev`,
+
+          `Hi {{first_name}},
+
+Bumping my earlier note in case it got buried.
+
+One thing I didn't mention in the first email: every Striat engagement is scoped and priced flat before any commitment. You see the full quote, timeline, and deliverables in writing before you spend a cent. No open timesheets, no surprise invoices.
+
+If {{company}} has something concrete to build, the work is at striat.dev. Happy to scope a quote if you want to see what that looks like for your specific project.
+
+Dave
+Striat \u00b7 striat.dev`,
+
+          `{{first_name}},
+
+Still here, still available. One last useful thing from me:
+
+The typical shape of a Striat engagement for a founder at your stage \u2014 discovery call, written scope, flat quote, 1-3 week build, production deployment, handover with documentation and two weeks of post-launch support. Everything is written before the build starts. No surprises.
+
+If that's useful to {{company}}, reply. If the timing isn't right, I'll close the loop next week and leave you alone.
+
+Dave
+Striat \u00b7 striat.dev`
+        ],
+        active: true
+      },
+
+      // FOLLOW-UP 2 (Day 12 - FINAL)
+      {
+        name: 'Striat - Followup 2 - Final Open Door',
+        type: 'followup_2',
+        subjects: [
+          'Closing the loop, {{first_name}}',
+          '{{company}} \u2014 keeping the door open',
+          'Final note from Striat'
+        ],
+        bodies: [
+          `{{first_name}},
+
+Closing the loop on this thread.
+
+If {{company}} ends up needing production engineering in the next few months \u2014 MVP build, infrastructure work, or a specific system shipped end-to-end \u2014 Striat is at striat.dev.
+
+The studio keeps a tight pipeline. We take on one new engagement a month. If the timing aligns later, reach out directly and I'll prioritize your slot.
+
+Dave
+Striat \u00b7 striat.dev`,
+
+          `{{first_name}},
+
+Last note from me on this thread. No follow-up after this.
+
+If {{company}} needs engineering work shipped in the next quarter, you know where to find the studio. Reach out whenever the timing makes sense.
+
+Dave
+Striat \u00b7 striat.dev`,
+
+          `Hi {{first_name}},
+
+Final email on this sequence. Since I said I wouldn't follow up aggressively, I'm keeping that.
+
+If {{company}} has engineering work coming up \u2014 MVP, infrastructure, or a specific system \u2014 the door is open. Reply anytime, doesn't have to be now.
+
+Dave
+Striat \u00b7 striat.dev`
+        ],
+        active: true
+      }
+    ];
+
+    await Template.insertMany(templates);
+    console.log('\u2713 Striat studio templates seeded (3 stages: initial, followup_1, followup_2)');
+  }
+
   /**
    * Create default templates for all stages
+   * Auto-detects v1 templates and upgrades to v2 Striat studio sequence
    */
   async seedTemplates() {
     try {
-      const existingTemplates = await Template.countDocuments();
-      if (existingTemplates > 0) {
-        console.log('✓ Templates already exist, skipping seed...');
+      const existingCount = await Template.countDocuments();
+
+      if (existingCount === 0) {
+        console.log('  No templates found, seeding Striat studio templates...');
+        await this.seedStudioTemplates();
         return;
       }
-      
-      const templates = [
-        // INITIAL EMAIL TEMPLATES
-        {
-          name: 'Initial Outreach - General',
-          type: 'initial',
-          subjects: [
-            'Quick question about {{company}}',
-            '{{first_name}} - potential collaboration?',
-            'Helping {{company}} scale faster',
-            'Thought this might interest {{company}}',
-            '{{company}} + web development partnership'
-          ],
-          bodies: [
-            `Hi {{first_name}},
 
-I came across {{company}} and was impressed by what you're building in {{industry}}.
+      // Check for v1 templates (freelancer MERN positioning) and auto-upgrade
+      const isV1 = await this.isV1Templates();
+      if (isV1) {
+        console.log('  v1 templates detected (MERN/freelancer), upgrading to Striat studio v2...');
+        await this.seedStudioTemplates();
+        return;
+      }
 
-I'm a Full Stack Developer (MERN stack) specializing in building scalable web applications. I've recently delivered:
-• Real-time communication platforms with WebSocket
-• E-commerce systems processing 140+ products
-• HR management systems with workflow automation
-
-Would you be open to a quick chat about any upcoming projects where I could help {{company}} scale faster?
-
-Best regards,
-David Ariyo
-Full Stack Developer (MERN)`,
-
-            `Hi {{first_name}},
-
-Quick intro - I'm David, a Full Stack Developer specializing in React, Node.js, and MongoDB.
-
-I noticed {{company}} is in the {{industry}} space, and I've worked on similar projects involving real-time features, payment integrations, and scalable backends.
-
-Is {{company}} currently looking for development support or considering any new technical projects?
-
-Happy to share relevant case studies if helpful.
-
-Best,
-David`,
-
-            `Hi {{first_name}},
-
-I help {{industry}} companies build and scale their web applications using modern tech stacks (React, Node.js, MongoDB).
-
-Recent projects include:
-✓ Real-time messaging platform (WebSocket + JWT auth)
-✓ E-commerce system with payment gateway integration
-✓ HR automation with role-based access control
-
-Would love to learn more about {{company}}'s current tech roadmap and see if there's a fit.
-
-Available for a quick call this week?
-
-David Ariyo
-Full Stack Developer`
-          ],
-          active: true
-        },
-        
-        // FOLLOW-UP 1 (Day 3)
-        {
-          name: 'Follow-up 1 - Soft Nudge',
-          type: 'followup_1',
-          subjects: [
-            'Re: {{company}}',
-            'Following up - {{first_name}}',
-            'Still interested in connecting',
-            'Quick check-in'
-          ],
-          bodies: [
-            `Hi {{first_name}},
-
-Just following up on my previous email about potential development support for {{company}}.
-
-I understand you're likely busy - no pressure at all. If now isn't the right time, I'm happy to reconnect in a few months.
-
-Would a quick 15-minute call work this week?
-
-Best,
-David`,
-
-            `{{first_name}},
-
-Wanted to bump this up in your inbox in case it got buried.
-
-Still happy to discuss how I might be able to help {{company}} with any web development needs.
-
-Let me know if you'd like to chat!
-
-David`,
-
-            `Hi {{first_name}},
-
-Following up on my note about development services for {{company}}.
-
-Even if you don't have immediate needs, I'd love to stay connected for future opportunities.
-
-Sound good?
-
-David Ariyo`
-          ],
-          active: true
-        },
-        
-        // FOLLOW-UP 2 (Day 6)
-        {
-          name: 'Follow-up 2 - Medium Intent',
-          type: 'followup_2',
-          subjects: [
-            'One more try - {{first_name}}',
-            'Still available if needed',
-            'Last check-in from me'
-          ],
-          bodies: [
-            `Hi {{first_name}},
-
-I know inboxes get crazy, so I wanted to reach out one more time.
-
-If {{company}} is exploring any web development projects in Q{{currentQuarter}}/Q{{nextQuarter}}, I'd love to be considered.
-
-Otherwise, I'll stop bothering you! 😊
-
-Best,
-David`,
-
-            `{{first_name}},
-
-Last follow-up from me - promise!
-
-If there's any way I can support {{company}} with full-stack development (MERN), I'm here and ready to help.
-
-Otherwise, wishing you all the best with your projects.
-
-David`,
-
-            `Hi {{first_name}},
-
-Just wanted to reach out once more about potential development collaboration.
-
-If the timing isn't right, totally understand. Feel free to reach back out whenever {{company}} needs technical support.
-
-Cheers,
-David Ariyo`
-          ],
-          active: true
-        },
-        
-        // FOLLOW-UP 3 (Day 13)
-        {
-          name: 'Follow-up 3 - Light Close',
-          type: 'followup_3',
-          subjects: [
-            'Final note - {{first_name}}',
-            'Keeping {{company}} in mind',
-            'Open door for future'
-          ],
-          bodies: [
-            `Hi {{first_name}},
-
-This will be my last email - don't want to clutter your inbox!
-
-If {{company}} ever needs a Full Stack Developer down the road, feel free to reach out anytime.
-
-Wishing you success with everything you're building.
-
-Best regards,
-David Ariyo`,
-
-            `{{first_name}},
-
-I'll leave you alone after this one! 😊
-
-Just wanted to leave the door open - if {{company}} ever has development needs in the future, I'm just an email away.
-
-Best of luck with everything!
-
-David`,
-
-            `Hi {{first_name}},
-
-Final check-in from me. If the timing doesn't align now, no worries at all.
-
-Feel free to keep my info for any future web development projects at {{company}}.
-
-All the best,
-David Ariyo
-Full Stack Developer`
-          ],
-          active: true
-        }
-      ];
-      
-      await Template.insertMany(templates);
-      console.log('✓ Default templates seeded successfully!');
-      
+      console.log('\u2713 Striat studio templates already seeded');
     } catch (error) {
       console.error('Error seeding templates:', error.message);
       throw error;
     }
   }
-  
+
   /**
    * Get all templates grouped by type
    */
@@ -300,7 +294,7 @@ Full Stack Developer`
       throw error;
     }
   }
-  
+
   /**
    * Update template performance metrics
    */

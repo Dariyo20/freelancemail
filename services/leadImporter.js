@@ -105,27 +105,42 @@ class LeadImporter {
    * Supports Apollo.io CSV format
    */
   parseCSVRow(row, source) {
-    // Extract email (required)
-    const email = row['Email'] || row['email'] || row['Email Address'];
-    
+    // Supports two schemas: Apollo "contacts export" (First Name/Email/Company)
+    // and Apollo "leads export" (prospect_first_name/contact_professions_email/prospect_company_name).
+    const email = row['Email'] || row['email'] || row['Email Address']
+               || row['contact_professions_email'];
+
     if (!email || !this.isValidEmail(email)) {
-      return null; // Skip invalid emails
+      return null;
     }
-    
-    // Extract other fields (Apollo format)
-    const first_name = row['First Name'] || row['first_name'] || row['FirstName'] || '';
-    const last_name = row['Last Name'] || row['last_name'] || row['LastName'] || '';
-    const company = row['Company Name'] || row['company'] || row['Organization'] || 'Unknown';
+
+    let first_name = row['First Name'] || row['first_name'] || row['FirstName']
+                  || row['prospect_first_name'] || '';
+    let last_name = row['Last Name'] || row['last_name'] || row['LastName']
+                 || row['prospect_last_name'] || '';
+
+    // Fallback: split prospect_full_name if first/last not present
+    if (!first_name && row['prospect_full_name']) {
+      const parts = row['prospect_full_name'].trim().split(/\s+/);
+      first_name = parts[0] || '';
+      last_name = parts.slice(1).join(' ');
+    }
+
+    const company = row['Company Name'] || row['Company'] || row['company']
+                 || row['Organization'] || row['prospect_company_name'] || 'Unknown';
     const industry = row['Industry'] || row['industry'] || '';
-    const title = row['Title'] || row['title'] || row['Job Title'] || '';
-    
-    // Metadata
+    const title = row['Title'] || row['title'] || row['Job Title']
+               || row['prospect_job_title'] || '';
+
     const metadata = {
-      phone: row['Phone'] || row['phone'] || '',
-      linkedin_url: row['LinkedIn URL'] || row['linkedin'] || '',
-      website: row['Website'] || row['website'] || row['Company Website'] || '',
+      phone: row['Phone'] || row['phone'] || row['contact_mobile_phone'] || '',
+      linkedin_url: row['LinkedIn URL'] || row['linkedin'] || row['LinkedIn']
+                 || row['prospect_linkedin'] || '',
+      website: row['Website'] || row['website'] || row['Company Website']
+            || row['prospect_company_website'] || '',
       employee_count: row['# Employees'] || row['employees'] || '',
-      location: row['Location'] || row['location'] || row['City'] || ''
+      location: row['Location'] || row['location'] || row['City']
+             || row['prospect_city'] || row['prospect_country_name'] || ''
     };
     
     return {
