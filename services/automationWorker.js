@@ -55,7 +55,7 @@ class AutomationWorker {
    *
    * Each slot filters leads by country so we never hit a US recipient at
    * 2am EST or a UK recipient at 3pm GMT.
-   * 20 emails per slot = 60/day max across both segments.
+   * 10 emails per slot = 30/day max across both segments.
    */
   async start() {
     try {
@@ -67,11 +67,11 @@ class AutomationWorker {
       const ukEuTask = cron.schedule('0 7 * * 1-4', async () => {
         console.log('\n\u23f0 Running UK/EU email slot...');
         try {
-          await emailService.processQueue(20, UK_EU);
+          await emailService.processQueue(10, UK_EU);
         } catch (error) {
           console.error('UK/EU slot error:', error.message);
         }
-      });
+      }, { timezone: 'Africa/Lagos' });
       this.tasks.push({ name: 'Email Queue UK/EU', task: ukEuTask });
       console.log('\u2713 UK/EU queue scheduled (7am WAT Mon-Thu = 7am GMT / 8am CET)');
 
@@ -79,11 +79,11 @@ class AutomationWorker {
       const usPrimaryTask = cron.schedule('0 14 * * 1-4', async () => {
         console.log('\n\u23f0 Running US/CA primary email slot...');
         try {
-          await emailService.processQueue(20, US_CA);
+          await emailService.processQueue(10, US_CA);
         } catch (error) {
           console.error('US/CA primary slot error:', error.message);
         }
-      });
+      }, { timezone: 'Africa/Lagos' });
       this.tasks.push({ name: 'Email Queue US/CA primary', task: usPrimaryTask });
       console.log('\u2713 US/CA primary queue scheduled (2pm WAT Mon-Thu = 8am EST)');
 
@@ -91,11 +91,11 @@ class AutomationWorker {
       const usSecondaryTask = cron.schedule('0 15 * * 1-4', async () => {
         console.log('\n\u23f0 Running US/CA second-wave email slot...');
         try {
-          await emailService.processQueue(20, US_CA);
+          await emailService.processQueue(10, US_CA);
         } catch (error) {
           console.error('US/CA second-wave slot error:', error.message);
         }
-      });
+      }, { timezone: 'Africa/Lagos' });
       this.tasks.push({ name: 'Email Queue US/CA second wave', task: usSecondaryTask });
       console.log('\u2713 US/CA second-wave queue scheduled (3pm WAT Mon-Thu = 9am EST)');
 
@@ -108,7 +108,7 @@ class AutomationWorker {
         } catch (error) {
           console.error('Reply detection error:', error.message);
         }
-      });
+      }, { timezone: 'Africa/Lagos' });
 
       this.tasks.push({ name: 'Reply Detection', task: replyTask });
       console.log('\u2713 Reply Detection scheduled (every hour 9am-10pm WAT Mon-Fri)');
@@ -121,7 +121,7 @@ class AutomationWorker {
         } catch (error) {
           console.error('Import task error:', error.message);
         }
-      });
+      }, { timezone: 'Africa/Lagos' });
 
       this.tasks.push({ name: 'CSV Import', task: importTask });
       console.log('\u2713 CSV Import scheduled (8am Mon-Fri)');
@@ -134,7 +134,7 @@ class AutomationWorker {
         } catch (error) {
           console.error('Cleanup task error:', error.message);
         }
-      });
+      }, { timezone: 'Africa/Lagos' });
 
       this.tasks.push({ name: 'Database Cleanup', task: cleanupTask });
       console.log('\u2713 Database Cleanup scheduled (2am Sundays)');
