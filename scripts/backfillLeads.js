@@ -33,6 +33,9 @@ function buildUpdate(existing, parsed) {
   if (isEmpty(existing.company) && !isEmpty(parsed.company)) {
     update.company = parsed.company;
   }
+  if (isEmpty(existing.country) && !isEmpty(parsed.country)) {
+    update.country = parsed.country;
+  }
   if (isEmpty(existing.first_name) && !isEmpty(parsed.first_name)) {
     update.first_name = parsed.first_name;
   }

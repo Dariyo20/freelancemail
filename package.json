@@ -12,6 +12,7 @@
     "check-replies": "node scripts/checkReplies.js",
     "test-alert": "node scripts/testAlert.js",
     "test-send-self": "node scripts/testSendSelf.js",
+    "mark-reply": "node scripts/markReply.js",
     "backfill": "node scripts/backfillLeads.js",
     "seed-blacklist": "node scripts/seedBlacklist.js",
     "reset": "node scripts/resetDatabase.js"

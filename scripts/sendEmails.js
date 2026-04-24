@@ -2,23 +2,40 @@ const connectDB = require('../config/database');
 const emailService = require('../services/emailService');
 const templateService = require('../services/templateService');
 
-// Script to manually send emails
+// Usage: node scripts/sendEmails.js [max] [group]
+//   max:   number of emails to send (default 10)
+//   group: US_CA | UK_EU | all  (default all)
+
+const COUNTRY_GROUPS = {
+  US_CA: ['United States', 'Canada'],
+  UK_EU: [
+    'United Kingdom', 'France', 'Germany', 'Poland', 'Croatia',
+    'Portugal', 'Austria', 'Sweden', 'Italy', 'Ireland', 'Spain'
+  ]
+};
+
 (async () => {
   try {
-    console.log('📧 Email Sending Script\n');
-    
+    console.log('Email Sending Script\n');
+
     await connectDB();
     await templateService.seedTemplates();
     await emailService.initialize();
-    
-    // Ask how many emails to send
+
     const maxEmails = parseInt(process.argv[2]) || 10;
-    console.log(`Processing up to ${maxEmails} emails...\n`);
-    
-    const stats = await emailService.processQueue(maxEmails);
-    
-    console.log('\n✅ Email sending complete!');
-    
+    const groupArg = (process.argv[3] || 'all').toUpperCase();
+    const countryFilter = groupArg === 'ALL' ? null : COUNTRY_GROUPS[groupArg];
+
+    if (groupArg !== 'ALL' && !countryFilter) {
+      console.error(`Unknown group: ${groupArg}. Use US_CA, UK_EU, or all.`);
+      process.exit(1);
+    }
+
+    console.log(`Processing up to ${maxEmails} emails (group: ${groupArg})...\n`);
+
+    await emailService.processQueue(maxEmails, countryFilter);
+
+    console.log('\nEmail sending complete.');
     process.exit(0);
   } catch (error) {
     console.error('Email sending failed:', error.message);

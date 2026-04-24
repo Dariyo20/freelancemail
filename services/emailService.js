@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const { google } = require('googleapis');
 const Lead = require('../models/Lead');
 const EmailLog = require('../models/EmailLog');
@@ -7,85 +7,76 @@ require('dotenv').config();
 
 class EmailService {
   constructor() {
-    this.transporter = null;
+    this.resend = null;
     this.gmailClient = null;
     this.oauth2Client = null;
   }
-  
+
   /**
-   * Initialize Gmail OAuth2 client
+   * Initialize Gmail OAuth2 client (for reply detection only)
    */
   async initGmailAPI() {
     try {
       const credentials = require('../gmail_credentials.json');
       const { client_id, client_secret, redirect_uris } = credentials.installed || credentials.web;
-      
+
       this.oauth2Client = new google.auth.OAuth2(
         client_id,
         client_secret,
         redirect_uris[0]
       );
-      
+
       // Load tokens
       const tokens = require('../gmail_token.json');
       this.oauth2Client.setCredentials(tokens);
-      
+
       this.gmailClient = google.gmail({ version: 'v1', auth: this.oauth2Client });
-      
-      console.log('✓ Gmail API initialized');
+
+      console.log('\u2713 Gmail API initialized (reply detection)');
       return true;
     } catch (error) {
-      console.warn('⚠ Gmail API not configured, falling back to SMTP');
+      console.warn('\u26a0 Gmail API not configured, reply detection disabled');
       return false;
     }
   }
-  
+
   /**
-   * Initialize SMTP transporter (fallback)
+   * Initialize Resend client for sending
    */
-  async initSMTP() {
-    try {
-      if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-        throw new Error('Missing EMAIL_USER or EMAIL_PASSWORD in .env');
-      }
-      
-      this.transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASSWORD
-        },
-        connectionTimeout: 10000,
-        greetingTimeout: 5000,
-        socketTimeout: 10000
-      });
-      
-      await this.transporter.verify();
-      console.log('✓ SMTP transporter initialized');
-      return true;
-    } catch (error) {
-      console.error('✗ SMTP initialization failed:', error.message);
+  initResend() {
+    if (!process.env.RESEND_API_KEY) {
+      console.error('\u2717 Missing RESEND_API_KEY in .env');
       return false;
     }
+
+    this.resend = new Resend(process.env.RESEND_API_KEY);
+    console.log('\u2713 Resend email client initialized');
+    return true;
   }
-  
+
   /**
-   * Initialize email service (try Gmail API first, fallback to SMTP)
+   * Initialize email service (Resend for sending, Gmail API for reply detection)
    */
   async initialize() {
-    const gmailReady = await this.initGmailAPI();
-    if (!gmailReady) {
-      await this.initSMTP();
-    }
+    this.initResend();
+    await this.initGmailAPI();
   }
-  
+
+  /**
+   * Convert plain text body to simple HTML
+   */
+  textToHtml(text) {
+    const paragraphs = text.split(/\n\n+/);
+    return paragraphs
+      .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+      .join('\n');
+  }
+
   /**
    * Send email to a lead
    * @param {Object} lead - Lead object from database
-   * @param {Number} stage - Email stage (1=initial, 2=followup1, 3=followup2, 4=followup3)
-   * @returns {Object} Send result with message ID and thread ID
+   * @param {Number} stage - Email stage (1=initial, 2=followup1, 3=followup2)
+   * @returns {Object} Send result with message ID
    */
   async sendEmail(lead, stage = 1) {
     try {
@@ -93,43 +84,42 @@ class EmailService {
       const stageMap = {
         1: 'initial',
         2: 'followup_1',
-        3: 'followup_2',
-        4: 'followup_3'
+        3: 'followup_2'
       };
-      
+
       const templateType = stageMap[stage];
-      
+
       // Get template
       const template = await templateService.getTemplate(templateType);
-      
+
       // Personalize content
       const subject = templateService.personalize(template.subject, lead);
       const body = templateService.personalize(template.body, lead);
-      
-      // Send via Gmail API or SMTP
+
+      // Send via Resend
       let result;
-      if (this.gmailClient) {
-        result = await this.sendViaGmailAPI(lead.email, subject, body, lead.thread_id);
-      } else if (this.transporter) {
-        result = await this.sendViaSMTP(lead.email, subject, body);
+      if (this.resend) {
+        result = await this.sendViaResend(lead, subject, body, stage);
       } else {
-        throw new Error('No email service initialized');
+        throw new Error('Resend client not initialized. Set RESEND_API_KEY in .env');
       }
-      
+
       // Calculate next follow-up date
+      // Day 0: initial -> followup_1 in 5 days (Day 5)
+      // Day 5: followup_1 -> followup_2 in 7 days (Day 12)
+      // Day 12: followup_2 is final, no more follow-ups
       const followupDelays = {
-        1: 3,  // Day 3
-        2: 6,  // Day 6 (6 days after initial)
-        3: 7   // Day 7 (7 days after followup 2)
+        1: 5,  // After initial: 5 days to followup_1
+        2: 7   // After followup_1: 7 days to followup_2 (Day 12 total)
       };
-      
+
       let nextFollowupDate = null;
-      if (stage < 4) {
-        const daysToAdd = followupDelays[stage] || 3;
+      if (stage < 3) {
+        const daysToAdd = followupDelays[stage];
         nextFollowupDate = new Date();
         nextFollowupDate.setDate(nextFollowupDate.getDate() + daysToAdd);
       }
-      
+
       // Update lead
       await Lead.findByIdAndUpdate(lead._id, {
         $set: {
@@ -143,7 +133,7 @@ class EmailService {
         },
         $inc: { emails_sent: 1 }
       });
-      
+
       // Log email
       await EmailLog.create({
         lead_id: lead._id,
@@ -159,19 +149,19 @@ class EmailService {
         followup_scheduled_for: nextFollowupDate,
         status: 'sent'
       });
-      
-      console.log(`✓ Email sent to ${lead.email} (Stage ${stage})`);
-      
+
+      console.log(`\u2713 Email sent to ${lead.email} (Stage ${stage})`);
+
       return {
         success: true,
         messageId: result.messageId,
         threadId: result.threadId,
         nextFollowup: nextFollowupDate
       };
-      
+
     } catch (error) {
-      console.error(`✗ Failed to send email to ${lead.email}:`, error.message);
-      
+      console.error(`\u2717 Failed to send email to ${lead.email}:`, error.message);
+
       // Log failed email
       await EmailLog.create({
         lead_id: lead._id,
@@ -184,168 +174,149 @@ class EmailService {
         status: 'failed',
         error_message: error.message
       });
-      
+
       throw error;
     }
   }
-  
+
   /**
-   * Send email via Gmail API
+   * Send email via Resend
    */
-  async sendViaGmailAPI(to, subject, body, threadId = null) {
+  async sendViaResend(lead, subject, body, stage) {
     try {
-      const from = process.env.EMAIL_USER;
-      
-      // Create email message
-      const email = [
-        `From: ${from}`,
-        `To: ${to}`,
-        `Subject: ${subject}`,
-        threadId ? `In-Reply-To: ${threadId}` : '',
-        threadId ? `References: ${threadId}` : '',
-        'Content-Type: text/plain; charset=utf-8',
-        '',
-        body
-      ].filter(line => line !== '').join('\r\n');
-      
-      // Encode email
-      const encodedEmail = Buffer.from(email)
-        .toString('base64')
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=+$/, '');
-      
-      // Send email
-      const res = await this.gmailClient.users.messages.send({
-        userId: 'me',
-        requestBody: {
-          raw: encodedEmail,
-          threadId: threadId || undefined
-        }
-      });
-      
-      return {
-        messageId: res.data.id,
-        threadId: res.data.threadId
-      };
-    } catch (error) {
-      console.error('Gmail API send error:', error.message);
-      throw error;
-    }
-  }
-  
-  /**
-   * Send email via SMTP (fallback)
-   */
-  async sendViaSMTP(to, subject, body) {
-    try {
-      const info = await this.transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to,
+      const fromEmail = process.env.FROM_EMAIL || 'dave@striat.dev';
+
+      const emailOptions = {
+        from: fromEmail,
+        to: lead.email,
         subject,
-        text: body
-      });
-      
+        html: this.textToHtml(body),
+        reply_to: fromEmail
+      };
+
+      // Add threading headers for follow-ups
+      if (stage > 1 && lead.last_message_id) {
+        emailOptions.headers = {
+          'In-Reply-To': lead.last_message_id,
+          'References': lead.thread_id || lead.last_message_id
+        };
+      }
+
+      const res = await this.resend.emails.send(emailOptions);
+
       return {
-        messageId: info.messageId,
-        threadId: null
+        messageId: res.data?.id || res.id,
+        threadId: lead.thread_id || res.data?.id || res.id
       };
     } catch (error) {
-      console.error('SMTP send error:', error.message);
+      console.error('Resend send error:', error.message);
       throw error;
     }
   }
-  
+
   /**
    * Get leads ready for initial email
+   * @param {Number} limit - max leads to return
+   * @param {Array<String>|null} countryFilter - optional list of allowed countries
    */
-  async getLeadsForInitialEmail(limit = 10) {
-    return await Lead.find({
+  async getLeadsForInitialEmail(limit = 10, countryFilter = null) {
+    const query = {
       status: 'new',
       reply_detected: false,
       followup_stage: 0
-    })
-    .limit(limit)
-    .sort({ imported_at: 1 });
+    };
+    if (Array.isArray(countryFilter) && countryFilter.length) {
+      query.country = { $in: countryFilter };
+    }
+    return await Lead.find(query)
+      .limit(limit)
+      .sort({ imported_at: 1 });
   }
-  
+
   /**
    * Get leads ready for follow-up
+   * @param {Number} limit - max leads to return
+   * @param {Array<String>|null} countryFilter - optional list of allowed countries
    */
-  async getLeadsForFollowup(limit = 10) {
+  async getLeadsForFollowup(limit = 10, countryFilter = null) {
     const now = new Date();
-    
-    return await Lead.find({
+    const query = {
       reply_detected: false,
       followup_due_date: { $lte: now },
-      followup_stage: { $gte: 1, $lt: 4 },
-      status: { $nin: ['replied', 'engaged', 'unsubscribed'] }
-    })
-    .limit(limit)
-    .sort({ followup_due_date: 1 });
+      followup_stage: { $gte: 1, $lt: 3 },
+      status: { $nin: ['replied', 'engaged', 'unresponsive', 'unsubscribed'] }
+    };
+    if (Array.isArray(countryFilter) && countryFilter.length) {
+      query.country = { $in: countryFilter };
+    }
+    return await Lead.find(query)
+      .limit(limit)
+      .sort({ followup_due_date: 1 });
   }
-  
+
   /**
    * Process email queue (send initial + follow-ups)
+   * @param {Number} maxEmails - cap for this slot
+   * @param {Array<String>|null} countryFilter - optional list of allowed countries
    */
-  async processQueue(maxEmails = 20) {
+  async processQueue(maxEmails = 20, countryFilter = null) {
     try {
       const stats = {
         initial: 0,
         followups: 0,
         errors: 0
       };
-      
+
       // Get leads for initial email
-      const initialLeads = await this.getLeadsForInitialEmail(maxEmails);
-      
+      const initialLeads = await this.getLeadsForInitialEmail(maxEmails, countryFilter);
+
       for (const lead of initialLeads) {
         try {
           await this.sendEmail(lead, 1);
           stats.initial++;
-          
+
           // Random delay (10-60 sec) to look human and avoid spam detection
           await this.randomDelay();
         } catch (error) {
           stats.errors++;
         }
       }
-      
+
       // Get leads for follow-ups
-      const followupLeads = await this.getLeadsForFollowup(maxEmails - stats.initial);
-      
+      const followupLeads = await this.getLeadsForFollowup(maxEmails - stats.initial, countryFilter);
+
       for (const lead of followupLeads) {
         try {
           const nextStage = lead.followup_stage + 1;
           await this.sendEmail(lead, nextStage);
           stats.followups++;
-          
+
           // Random delay (10-60 sec) to look human
           await this.randomDelay();
         } catch (error) {
           stats.errors++;
         }
       }
-      
-      console.log('\n📊 Email Queue Processed:');
+
+      console.log('\n\ud83d\udcca Email Queue Processed:');
       console.log(`   Initial emails sent: ${stats.initial}`);
       console.log(`   Follow-ups sent: ${stats.followups}`);
       console.log(`   Errors: ${stats.errors}`);
-      
+
       return stats;
     } catch (error) {
       console.error('Error processing email queue:', error.message);
       throw error;
     }
   }
-  
+
   /**
    * Utility: Sleep
    */
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-  
+
   /**
    * Utility: Random delay (10-60 seconds)
    * Makes email sending look more human and avoids spam detection
@@ -354,7 +325,7 @@ class EmailService {
     const minDelay = 10000; // 10 seconds
     const maxDelay = 60000; // 60 seconds
     const randomMs = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
-    console.log(`   ⏱️  Waiting ${Math.floor(randomMs / 1000)} seconds...`);
+    console.log(`   \u23f1\ufe0f  Waiting ${Math.floor(randomMs / 1000)} seconds...`);
     return this.sleep(randomMs);
   }
 }

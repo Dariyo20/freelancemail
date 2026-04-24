@@ -132,6 +132,10 @@ class LeadImporter {
     const title = row['Title'] || row['title'] || row['Job Title']
                || row['prospect_job_title'] || '';
 
+    const countryRaw = (row['Country'] || row['country']
+                      || row['prospect_country_name'] || '').trim();
+    const country = this.normalizeCountry(countryRaw);
+
     const metadata = {
       phone: row['Phone'] || row['phone'] || row['contact_mobile_phone'] || '',
       linkedin_url: row['LinkedIn URL'] || row['linkedin'] || row['LinkedIn']
@@ -140,9 +144,9 @@ class LeadImporter {
             || row['prospect_company_website'] || '',
       employee_count: row['# Employees'] || row['employees'] || '',
       location: row['Location'] || row['location'] || row['City']
-             || row['prospect_city'] || row['prospect_country_name'] || ''
+             || row['prospect_city'] || country || ''
     };
-    
+
     return {
       first_name: first_name.trim(),
       last_name: last_name.trim(),
@@ -150,6 +154,7 @@ class LeadImporter {
       company: company.trim(),
       industry: industry.trim(),
       title: title.trim(),
+      country,
       source,
       metadata,
       status: 'new',
@@ -245,6 +250,15 @@ class LeadImporter {
     }
   }
   
+  /**
+   * Normalize country strings to Title Case so "united states" and
+   * "United States" group together when filtering.
+   */
+  normalizeCountry(raw) {
+    if (!raw) return '';
+    return raw.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
   /**
    * Validate email format
    */

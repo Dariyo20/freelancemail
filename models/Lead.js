@@ -27,6 +27,11 @@ const leadSchema = new mongoose.Schema({
     trim: true
   },
   title: String,
+  country: {
+    type: String,
+    trim: true,
+    index: true
+  },
   source: {
     type: String,
     default: 'apollo_csv',
@@ -35,7 +40,7 @@ const leadSchema = new mongoose.Schema({
   status: {
     type: String,
     default: 'new',
-    enum: ['new', 'contacted', 'followup_1', 'followup_2', 'followup_3', 'replied', 'engaged', 'unresponsive', 'unsubscribed']
+    enum: ['new', 'contacted', 'followup_1', 'followup_2', 'replied', 'engaged', 'unresponsive', 'unsubscribed']
   },
   last_contacted_at: Date,
   reply_detected: {
@@ -45,13 +50,20 @@ const leadSchema = new mongoose.Schema({
   reply_detected_at: Date,
   followup_stage: {
     type: Number,
-    default: 0, // 0 = not contacted, 1 = initial, 2 = followup1, 3 = followup2, 4 = followup3
+    default: 0, // 0 = not contacted, 1 = initial, 2 = followup1, 3 = followup2 (final)
     min: 0,
-    max: 4
+    max: 3
   },
   followup_due_date: Date,
   thread_id: String, // Gmail thread ID for reply detection
   last_message_id: String, // Gmail message ID
+
+  // Reply classification
+  reply_class: {
+    type: String,
+    enum: ['auto_responder', 'soft_no', 'warm', 'referral', null],
+    default: null
+  },
   
   // Campaign tracking
   campaign_id: {
@@ -65,7 +77,8 @@ const leadSchema = new mongoose.Schema({
     linkedin_url: String,
     website: String,
     employee_count: String,
-    location: String
+    location: String,
+    referral_source: String
   },
   
   // Tracking
