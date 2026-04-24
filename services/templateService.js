@@ -106,7 +106,7 @@ class TemplateService {
         type: 'initial',
         subjects: [
           'Quick one for {{company}}',
-          '{{first_name}} \u2014 shipping something in the next month?',
+          '{{first_name}}, shipping something in the next month?',
           'MVP for {{company}}, 1-3 weeks',
           'Production code for {{company}}',
           '{{first_name}}, 3 weeks to a live MVP'
@@ -114,44 +114,44 @@ class TemplateService {
         bodies: [
           `Hi {{first_name}},
 
-Saw what you're building at {{company}}. Sharp positioning.
+Saw what you're building at {{company}}, wanted to keep this quick.
 
-Quick context on why I'm writing: I run Striat, a small engineering studio. We ship production MVPs for funded founders in 1-3 weeks, flat rate from $10K.
+I run Striat, a small engineering studio. We ship production MVPs for funded founders in 1-3 weeks, flat rate from $10K.
 
-A quick proof point before I take more of your time \u2014 I'm the solo engineer behind Daily Manna's backend, the Deeper Life devotional platform, now serving millions of daily users across 190+ countries in 12+ languages. Also shipped a healthcare coordination platform with QuickBooks integration that's tracking millions in live revenue for a private medical network.
+I'm the solo engineer behind Daily Manna's backend, the Deeper Life devotional platform now serving millions of daily users across 190+ countries in 12+ languages. Also shipped a healthcare coordination platform with QuickBooks integration tracking millions in live revenue for a private medical network.
 
-If you're planning to ship something for {{company}} in the next 30-60 days, the work is at striat.dev. Reply if it's relevant and I'll send you the three projects closest to what you're building.
+If {{company}} needs something shipped in the next 30-60 days, the work is at striat.dev. Reply and I'll send the three projects closest to what you're building.
 
-If the timing's not right, no worries \u2014 I'll close the loop politely in two weeks and leave you alone.
+If the timing is off, I'll close the loop in two weeks and leave you alone.
 
 Dave
-Striat \u00b7 striat.dev`,
+striat.dev`,
 
           `Hi {{first_name}},
 
-Direct pitch: Striat builds production MVPs for founders like you, 1-3 weeks, flat rate from $10K, end-to-end delivery including infrastructure and handover.
+Quick one. Striat builds production MVPs for founders, 1-3 weeks, flat rate from $10K, end-to-end including infrastructure and handover.
 
-Why you should keep reading for 30 more seconds: I'm the solo engineer behind Daily Manna's backend \u2014 the Deeper Life devotional platform now serving millions of daily users across 190+ countries in 12+ languages. I also shipped a full healthcare coordination system with QuickBooks integration tracking millions in live revenue.
+I'm the solo engineer behind Daily Manna's backend, the Deeper Life devotional platform now serving millions of daily users across 190+ countries in 12+ languages. Also shipped a full healthcare coordination system with QuickBooks integration tracking millions in live revenue.
 
-If {{company}} needs something shipped quickly and reliably \u2014 not a prototype, production code you can actually deploy to paying users \u2014 the studio's work is at striat.dev.
+If {{company}} needs something built fast, not a prototype but production code you can ship to paying users, the work is at striat.dev.
 
-Reply if it's relevant to what you're building, and I'll send the three closest case studies. If not, no follow-up spam from me.
+Reply if it's relevant and I'll send the three closest case studies. If not, no follow-up spam.
 
 Dave
-Striat \u00b7 striat.dev`,
+striat.dev`,
 
           `{{first_name}},
 
-Short version: I run Striat, an engineering studio. You might need what we do.
+I run Striat, a small engineering studio. Might be useful to you.
 
-Production MVPs in 1-3 weeks, flat rate from $10K. End-to-end \u2014 architecture, build, deploy, documentation. No hourly billing, no scope creep.
+Production MVPs in 1-3 weeks, flat rate from $10K. End-to-end: architecture, build, deploy, documentation. No hourly billing, no scope creep.
 
-Proof: solo engineer on Daily Manna's backend \u2014 the Deeper Life devotional platform now serving millions of daily users across 190+ countries in 12+ languages. Also shipped a healthcare platform with QuickBooks revenue integration for a private clinical network, tracking millions in invoices.
+Solo engineer on Daily Manna's backend, the Deeper Life devotional platform now serving millions of daily users across 190+ countries in 12+ languages. Also shipped a healthcare platform with QuickBooks revenue integration for a private clinical network, tracking millions in invoices.
 
-The studio's selected work is at striat.dev. If {{company}} has something that needs building in the next month or two, reply and I'll send you the three most relevant case studies.
+Work is at striat.dev. If {{company}} has something to build in the next month or two, reply and I'll send the three most relevant case studies.
 
 Dave
-Striat \u00b7 striat.dev`
+striat.dev`
         ],
         active: true
       },
@@ -162,46 +162,46 @@ Striat \u00b7 striat.dev`
         type: 'followup_1',
         subjects: [
           'Re: Quick one for {{company}}',
-          '{{first_name}} \u2014 one thought',
+          '{{first_name}}, one thought',
           'Following up, {{company}}'
         ],
         bodies: [
           `{{first_name}},
 
-Quick follow-up. You're busy, so I'll keep this short.
+Following up from last week.
 
-If {{company}} has a product you need live in the next 4-6 weeks and you're either between engineering hires, waiting on an offshore team that keeps slipping deadlines, or trying to stretch a junior team past their limit \u2014 Striat can ship the whole thing in 1-3 weeks.
+If {{company}} has something that needs shipping in the next 4-6 weeks, and you're between engineering hires, waiting on an offshore team that keeps slipping deadlines, or stretching a junior team past their limit, Striat can ship the whole thing in 1-3 weeks.
 
-Two quick questions you can reply with yes/no:
+Two yes/no questions:
 1. Is there something you need shipped in the next 60 days?
 2. Is the blocker engineering capacity or speed?
 
-If both answers are yes, we should talk. If not, I'll leave you alone.
+If both are yes, worth a call. If not, I'll leave you alone.
 
 Dave
-Striat \u00b7 striat.dev`,
+striat.dev`,
 
           `Hi {{first_name}},
 
 Bumping my earlier note in case it got buried.
 
-One thing I didn't mention in the first email: every Striat engagement is scoped and priced flat before any commitment. You see the full quote, timeline, and deliverables in writing before you spend a cent. No open timesheets, no surprise invoices.
+One thing I didn't mention: every Striat engagement is scoped and priced flat before any commitment. You see the full quote, timeline, and deliverables in writing before you spend a cent. No open timesheets, no surprise invoices.
 
-If {{company}} has something concrete to build, the work is at striat.dev. Happy to scope a quote if you want to see what that looks like for your specific project.
+If {{company}} has something concrete to build, the work is at striat.dev. Happy to put together a quote so you can see what it would look like for your project.
 
 Dave
-Striat \u00b7 striat.dev`,
+striat.dev`,
 
           `{{first_name}},
 
-Still here, still available. One last useful thing from me:
+Checking back in.
 
-The typical shape of a Striat engagement for a founder at your stage \u2014 discovery call, written scope, flat quote, 1-3 week build, production deployment, handover with documentation and two weeks of post-launch support. Everything is written before the build starts. No surprises.
+The typical shape of a Striat engagement for a founder at your stage: discovery call, written scope, flat quote, 1-3 week build, production deployment, handover with documentation, and two weeks of post-launch support. Everything written before the build starts.
 
 If that's useful to {{company}}, reply. If the timing isn't right, I'll close the loop next week and leave you alone.
 
 Dave
-Striat \u00b7 striat.dev`
+striat.dev`
         ],
         active: true
       },
@@ -212,7 +212,7 @@ Striat \u00b7 striat.dev`
         type: 'followup_2',
         subjects: [
           'Closing the loop, {{first_name}}',
-          '{{company}} \u2014 keeping the door open',
+          '{{company}}, keeping the door open',
           'Final note from Striat'
         ],
         bodies: [
@@ -220,12 +220,12 @@ Striat \u00b7 striat.dev`
 
 Closing the loop on this thread.
 
-If {{company}} ends up needing production engineering in the next few months \u2014 MVP build, infrastructure work, or a specific system shipped end-to-end \u2014 Striat is at striat.dev.
+If {{company}} ends up needing production engineering in the next few months, MVP build, infrastructure work, or a specific system shipped end-to-end, Striat is at striat.dev.
 
-The studio keeps a tight pipeline. We take on one new engagement a month. If the timing aligns later, reach out directly and I'll prioritize your slot.
+The studio takes on one new engagement a month. If the timing aligns later, reach out and I'll hold a slot.
 
 Dave
-Striat \u00b7 striat.dev`,
+striat.dev`,
 
           `{{first_name}},
 
@@ -234,16 +234,16 @@ Last note from me on this thread. No follow-up after this.
 If {{company}} needs engineering work shipped in the next quarter, you know where to find the studio. Reach out whenever the timing makes sense.
 
 Dave
-Striat \u00b7 striat.dev`,
+striat.dev`,
 
           `Hi {{first_name}},
 
-Final email on this sequence. Since I said I wouldn't follow up aggressively, I'm keeping that.
+Final email on this sequence. Said I'd leave you alone, so I'm keeping that.
 
-If {{company}} has engineering work coming up \u2014 MVP, infrastructure, or a specific system \u2014 the door is open. Reply anytime, doesn't have to be now.
+If {{company}} has engineering work coming up, MVP, infrastructure, or a specific system, the door is open. Reply anytime, doesn't have to be now.
 
 Dave
-Striat \u00b7 striat.dev`
+striat.dev`
         ],
         active: true
       }
