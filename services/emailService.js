@@ -93,8 +93,15 @@ class EmailService {
       const template = await templateService.getTemplate(templateType);
 
       // Personalize content
-      const subject = templateService.personalize(template.subject, lead);
+      let subject = templateService.personalize(template.subject, lead);
       const body = templateService.personalize(template.body, lead);
+
+      // Force follow-ups to "Re: <initial subject>" so Gmail/Outlook thread
+      // them into the same conversation as the original email.
+      if (stage > 1 && lead.last_email_subject) {
+        const baseSubject = lead.last_email_subject.replace(/^(re:\s*)+/i, '');
+        subject = `Re: ${baseSubject}`;
+      }
 
       // Send via Resend
       let result;
@@ -185,6 +192,15 @@ class EmailService {
   async sendViaResend(lead, subject, body, stage) {
     try {
       const fromEmail = process.env.FROM_EMAIL || 'dave@striat.dev';
+      const domain = fromEmail.split('@')[1];
+
+      // Message-IDs must be RFC-5322 formatted (<uuid@domain>) for Gmail/Outlook
+      // to thread the conversation correctly. We store the formatted ID on the
+      // lead so subsequent follow-ups can reference it verbatim.
+      const wrap = (id) => {
+        if (!id) return id;
+        return id.startsWith('<') ? id : `<${id}@${domain}>`;
+      };
 
       const emailOptions = {
         from: fromEmail,
@@ -194,19 +210,22 @@ class EmailService {
         reply_to: fromEmail
       };
 
-      // Add threading headers for follow-ups
       if (stage > 1 && lead.last_message_id) {
+        const inReplyTo = wrap(lead.last_message_id);
+        const references = wrap(lead.thread_id || lead.last_message_id);
         emailOptions.headers = {
-          'In-Reply-To': lead.last_message_id,
-          'References': lead.thread_id || lead.last_message_id
+          'In-Reply-To': inReplyTo,
+          'References': references
         };
       }
 
       const res = await this.resend.emails.send(emailOptions);
+      const rawId = res.data?.id || res.id;
+      const formattedId = wrap(rawId);
 
       return {
-        messageId: res.data?.id || res.id,
-        threadId: lead.thread_id || res.data?.id || res.id
+        messageId: formattedId,
+        threadId: lead.thread_id || formattedId
       };
     } catch (error) {
       console.error('Resend send error:', error.message);

@@ -7,11 +7,13 @@ const templateService = require('../services/templateService');
 //   group: US_CA | UK_EU | all  (default all)
 
 const COUNTRY_GROUPS = {
-  US_CA: ['United States', 'Canada'],
+  US_CA: ['United States', 'Canada', 'Brazil'],
   UK_EU: [
     'United Kingdom', 'France', 'Germany', 'Poland', 'Croatia',
-    'Portugal', 'Austria', 'Sweden', 'Italy', 'Ireland', 'Spain'
-  ]
+    'Portugal', 'Austria', 'Sweden', 'Italy', 'Ireland', 'Spain',
+    'Australia', 'Singapore'
+  ],
+  ME_AFRICA: ['Israel', 'United Arab Emirates', 'Saudi Arabia', 'Kenya']
 };
 
 (async () => {

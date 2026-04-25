@@ -8,11 +8,16 @@ require('dotenv').config();
 
 // Country groups for time-zone aware sending from Nigeria (WAT = UTC+1).
 // Slot times are picked so leads land in the recipient's 8-10am local window.
-const US_CA = ['United States', 'Canada'];
+// Brazil joins the Americas slot (10am BRT). Australia + Singapore join the
+// UK/EU slot as their late-afternoon window (imperfect but the only
+// reasonable fit from WAT).
+const US_CA = ['United States', 'Canada', 'Brazil'];
 const UK_EU = [
   'United Kingdom', 'France', 'Germany', 'Poland', 'Croatia',
-  'Portugal', 'Austria', 'Sweden', 'Italy', 'Ireland', 'Spain'
+  'Portugal', 'Austria', 'Sweden', 'Italy', 'Ireland', 'Spain',
+  'Australia', 'Singapore'
 ];
+const ME_AFRICA = ['Israel', 'United Arab Emirates', 'Saudi Arabia', 'Kenya'];
 
 class AutomationWorker {
   constructor() {
@@ -48,14 +53,19 @@ class AutomationWorker {
   /**
    * Start all scheduled tasks
    *
-   * Country-aware send schedule (WAT = UTC+1, Mon-Thu only):
-   *   07:00 WAT  UK + W.Europe  (= 7am GMT / 8am CET)  - first-coffee window
-   *   14:00 WAT  US + Canada    (= 8am EST)            - primary morning wave
-   *   15:00 WAT  US + Canada    (= 9am EST)            - post-standup re-check
+   * Country-aware send schedule (WAT = UTC+1):
+   *   06:00 WAT  Mon-Thu + Sun   ME + E.Africa (Israel, UAE, Saudi, Kenya)
+   *                              = 8am IST / 8am EAT / 9am GST
+   *                              Sun-Thu to respect Israeli workweek
+   *   07:00 WAT  Mon-Thu         UK + W.Europe + AU + SG
+   *                              = 7am GMT / 8am CET / 4pm AEST / 2pm SGT
+   *   14:00 WAT  Mon-Thu         Americas primary
+   *                              = 8am EST / 10am BRT
+   *   15:00 WAT  Mon-Thu         Americas second wave
+   *                              = 9am EST / 11am BRT
    *
-   * Each slot filters leads by country so we never hit a US recipient at
-   * 2am EST or a UK recipient at 3pm GMT.
-   * 10 emails per slot = 30/day max across both segments.
+   * Each slot filters leads by country so we never mis-time a send.
+   * 10 emails per slot = 40/day max across all four segments.
    */
   async start() {
     try {
@@ -63,7 +73,19 @@ class AutomationWorker {
 
       console.log('\ud83d\ude80 Starting Automation Worker...\n');
 
-      // Slot 1: UK + Western Europe, 7am WAT Mon-Thu
+      // Slot 0: Middle East + E.Africa, 6am WAT Sun-Thu (Israeli workweek)
+      const meAfricaTask = cron.schedule('0 6 * * 0-4', async () => {
+        console.log('\n\u23f0 Running ME/Africa email slot...');
+        try {
+          await emailService.processQueue(10, ME_AFRICA);
+        } catch (error) {
+          console.error('ME/Africa slot error:', error.message);
+        }
+      }, { timezone: 'Africa/Lagos' });
+      this.tasks.push({ name: 'Email Queue ME/Africa', task: meAfricaTask });
+      console.log('\u2713 ME/Africa queue scheduled (6am WAT Sun-Thu = 8am IST / 9am GST)');
+
+            // Slot 1: UK + Western Europe, 7am WAT Mon-Thu
       const ukEuTask = cron.schedule('0 7 * * 1-4', async () => {
         console.log('\n\u23f0 Running UK/EU email slot...');
         try {
