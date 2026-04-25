@@ -9,7 +9,7 @@ const templateSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['initial', 'followup_1', 'followup_2', 'followup_3'],
+    enum: ['initial', 'followup_1', 'followup_2'],
     required: true
   },
   

@@ -35,8 +35,9 @@ Thumbs.db
 cache/
 .cache/
 
-# Processed files (optional - keep in git if you want history)
-# processed/
+# Processed CSVs contain prospect PII - never commit
+processed/
+csv/
 
 # Research reports (optional - these can be large)
 research_reports/*.json
@@ -45,7 +46,7 @@ research_reports/*.txt
 # Email drafts
 email_drafts/
 
-# Old files (your legacy implementation)
+# Old files (legacy implementation)
 lead_automation.js
 email_sender.js
 gmail_draft_sender.js

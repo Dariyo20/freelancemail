@@ -1,5 +1,6 @@
 const { Resend } = require('resend');
 const { google } = require('googleapis');
+const crypto = require('crypto');
 const Lead = require('../models/Lead');
 const EmailLog = require('../models/EmailLog');
 const templateService = require('./templateService');
@@ -202,30 +203,31 @@ class EmailService {
         return id.startsWith('<') ? id : `<${id}@${domain}>`;
       };
 
+      // Generate our own Message-ID so we control the threading anchor
+      // exactly. Whatever Resend uses internally, this header travels with
+      // the email and we reference it verbatim in follow-up In-Reply-To.
+      const ourMessageId = `<${crypto.randomUUID()}@${domain}>`;
+
+      const headers = { 'Message-ID': ourMessageId };
+      if (stage > 1 && lead.last_message_id) {
+        headers['In-Reply-To'] = wrap(lead.last_message_id);
+        headers['References'] = wrap(lead.thread_id || lead.last_message_id);
+      }
+
       const emailOptions = {
         from: fromEmail,
         to: lead.email,
         subject,
         html: this.textToHtml(body),
-        reply_to: fromEmail
+        reply_to: fromEmail,
+        headers
       };
 
-      if (stage > 1 && lead.last_message_id) {
-        const inReplyTo = wrap(lead.last_message_id);
-        const references = wrap(lead.thread_id || lead.last_message_id);
-        emailOptions.headers = {
-          'In-Reply-To': inReplyTo,
-          'References': references
-        };
-      }
-
-      const res = await this.resend.emails.send(emailOptions);
-      const rawId = res.data?.id || res.id;
-      const formattedId = wrap(rawId);
+      await this.resend.emails.send(emailOptions);
 
       return {
-        messageId: formattedId,
-        threadId: lead.thread_id || formattedId
+        messageId: ourMessageId,
+        threadId: lead.thread_id || ourMessageId
       };
     } catch (error) {
       console.error('Resend send error:', error.message);

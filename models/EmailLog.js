@@ -64,6 +64,12 @@ const emailLogSchema = new mongoose.Schema({
   },
   replied_at: Date,
   
+  // Auto-responder detection
+  auto_responder_detected: {
+    type: Boolean,
+    default: false
+  },
+
   // Error handling
   error_message: String,
   
