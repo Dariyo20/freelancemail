@@ -1,0 +1,32 @@
+name: Send - Americas primary (2pm WAT Mon-Thu)
+
+on:
+  schedule:
+    # 13:07 UTC = 14:07 WAT (= 8am EST / 10am BRT)
+    - cron: '7 13 * * 1-4'
+  workflow_dispatch:
+
+concurrency:
+  group: send-emails
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Send 10 emails to Americas
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+        run: npm run send-emails 10 US_CA
