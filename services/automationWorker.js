@@ -77,7 +77,7 @@ class AutomationWorker {
       const meAfricaTask = cron.schedule('0 6 * * 0-4', async () => {
         console.log('\n\u23f0 Running ME/Africa email slot...');
         try {
-          await emailService.processQueue(10, ME_AFRICA);
+          await emailService.processQueue(15, ME_AFRICA);
         } catch (error) {
           console.error('ME/Africa slot error:', error.message);
         }
@@ -89,7 +89,7 @@ class AutomationWorker {
       const ukEuTask = cron.schedule('0 7 * * 1-4', async () => {
         console.log('\n\u23f0 Running UK/EU email slot...');
         try {
-          await emailService.processQueue(10, UK_EU);
+          await emailService.processQueue(15, UK_EU);
         } catch (error) {
           console.error('UK/EU slot error:', error.message);
         }
@@ -101,7 +101,7 @@ class AutomationWorker {
       const usPrimaryTask = cron.schedule('0 14 * * 1-4', async () => {
         console.log('\n\u23f0 Running US/CA primary email slot...');
         try {
-          await emailService.processQueue(10, US_CA);
+          await emailService.processQueue(15, US_CA);
         } catch (error) {
           console.error('US/CA primary slot error:', error.message);
         }
@@ -113,7 +113,7 @@ class AutomationWorker {
       const usSecondaryTask = cron.schedule('0 15 * * 1-4', async () => {
         console.log('\n\u23f0 Running US/CA second-wave email slot...');
         try {
-          await emailService.processQueue(10, US_CA);
+          await emailService.processQueue(15, US_CA);
         } catch (error) {
           console.error('US/CA second-wave slot error:', error.message);
         }
