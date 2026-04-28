@@ -23,10 +23,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Send 10 emails to UK/EU
+      - name: Send 15 emails to UK/EU
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
           ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
-        run: npm run send-emails 10 UK_EU
+        run: npm run send-emails 15 UK_EU
