@@ -81,17 +81,32 @@ class EmailService {
    */
   async sendEmail(lead, stage = 1) {
     try {
-      // Map stage to template type
+      // Map stage to template type (4-stage cadence: 0/3/7/14 days)
       const stageMap = {
         1: 'initial',
         2: 'followup_1',
-        3: 'followup_2'
+        3: 'followup_2',
+        4: 'followup_3'
       };
 
       const templateType = stageMap[stage];
 
       // Get template
       const template = await templateService.getTemplate(templateType);
+
+      // Stage-1 only: ensure the AI custom_line is computed and cached on
+      // the lead before we render. Failures here MUST NOT block the send —
+      // the placeholder logic in personalize() collapses cleanly when empty.
+      if (stage === 1) {
+        try {
+          const personalizationService = require('./personalizationService');
+          const customLine = await personalizationService.getOrComputeForLead(lead);
+          lead.metadata = lead.metadata || {};
+          lead.metadata.custom_line = customLine;
+        } catch (err) {
+          console.warn(`  Personalization unavailable for ${lead.email}: ${err.message}`);
+        }
+      }
 
       // Personalize content
       let subject = templateService.personalize(template.subject, lead);
@@ -112,17 +127,16 @@ class EmailService {
         throw new Error('Resend client not initialized. Set RESEND_API_KEY in .env');
       }
 
-      // Calculate next follow-up date
-      // Day 0: initial -> followup_1 in 5 days (Day 5)
-      // Day 5: followup_1 -> followup_2 in 7 days (Day 12)
-      // Day 12: followup_2 is final, no more follow-ups
+      // 4-stage cadence on Day 0 / Day 3 / Day 7 / Day 14.
+      // Delay value = days to wait after THIS stage before the next one fires.
       const followupDelays = {
-        1: 5,  // After initial: 5 days to followup_1
-        2: 7   // After followup_1: 7 days to followup_2 (Day 12 total)
+        1: 3,  // initial   -> followup_1 (Day 3)
+        2: 4,  // followup_1 -> followup_2 (Day 7)
+        3: 7   // followup_2 -> followup_3 (Day 14)
       };
 
       let nextFollowupDate = null;
-      if (stage < 3) {
+      if (stage < 4) {
         const daysToAdd = followupDelays[stage];
         nextFollowupDate = new Date();
         nextFollowupDate.setDate(nextFollowupDate.getDate() + daysToAdd);
@@ -264,7 +278,7 @@ class EmailService {
     const query = {
       reply_detected: false,
       followup_due_date: { $lte: now },
-      followup_stage: { $gte: 1, $lt: 3 },
+      followup_stage: { $gte: 1, $lt: 4 },
       status: { $nin: ['replied', 'engaged', 'unresponsive', 'unsubscribed'] }
     };
     if (Array.isArray(countryFilter) && countryFilter.length) {

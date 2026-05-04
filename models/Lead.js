@@ -40,7 +40,7 @@ const leadSchema = new mongoose.Schema({
   status: {
     type: String,
     default: 'new',
-    enum: ['new', 'contacted', 'followup_1', 'followup_2', 'replied', 'engaged', 'unresponsive', 'unsubscribed']
+    enum: ['new', 'contacted', 'followup_1', 'followup_2', 'followup_3', 'replied', 'engaged', 'unresponsive', 'unsubscribed']
   },
   last_contacted_at: Date,
   reply_detected: {
@@ -50,9 +50,9 @@ const leadSchema = new mongoose.Schema({
   reply_detected_at: Date,
   followup_stage: {
     type: Number,
-    default: 0, // 0 = not contacted, 1 = initial, 2 = followup1, 3 = followup2 (final)
+    default: 0, // 0 = not contacted, 1 = initial, 2 = followup1, 3 = followup2, 4 = followup3 (final)
     min: 0,
-    max: 3
+    max: 4
   },
   followup_due_date: Date,
   thread_id: String, // Gmail thread ID for reply detection
@@ -78,7 +78,10 @@ const leadSchema = new mongoose.Schema({
     website: String,
     employee_count: String,
     location: String,
-    referral_source: String
+    referral_source: String,
+    // Per-lead AI-generated personalization line for the initial email.
+    // undefined = not yet computed; '' = computed and no signal found (cached miss).
+    custom_line: String
   },
   
   // Tracking
