@@ -1,6 +1,5 @@
 const { Resend } = require('resend');
 const { google } = require('googleapis');
-const crypto = require('crypto');
 const Lead = require('../models/Lead');
 const EmailLog = require('../models/EmailLog');
 const templateService = require('./templateService');
@@ -151,6 +150,7 @@ class EmailService {
           followup_due_date: nextFollowupDate,
           last_message_id: result.messageId,
           thread_id: result.threadId || lead.thread_id,
+          references_chain: result.referencesChain || lead.references_chain,
           last_email_subject: subject
         },
         $inc: { emails_sent: 1 }
@@ -202,34 +202,37 @@ class EmailService {
   }
 
   /**
-   * Send email via Resend
+   * Send email via Resend.
+   *
+   * Threading note: We do NOT set Message-ID / In-Reply-To / References headers.
+   * Resend ships through AWS SES, which always overwrites the Message-ID with
+   * its own (`<...@email.amazonses.com>`). Setting In-Reply-To pointing at our
+   * generated `<uuid@striat.dev>` then references a Message-ID Gmail never
+   * actually saw, which actively BREAKS threading instead of helping. We
+   * cannot retrieve the SES-assigned Message-ID via the Resend API either
+   * (the send response only returns Resend's internal id, and emails.get()
+   * is blocked on send-only API keys).
+   *
+   * Fallback: rely on Gmail/Outlook subject-based threading. Same `From:`
+   * line and `Subject:` with a `Re:` prefix is enough for those clients to
+   * group the messages without explicit RFC headers.
    */
   async sendViaResend(lead, subject, body, stage) {
     try {
       const fromEmail = process.env.FROM_EMAIL || 'dave@striat.dev';
-      const domain = fromEmail.split('@')[1];
+      const fromName = process.env.FROM_NAME || 'Dave Ariyo';
+      const fromHeader = `${fromName} <${fromEmail}>`;
 
-      // Message-IDs must be RFC-5322 formatted (<uuid@domain>) for Gmail/Outlook
-      // to thread the conversation correctly. We store the formatted ID on the
-      // lead so subsequent follow-ups can reference it verbatim.
-      const wrap = (id) => {
-        if (!id) return id;
-        return id.startsWith('<') ? id : `<${id}@${domain}>`;
+      const headers = {
+        // Required by Gmail/Yahoo bulk-sender guidelines (RFC 8058 one-click).
+        // Documented spam-score reducer. The mailto address needs a real
+        // handler wired up before scaling further than current volume.
+        'List-Unsubscribe': `<mailto:${fromEmail}?subject=Unsubscribe>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'
       };
 
-      // Generate our own Message-ID so we control the threading anchor
-      // exactly. Whatever Resend uses internally, this header travels with
-      // the email and we reference it verbatim in follow-up In-Reply-To.
-      const ourMessageId = `<${crypto.randomUUID()}@${domain}>`;
-
-      const headers = { 'Message-ID': ourMessageId };
-      if (stage > 1 && lead.last_message_id) {
-        headers['In-Reply-To'] = wrap(lead.last_message_id);
-        headers['References'] = wrap(lead.thread_id || lead.last_message_id);
-      }
-
       const emailOptions = {
-        from: fromEmail,
+        from: fromHeader,
         to: lead.email,
         subject,
         html: this.textToHtml(body),
@@ -237,11 +240,17 @@ class EmailService {
         headers
       };
 
-      await this.resend.emails.send(emailOptions);
+      const sendResult = await this.resend.emails.send(emailOptions);
+      // Resend's response is { data: { id: 'uuid' }, error: null }.
+      // Use the Resend-internal id for our tracking — it's not the SMTP
+      // Message-ID, but it's a stable handle for cross-referencing logs.
+      const resendId = (sendResult && sendResult.data && sendResult.data.id) || null;
 
       return {
-        messageId: ourMessageId,
-        threadId: lead.thread_id || ourMessageId
+        messageId: resendId,
+        threadId: lead.thread_id || resendId,
+        // Kept for schema compatibility; no longer used as a real RFC chain.
+        referencesChain: lead.references_chain || ''
       };
     } catch (error) {
       console.error('Resend send error:', error.message);

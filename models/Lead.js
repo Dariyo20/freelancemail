@@ -57,6 +57,10 @@ const leadSchema = new mongoose.Schema({
   followup_due_date: Date,
   thread_id: String, // Gmail thread ID for reply detection
   last_message_id: String, // Gmail message ID
+  // RFC 5322 References chain (space-separated <msg-id>s of prior messages
+  // in this thread). Grows with every send. Gmail in particular threads more
+  // reliably when the full ancestry is present, not just the original.
+  references_chain: String,
 
   // Reply classification
   reply_class: {
